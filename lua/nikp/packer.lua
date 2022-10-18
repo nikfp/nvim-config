@@ -16,9 +16,9 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope.nvim'
   use 'natecraddock/telescope-zf-native.nvim'
   -- Language service - core
+  use 'onsails/lspkind.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'neovim/nvim-lspconfig'
-  use 'onsails/lkylechui/nvim-surroundspkind.nvim'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/nvim-cmp'
@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
     "glepnir/lspsaga.nvim", 
     branch = "main", 
   })
+  use 'lewis6991/gitsigns.nvim'
   -- Language service - Svelte
   use 'windwp/nvim-ts-autotag'
   use 'leafOfTree/vim-svelte-plugin'
@@ -43,17 +44,9 @@ return require('packer').startup(function(use)
   use 'simrat39/rust-tools.nvim'
   -- Language service - formatting
   use 'sbdchd/neoformat'
-  -- Debug tools
-  use 'puremourning/vimspector'
   -- Utilities
---   use 'Pocco81/auto-save.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'windwp/nvim-autopairs'
-  use({
-    "kylechui/nvim-surround", 
-    tag = "*",
-    config = function() 
-      require('nvim-surround').setup()
-    end
-  })
+  -- Nik makes a plugin
+  use '~/Documents/Github/stackmap.nvim/'
 end)

@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
   },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -154,12 +159,6 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-surround"] = {
-    config = { "\27LJ\2\2;\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18nvim-surround\frequire\0" },
-    loaded = true,
-    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-surround",
-    url = "https://github.com/kylechui/nvim-surround"
-  },
   ["nvim-transparent"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-transparent",
@@ -195,6 +194,11 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
+  ["stackmap.nvim"] = {
+    loaded = true,
+    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/stackmap.nvim",
+    url = "/home/nikp/Documents/Github/stackmap.nvim/"
+  },
   ["telescope-zf-native.nvim"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/telescope-zf-native.nvim",
@@ -219,19 +223,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
     url = "https://github.com/hrsh7th/vim-vsnip-integ"
-  },
-  vimspector = {
-    loaded = true,
-    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/vimspector",
-    url = "https://github.com/puremourning/vimspector"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-try_loadstring("\27LJ\2\2;\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")
-time([[Config for nvim-surround]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
