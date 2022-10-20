@@ -49,4 +49,5 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   -- Nik makes a plugin
   use '~/Documents/Github/stackmap.nvim/'
+  use 'kdheepak/lazygit.nvim'
 end)

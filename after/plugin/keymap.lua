@@ -14,6 +14,9 @@ map("n", "fb", ":Telescope buffers<CR>")
 map("n", "fh", ":Telescope help_tags<CR>")
 map("n", "fi", ":Telescope file_browser<CR>")
 
+-- <<< GIT Stuff >>>
+
+map('n', '<leader>gg', ':LazyGit<cr>')
 -- <<< QUALITY OF LIFE >>>
 
 -- Easier reach to beginning and end of lines
@@ -27,7 +30,7 @@ map("i", "<C-j>", "<Down>")
 -- move lines up and down
 map('n', '<A-k>', ":m .-2<cr>") -- up
 map('n', "<A-j>", ":m .+1<cr>") -- down
-
+-- Format with prettier
 map('n', '<leader>fmt', ":Neoformat prettier<cr>")
 -- <<< Other locations for keymaps >>>
 -- Tried to avoid, but sometimes it makes sense in the modules
