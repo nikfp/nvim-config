@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["lazygit-neo.nvim"] = {
+    loaded = true,
+    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/lazygit-neo.nvim",
+    url = "/home/nikp/Documents/Github/lazygit-neo.nvim/"
+  },
   ["lazygit.nvim"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
@@ -143,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["mind.nvim"] = {
+    loaded = true,
+    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/mind.nvim",
+    url = "https://github.com/phaazon/mind.nvim"
   },
   neoformat = {
     loaded = true,

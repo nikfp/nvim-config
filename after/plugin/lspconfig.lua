@@ -51,3 +51,9 @@ require'lspconfig'.svelte.setup{
   on_attach = on_attach,
   flags = lsp_flags,
 }
+local util = require'lspconfig/util'
+require'lspconfig'.gopls.setup {
+  cmd = {'gopls', 'serve'},
+  filetypes = {'go', 'gomod'},
+  root_dir = util.root_pattern('go.work', 'go.mod', '.git')
+}

@@ -30,8 +30,14 @@ map("i", "<C-j>", "<Down>")
 -- move lines up and down
 map('n', '<A-k>', ":m .-2<cr>") -- up
 map('n', "<A-j>", ":m .+1<cr>") -- down
+-- Save and source current buffer
+map('n', '<leader><leader>x', ":w<cr>:source %<cr>")
 -- Format with prettier
 map('n', '<leader>fmt', ":Neoformat prettier<cr>")
+map('n', '<leader>shaye', ':echo "shaye is awesome"<cr>')
+-- Mind.nvim maps
+map('n', '<leader>mi', ':MindOpenSmartProject<cr>')
+map('n', '<leader>mc', ':MindClose<cr>')
 -- <<< Other locations for keymaps >>>
 -- Tried to avoid, but sometimes it makes sense in the modules
 -- All paths relative to here

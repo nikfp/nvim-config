@@ -50,4 +50,6 @@ return require('packer').startup(function(use)
   -- Nik makes a plugin
   use '~/Documents/Github/stackmap.nvim/'
   use 'kdheepak/lazygit.nvim'
+  use '~/Documents/Github/lazygit-neo.nvim/'
+  use 'phaazon/mind.nvim'
 end)
