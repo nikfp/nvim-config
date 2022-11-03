@@ -7,9 +7,10 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   -- Theme - managed in plugins/theme.lua
-  --   use 'folke/tokyonight.nvim'
-  use 'Mofiqul/dracula.nvim'
-  use 'xiyaowong/nvim-transparent'
+  use 'folke/tokyonight.nvim'
+  -- use 'Mofiqul/dracula.nvim'
+  -- Enable this if the theme doesn't have a transparent option
+  -- use 'xiyaowong/nvim-transparent'
   use 'kyazdani42/nvim-web-devicons'
   -- Telescope and Fuzzy finder
   use 'nvim-lua/plenary.nvim'

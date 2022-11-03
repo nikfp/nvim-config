@@ -5,10 +5,11 @@
 require('nvim-autopairs').setup()
 
 vim.api.nvim_create_autocmd( "InsertLeave", {
+  pattern = {"*.**"},
   command = "w"
 })
 
 vim.api.nvim_create_autocmd( "TextChanged", {
-  pattern = {"*.**"}, 
+  pattern = {"*.**"},
   command = "w"
 })

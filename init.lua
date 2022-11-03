@@ -7,3 +7,8 @@ P = function(v)
   print(vim.inspect(v))
   return v
 end
+
+-- autosave stuff
+-- vim.g.auto_save = 1
+-- vim.g.auto_save_silent = 1
+-- vim.g.auto_save_events = {"InsertLeave", "TextChanged", "FocusLost"}

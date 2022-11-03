@@ -27,6 +27,7 @@ map("v", "L", "g_")
 map("i", "jj", "<Esc>")
 -- Get down key function closer
 map("i", "<C-j>", "<Down>")
+map("i", "<C-K", "<Up>")
 -- move lines up and down
 map('n', '<A-k>', ":m .-2<cr>") -- up
 map('n', "<A-j>", ":m .+1<cr>") -- down

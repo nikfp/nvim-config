@@ -104,11 +104,6 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/dracula.nvim",
-    url = "https://github.com/Mofiqul/dracula.nvim"
-  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -174,11 +169,6 @@ _G.packer_plugins = {
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-transparent"] = {
-    loaded = true,
-    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-transparent",
-    url = "https://github.com/xiyaowong/nvim-transparent"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -223,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nikp/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/nikp/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vim-svelte-plugin"] = {
     loaded = true,
