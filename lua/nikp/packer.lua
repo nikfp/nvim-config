@@ -33,9 +33,23 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   -- Language service - UI
+  use({
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      -- "rcarriga/nvim-notify",
+      }
+  })
   use ({
-    "glepnir/lspsaga.nvim", 
-    branch = "main", 
+    "glepnir/lspsaga.nvim",
+    branch = "main",
   })
   use 'lewis6991/gitsigns.nvim'
   -- Language service - Svelte
@@ -48,6 +62,7 @@ return require('packer').startup(function(use)
   -- Utilities
   use 'nvim-lualine/lualine.nvim'
   use 'windwp/nvim-autopairs'
+  use 'kylechui/nvim-surround'
   -- Nik makes a plugin
   use '~/Documents/Github/stackmap.nvim/'
   use 'kdheepak/lazygit.nvim'

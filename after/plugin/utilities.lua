@@ -13,3 +13,5 @@ vim.api.nvim_create_autocmd( "TextChanged", {
   pattern = {"*.**"},
   command = "w"
 })
+
+require'nvim-surround'.setup()

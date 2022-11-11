@@ -124,7 +124,7 @@ require("rust-tools").setup({
       -- easy run code
       keymap('n', '<leader>ru', ":!cargo run<cr>")
       -- easy format
-      keymap('n', '<leader>fmt', ":!cargo fmt<cr>")
+      keymap('n', '<leader>fmt', ":!cargo fmt<cr><cr><cr>")
       -- add semicolon easily
       keymap('n', '<leader>;', "$a;<esc>o")
 
