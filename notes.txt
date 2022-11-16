@@ -1,0 +1,2 @@
+- If Treesitter starts acting up
+  - run TSUpdate and see if it fixes things

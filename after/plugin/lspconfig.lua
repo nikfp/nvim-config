@@ -1,3 +1,6 @@
+local popup = require('nikp.popup')
+
+local status, nvim_lsp = pcall(require, "lspconfig")
 -- Initialize LSPSaga
 require("lspsaga").init_lsp_saga();
 -- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -8,6 +11,9 @@ keymap('n', '<space>e', vim.diagnostic.open_float, opts)
 keymap('n', '[d', vim.diagnostic.goto_prev, opts)
 keymap('n', ']d', vim.diagnostic.goto_next, opts)
 keymap('n', '<space>q', vim.diagnostic.setloclist, opts)
+keymap('n', '<leader>ru', function() 
+  popup.output_command(":echo 'run command not set up for this file type'")
+end, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -86,8 +92,10 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+-- set up completion capabilities using nvim_cmp with LSP source
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- TYPESCRIPT
-require('lspconfig')['tsserver'].setup{
+nvim_lsp.tsserver.setup{
     on_attach = function(client, bufnr)
         on_attach(client, bufnr)
         if client.server_capabilities.documentFormattingProvider then
@@ -102,7 +110,8 @@ require('lspconfig')['tsserver'].setup{
     end,
     flags = lsp_flags,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-    cmd = { "typescript-language-server", "--stdio" }
+    cmd = { "typescript-language-server", "--stdio" },
+    capabilities = capabilities
 }
 
 --SVELTE 
@@ -114,22 +123,25 @@ vim.g.vim_svelte_plugin_use_typescript = 1
 
 -- RUST
 local rt = require('rust-tools')
+
 require("rust-tools").setup({
   server = {
     on_attach = function(client, bufnr)
+      -- add keymaps for the rest of things
+      on_attach(client, bufnr)
       -- Hover actions
       keymap("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
       -- Code action groups
       keymap("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
       -- easy run code
-      keymap('n', '<leader>ru', ":!cargo run<cr>")
+      keymap('n', '<leader>ru', function() 
+        popup.output_command(':!cargo run')
+      end )
       -- easy format
       keymap('n', '<leader>fmt', ":!cargo fmt<cr><cr><cr>")
       -- add semicolon easily
       keymap('n', '<leader>;', "$a;<esc>o")
 
-      -- add keymaps for the rest of things
-      on_attach(client, bufnr)
     end,
   },
 })
@@ -165,3 +177,13 @@ require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach
   }
 }
+
+-- vim.diagnostic.config({
+--   virtual_text = {
+--     prefix = '●'
+--   },
+--   update_in_insert = true,
+--   float = {
+--     source = "always", -- Or "if_many"
+--   },
+-- })

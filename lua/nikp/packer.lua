@@ -1,4 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
@@ -21,18 +20,20 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
+  use 'jose-elias-alvarez/null-ls.nvim'
   -- Language service - Plugin manager
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   -- Language service - UI
+  -- use 'MunifTanjim/nui.nvim'
   use({
     "folke/noice.nvim",
     config = function()
@@ -40,10 +41,10 @@ return require('packer').startup(function(use)
     end,
     requires = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
+      "muniftanjim/nui.nvim",
+      -- optional:
       --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
+      --   if not available, we use `mini` as the fallback
       -- "rcarriga/nvim-notify",
       }
   })
@@ -52,20 +53,17 @@ return require('packer').startup(function(use)
     branch = "main",
   })
   use 'lewis6991/gitsigns.nvim'
-  -- Language service - Svelte
+  -- language service - svelte
   use 'windwp/nvim-ts-autotag'
-  use 'leafOfTree/vim-svelte-plugin'
-  -- Language service - Rust
+  use 'leafoftree/vim-svelte-plugin'
+  -- language service - rust
   use 'simrat39/rust-tools.nvim'
-  -- Language service - formatting
+  -- language service - formatting
   use 'sbdchd/neoformat'
-  -- Utilities
+  -- utilities
   use 'nvim-lualine/lualine.nvim'
   use 'windwp/nvim-autopairs'
   use 'kylechui/nvim-surround'
-  -- Nik makes a plugin
-  use '~/Documents/Github/stackmap.nvim/'
+  use 'terrortylor/nvim-comment'
   use 'kdheepak/lazygit.nvim'
-  use '~/Documents/Github/lazygit-neo.nvim/'
-  use 'phaazon/mind.nvim'
 end)
