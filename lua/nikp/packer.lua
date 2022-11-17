@@ -1,8 +1,43 @@
+local fn = vim.fn
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/packer/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then 
+  PACKER_BOOTSTRAP = fn.system{
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path
+  }
+  print "Installing packer.... please close and reopen Noevim"
+  vim.cmd [[packadd packer.nvim]]
+end
 
-return require('packer').startup(function(use)
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
+return packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   -- Theme - managed in plugins/theme.lua
@@ -33,20 +68,12 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   -- Language service - UI
-  -- use 'MunifTanjim/nui.nvim'
+  use 'MunifTanjim/nui.nvim'
   use({
     "folke/noice.nvim",
     config = function()
       require("noice").setup()
     end,
-    requires = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "muniftanjim/nui.nvim",
-      -- optional:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   if not available, we use `mini` as the fallback
-      -- "rcarriga/nvim-notify",
-      }
   })
   use ({
     "glepnir/lspsaga.nvim",
@@ -66,4 +93,8 @@ return require('packer').startup(function(use)
   use 'kylechui/nvim-surround'
   use 'terrortylor/nvim-comment'
   use 'kdheepak/lazygit.nvim'
+
+  if PACKER_BOOTSTRAP then
+    require'packer'.sync()
+  end
 end)
