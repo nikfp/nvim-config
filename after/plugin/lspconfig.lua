@@ -6,6 +6,9 @@ require("lspsaga").init_lsp_saga();
 -- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
 local keymap = vim.keymap.set
 
+-- local run_default = function() 
+--   popup.output_command(":echo 'run command not set up for this file type'")
+-- end
 local opts = { noremap=true, silent=true }
 keymap('n', '<space>e', vim.diagnostic.open_float, opts)
 keymap('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -13,8 +16,7 @@ keymap('n', ']d', vim.diagnostic.goto_next, opts)
 keymap('n', '<space>q', vim.diagnostic.setloclist, opts)
 keymap('n', '<leader>ru', function() 
   popup.output_command(":echo 'run command not set up for this file type'")
-end, opts)
-
+end, {noremap = true, silent = true, desc = "Default run command"})
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -44,7 +46,7 @@ local on_attach = function(client, bufnr)
   -- keymap('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
   keymap('n', 'gr', vim.lsp.buf.references, bufopts)
-  keymap('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  keymap('n', '<leader>fmt', function() vim.lsp.buf.format { async = true } end, bufopts)
   -- keymap('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
   keymap("n", "<leader>rr", "<cmd>Lspsaga rename<CR>", { silent = true })
 end
@@ -93,7 +95,11 @@ local lsp_flags = {
 }
 
 -- set up completion capabilities using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- C and Variants
+nvim_lsp.clangd.setup {
+  capabilities = capabilities
+}
 -- TYPESCRIPT
 nvim_lsp.tsserver.setup{
     on_attach = function(client, bufnr)
@@ -124,7 +130,7 @@ vim.g.vim_svelte_plugin_use_typescript = 1
 -- RUST
 local rt = require('rust-tools')
 
-require("rust-tools").setup({
+rt.setup({
   server = {
     on_attach = function(client, bufnr)
       -- add keymaps for the rest of things
@@ -177,6 +183,26 @@ require'lspconfig'.sumneko_lua.setup {
     on_attach = on_attach
   }
 }
+
+--Set completeopt to have a better completion experience
+-- :help completeopt
+-- menuone: popup even when there's only one match
+-- noinsert: Do not insert text until a selection is made
+-- noselect: Do not select, force to select one from the menu
+-- shortness: avoid showing extra messages when using completion
+-- updatetime: set updatetime for CursorHold
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.shortmess = vim.opt.shortmess + { c = true}
+vim.api.nvim_set_option('updatetime', 300) 
+
+-- Fixed column for diagnostics to appear
+-- Show autodiagnostic popup on cursor hover_range
+-- Goto previous / next diagnostic warning / error 
+-- Show inlay_hints more frequently 
+vim.cmd([[
+set signcolumn=yes
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+]])
 
 -- vim.diagnostic.config({
 --   virtual_text = {
