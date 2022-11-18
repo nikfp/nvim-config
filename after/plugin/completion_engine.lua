@@ -79,12 +79,22 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'vsnip-integ' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'vsnip' },
     { name = 'buffer' },
   }),
+  -- sources = cmp.config.sources({
+  --     { name = 'nvim_lsp' },
+  --     { name = 'luasnip' }, -- For vsnip users.
+  --     -- { name = 'luasnip' }, -- For luasnip users.
+  --     -- { name = 'ultisnips' }, -- For ultisnips users.
+  --     -- { name = 'snippy' }, -- For snippy users.
+  --   }, {
+  --     -- { name = 'buffer' }
+  --   }),
   formatting = {
       fields = {'menu', 'abbr', 'kind'},
       format = function(entry, item) 

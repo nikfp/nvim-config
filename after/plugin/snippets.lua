@@ -1,0 +1,38 @@
+-- local ls = require("luasnip")
+-- -- some shorthands... 
+-- local snip = ls.snippet
+-- local node = ls.snippet_node
+-- local text = ls.text_node
+-- local insert = ls.insert_node
+-- local func = ls.function_node
+-- local choice = ls.choice_node
+-- local dynamicn = ls.dynamic_node
+--
+-- local date = function() return {os.date('%Y-%m-%d')} end
+--
+-- ls.config.set_config {
+--   history = true,
+--   updateevents = "TextChanged,TextChangedI",
+--   enable_autosnippets = true,
+--
+-- }
+-- ls.add_snippets = {
+--   all = { 
+--      snip({
+--             trig = "date",
+--             namr = "Date",
+--             dscr = "Date in the form of YYYY-MM-DD",
+--         }, {
+--             func(date, {}),
+--         }),  }
+-- }
+--  vim.keymap.set({"i", "s"}, "<tab>", function() 
+--    if ls.jumpable(1) then
+--      ls.jump(1)
+--    end
+--  end, {silent = true})
+--  vim.keymap.set({"i", "s"}, "<S-tab>", function() 
+--    if ls.jumpable(-1) then
+--      ls.jump(-1)
+--    end
+--  end, {silent = true})

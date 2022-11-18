@@ -95,11 +95,11 @@ local lsp_flags = {
 }
 
 -- set up completion capabilities using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- C and Variants
-nvim_lsp.clangd.setup {
-  capabilities = capabilities
-}
+-- nvim_lsp.clangd.setup 
+--   capabilities = capabilities
+-- }
 -- TYPESCRIPT
 nvim_lsp.tsserver.setup{
     on_attach = function(client, bufnr)
@@ -117,7 +117,7 @@ nvim_lsp.tsserver.setup{
     flags = lsp_flags,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" },
-    capabilities = capabilities
+    -- capabilities = capabilities
 }
 
 --SVELTE 
