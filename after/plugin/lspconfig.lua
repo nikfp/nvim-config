@@ -1,5 +1,5 @@
 local popup = require('nikp.popup')
-
+require'neodev'.setup()
 local status, nvim_lsp = pcall(require, "lspconfig")
 -- Initialize LSPSaga
 require("lspsaga").init_lsp_saga();
@@ -95,11 +95,11 @@ local lsp_flags = {
 }
 
 -- set up completion capabilities using nvim_cmp with LSP source
--- local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- C and Variants
--- nvim_lsp.clangd.setup 
---   capabilities = capabilities
--- }
+nvim_lsp.clangd.setup({
+  capabilities = capabilities
+}) 
 -- TYPESCRIPT
 nvim_lsp.tsserver.setup{
     on_attach = function(client, bufnr)
@@ -117,7 +117,7 @@ nvim_lsp.tsserver.setup{
     flags = lsp_flags,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" },
-    -- capabilities = capabilities
+    capabilities = capabilities
 }
 
 --SVELTE 
@@ -132,6 +132,7 @@ local rt = require('rust-tools')
 
 rt.setup({
   server = {
+    capabilities = capabilities,
     on_attach = function(client, bufnr)
       -- add keymaps for the rest of things
       on_attach(client, bufnr)
@@ -157,7 +158,11 @@ local util = require'lspconfig/util'
 require'lspconfig'.gopls.setup {
   cmd = {'gopls', 'serve'},
   filetypes = {'go', 'gomod'},
-  root_dir = util.root_pattern('go.work', 'go.mod', '.git')
+  root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach
+  }
 }
 
 -- LUA
@@ -180,6 +185,7 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
   server = {
+    capabilities = capabilities,
     on_attach = on_attach
   }
 }

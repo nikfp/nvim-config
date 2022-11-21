@@ -10,7 +10,7 @@ end
 -- <<< FINDING THINGS >>>
 --shortcuts for Telescope
 
-map("n", "<leader>ff", ":Telescope find_files<CR>", {desc = "Find files with Telescope"})
+map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", {desc = "Find files with Telescope"})
 map("n", "<leader>fg", ":Telescope live_grep<CR>", {desc = "Live grep files in starting directory"})
 map("n", "<leader>fb", ":Telescope buffers<CR>", {desc = "Search for active buffers"})
 map("n", "<leader>fh", ":Telescope help_tags<CR>", {desc = "Search for help tags"})

@@ -1,0 +1,14 @@
+{
+	"snip1": {
+		"prefix": "lua",
+		"body": [
+			"lualualua"
+		]
+	},
+	"snip4": {
+		"prefix": "luado",
+		"body": [
+			"lualualua"
+		]
+	}
+}

@@ -1,4 +1,6 @@
 local cmp = require'cmp'
+require'luasnip.loaders.from_vscode'.load({paths = './user_snippets'})
+local ls = require'luasnip'
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -11,7 +13,7 @@ local kind_icons = {
   Module = "",
   Property = "",
   Unit = "",
-  Value = "",
+  Value = "", 
   Enum = "",
   Keyword = "",
   Snippet = "",
@@ -27,12 +29,17 @@ local kind_icons = {
   TypeParameter = "",
 }
 
+-- local map = vim.keymap.set
+--
+-- map('i', '<tab>', function() {
+--
+-- })
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
@@ -45,11 +52,22 @@ cmp.setup({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    -- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<Tab>'] = function(fallback)
+      if ls.jumpable(1) then
+        ls.jump(1)
+      elseif cmp.visible() then
+        cmp.confirm({ select = true })
+      else 
+        fallback()
+      end
+    end,
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<C-j>"] = function(fallback)
-      if cmp.visible() then
+      if ls.choice_active() then
+        ls.change_choice(1)
+      elseif cmp.visible() then
         cmp.select_next_item()
       else
         fallback()
@@ -63,7 +81,9 @@ cmp.setup({
       end
     end,
   ["<C-k>"] = function(fallback)
-      if cmp.visible() then
+      if ls.choice_active() then
+        ls.change_choice(-1)
+      elseif cmp.visible() then
         cmp.select_prev_item()
       else
         fallback()
@@ -79,22 +99,12 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
-    { name = 'vsnip-integ' },
+    { name = 'luasnip' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'buffer' },
+    -- { name = 'buffer' },
   }),
-  -- sources = cmp.config.sources({
-  --     { name = 'nvim_lsp' },
-  --     { name = 'luasnip' }, -- For vsnip users.
-  --     -- { name = 'luasnip' }, -- For luasnip users.
-  --     -- { name = 'ultisnips' }, -- For ultisnips users.
-  --     -- { name = 'snippy' }, -- For snippy users.
-  --   }, {
-  --     -- { name = 'buffer' }
-  --   }),
   formatting = {
       fields = {'menu', 'abbr', 'kind'},
       format = function(entry, item) 
