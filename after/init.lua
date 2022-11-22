@@ -1,2 +1,2 @@
-require("telescope").setup() 
+require("telescope").setup()
 require("telescope").load_extension("zf-native")

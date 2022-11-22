@@ -4,8 +4,8 @@ vim.opt.background = "dark"
 
 local theme = "tokyonight"
 require(theme).setup({
-  transparent = true,
-  terminal_colors = true
+	transparent = true,
+	terminal_colors = true,
 })
 vim.cmd("colorscheme " .. theme)
 
@@ -19,11 +19,11 @@ vim.cmd("colorscheme " .. theme)
 --   }
 -- })
 
-require('lualine').setup {
-  options = {
-    theme = theme
-  }
-}
+require("lualine").setup({
+	options = {
+		theme = theme,
+	},
+})
 -- require("transparent").setup({
 --   enable = true,  -- boolean: enable transparent
 --   extra_groups = {  -- table/string: additional groups that should be cleared

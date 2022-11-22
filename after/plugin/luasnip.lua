@@ -7,12 +7,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 local utils = require("nikp.snip_utils")
--- local capitalize_first_letter = function(index)
---   return f(function(arg)
---     local str = arg[1][1]
---     return str:sub(1,1):upper() .. str:sub(2, -1)
---   end, {index})
--- end
 
 -- LUA SNIPPETS
 ls.add_snippets("lua", {
