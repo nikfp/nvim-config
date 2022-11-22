@@ -95,6 +95,7 @@ return packer.startup(function(use)
   use 'simrat39/rust-tools.nvim'
   -- language service - formatting
   use 'sbdchd/neoformat'
+  use 'ckipp01/stylua-nvim'
   -- utilities
   use 'nvim-lualine/lualine.nvim'
   use 'windwp/nvim-autopairs'

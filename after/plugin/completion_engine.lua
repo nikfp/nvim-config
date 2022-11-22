@@ -48,12 +48,12 @@ cmp.setup({
     -- completion = cmp.config.window.bordered(),
     -- documentation = cmp.config.window.bordered(),
   },
-  mapping = cmp.mapping.preset.insert({
+  mapping = {
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     -- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if ls.jumpable(1) then
         ls.jump(1)
       elseif cmp.visible() then
@@ -61,7 +61,7 @@ cmp.setup({
       else 
         fallback()
       end
-    end,
+    end, {'i', 's'}),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<C-j>"] = function(fallback)
@@ -96,14 +96,14 @@ cmp.setup({
         fallback()
       end
     end
-  }),
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    -- { name = 'buffer' },
+    { name = 'buffer' },
   }),
   formatting = {
       fields = {'menu', 'abbr', 'kind'},

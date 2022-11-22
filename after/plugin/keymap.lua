@@ -43,7 +43,7 @@ map("v", "<A-j>", ":m .+1<cr>", {desc = "move current line down"}) -- down
 -- Save and source current buffer
 map("n", "<leader><leader>x", ":w<cr>:source %<cr>", {desc = "Source current buffer"})
 -- Format with prettier
-map("n", "<leader>fmt", ":echo 'formatting not set up for this file'<cr>", {desc = "Stub for formatting"})
+map("n", "<leader>fmt", ":Format<cr>", {desc = "Stub for formatting"})
 map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", {desc = "Tell the truth"})
 -- <<< other locations for keymaps >>>
 -- Tried to avoid, but sometimes it makes sense in the modules

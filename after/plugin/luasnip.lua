@@ -1,16 +1,45 @@
-local ls = require'luasnip'
+local ls = require("luasnip")
 
 local s, i, t = ls.s, ls.i, ls.t
 local c = ls.choice_node
-local test = require'luasnip'
-local fmt = require'luasnip.extras.fmt'.fmt
-local rep = require'luasnip.extras'.rep
+local f = ls.function_node
+local fmt = require("luasnip.extras.fmt").fmt
+local rep = require("luasnip.extras").rep
 
- ls.add_snippets("lua",  {
-   -- require function
-    s("req", fmt("local {} = require'{}{}'", {
-      i(1, "default"), rep(1), i(2)
-    })),
+local utils = require("nikp.snip_utils")
+-- local capitalize_first_letter = function(index)
+--   return f(function(arg)
+--     local str = arg[1][1]
+--     return str:sub(1,1):upper() .. str:sub(2, -1)
+--   end, {index})
+-- end
 
-  })
+-- LUA SNIPPETS
+ls.add_snippets("lua", {
+	s(
+		"req",
+		fmt([[local {} = require'{}']], {
+			f(function(import_name)
+				local parts = vim.split(import_name[1][1], ".", true)
+				return parts[#parts] or ""
+			end, { 1 }),
+			i(1),
+		})
+	),
+})
 
+-- TYPESCRIPT SNIPPETS
+ls.add_snippets("typescript", {
+	s(
+		"useState",
+		fmt([[const [ {}, set{} ] = useState{}({});]], { i(1), utils.capitalize_first_letter(1), i(2), i(3) })
+	),
+})
+
+ls.filetype_extend("typescriptreact", { "typescript" })
+
+-- DEV TOOLS FOR SNIPPETS - UNCOMMENT LINES BELOW FOR REPL USE
+-- vim.keymap.set("n", "<leader><leader>ls", '<cmd>source %<cr>', {silent = true, noremap = true})
+-- vim.keymap.set("n", "<leader><leader>lc",function()
+--   ls.cleanup()
+-- end, {silent = true, noremap = true})
