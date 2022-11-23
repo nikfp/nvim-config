@@ -1,7 +1,0 @@
-{
-  "Console Log": {
-    "prefix": "log",
-    "body": "console.log()",
-    "description": "Log to the console"
-  }
-}

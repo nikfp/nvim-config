@@ -1,5 +1,4 @@
 local cmp = require("cmp")
-require("luasnip.loaders.from_vscode").load({ paths = "./user_snippets" })
 local ls = require("luasnip")
 local kind_icons = {
 	Text = "",

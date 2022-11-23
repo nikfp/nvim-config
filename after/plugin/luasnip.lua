@@ -22,6 +22,10 @@ ls.add_snippets("lua", {
 	),
 })
 
+-- JAVASCRIPT SNIPPETS
+ls.add_snippets("javascript", {
+	s("log", fmt([[console.log({})]], { i(1) })),
+})
 -- TYPESCRIPT SNIPPETS
 ls.add_snippets("typescript", {
 	s(
@@ -30,7 +34,9 @@ ls.add_snippets("typescript", {
 	),
 })
 
-ls.filetype_extend("typescriptreact", { "typescript" })
+ls.filetype_extend("typescript", { "javascript" })
+ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
+ls.filetype_extend("svelte", { "typescript", "javascript" })
 
 -- DEV TOOLS FOR SNIPPETS - UNCOMMENT LINES BELOW FOR REPL USE
 -- vim.keymap.set("n", "<leader><leader>ls", '<cmd>source %<cr>', {silent = true, noremap = true})
