@@ -67,11 +67,6 @@ return packer.startup(function(use)
 		after = "nvim-cmp",
 		run = "make install_jsregexp",
 	})
-	-- use 'rafamadriz/friendly-snippets'
-	-- use 'hrsh7th/cmp-vsnip'
-	-- use 'hrsh7th/vim-vsnip'
-	-- use 'hrsh7th/vim-vsnip-integ'
-	use("jose-elias-alvarez/null-ls.nvim")
 	-- Language service - Plugin manager
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")

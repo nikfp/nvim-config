@@ -1,3 +1,6 @@
+vim.api.nvim_set_keymap("n", "<space>", "<Nop>", { noremap = true })
+vim.g.mapleader = " "
+
 local popup = require'nikp.popup'
 function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -14,7 +17,6 @@ map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", {desc = "Find fi
 map("n", "<leader>fg", ":Telescope live_grep<CR>", {desc = "Live grep files in starting directory"})
 map("n", "<leader>fb", ":Telescope buffers<CR>", {desc = "Search for active buffers"})
 map("n", "<leader>fh", ":Telescope help_tags<CR>", {desc = "Search for help tags"})
--- map("n", "<leader>fi", ":Telescope file_browser<CR>", {desc = "Browse for files"})
 
 -- <<< GIT Stuff >>>
 map("n", "<leader>gg", ":LazyGit<cr>", {desc = "Start LazyGit"})
@@ -33,8 +35,8 @@ map("v", "L", "g_", {desc = "Move to end of text on current line - Visual mode"}
 -- remap escape to a closer key
 map("i", "jj", "<Esc>", {desc = "Remap escape to 'j' key twice for ergonomics - Insert mod"})
 -- Get down key function closer 
-map("i", "<C-j>", "<Down>", {desc = "Remap escape to 'j' key twice for ergonomics - Insert mod"})
-map("i", "<C-K", "<Up>", {desc = "Remap escape to 'j' key twice for ergonomics - Insert mod"})
+map("i", "<C-j>", "<Down>", {desc = "Move down arrow key closer to home row"})
+map("i", "<C-K", "<Up>", {desc = "Move up arrow key closer to home row"})
 -- move lines up and down
 map("n", "<A-k>", ":m .-2<cr>", {desc = "Move current line up"}) -- up
 map("v", "<A-k>", ":m .-2<cr>", {desc = "Move current line up"}) -- up
