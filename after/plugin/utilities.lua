@@ -1,7 +1,3 @@
--- require('auto-save').setup({
---   trigger_events = {"FocusLost"}
--- })
-
 require("nvim-autopairs").setup()
 
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -15,3 +11,5 @@ vim.api.nvim_create_autocmd("TextChanged", {
 })
 
 require("nvim-surround").setup()
+require("nvim_comment").setup()
+

@@ -73,11 +73,18 @@ return packer.startup(function(use)
 	-- Language service - UI
 	use("MunifTanjim/nui.nvim")
 	-- use({
-	--   "folke/noice.nvim",
-	--   config = function()
-	--     require("noice").setup()
-	--   end,
+	-- 	"folke/noice.nvim",
+	-- 	config = function()
+	-- 		require("noice").setup({
+	-- 			routes = {
+	-- 				filter = { cmdline = "^!" },
+	-- 				view = "split",
+	-- 			},
+	-- 		})
+	-- 	end,
 	-- })
+	-- use("folke/noice.nvim")
+  use("vigoux/notifier.nvim")
 	use({
 		"glepnir/lspsaga.nvim",
 		branch = "main",
@@ -97,6 +104,10 @@ return packer.startup(function(use)
 	use("kylechui/nvim-surround")
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
+	use("RishabhRD/nvim-cheat.sh")
+	use("RishabhRD/popfix")
+  -- Make NetRW pretty
+  use("prichrd/netrw.nvim")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

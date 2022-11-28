@@ -19,6 +19,14 @@ vim.cmd("colorscheme " .. theme)
 --   }
 -- })
 
+require("notifier").setup()
+-- require'noice'.setup({
+--   redirect = {
+--     filter = { cmdline = true },
+--     view = "cmdline_output"
+--   }
+-- })
+
 require("lualine").setup({
 	options = {
 		theme = theme,
