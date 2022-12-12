@@ -1,6 +1,0 @@
--- require'noice'.setup({
---   routes = {
---     filter = { cmdline = "^:!" },
---     view = "split"
---   }
--- })

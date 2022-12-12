@@ -60,31 +60,37 @@ return packer.startup(function(use)
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-path")
-	use("folke/neodev.nvim")
 	use("saadparwaiz1/cmp_luasnip")
 	use({
 		"L3MON4D3/LuaSnip",
 		after = "nvim-cmp",
-		run = "make install_jsregexp",
 	})
+	-- use({
+	-- 	"mfussenegger/nvim-dap",
+	-- 	opt = true,
+	-- 	module = { "dap" },
+	-- 	requires = {
+	-- 		"theHamsta/nvim-dap-virtual-text",
+	-- 		"rcarriga/nvim-dap-ui",
+	-- 		"nvim-telescope/telescope-dap.nvim",
+	-- 		{ "mxsdev/nvim-dap-vscode-js" },
+	-- 		{
+	-- 			"microsoft/vscode-js-debug"n,
+	-- 			opt = true,
+	-- 			run = "npm install --legacy-peer-deps && npm run compile",
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		require("nikp.dap.javascript").setup()
+	-- 	end,
+	-- 	disable = false,
+	-- })
 	-- Language service - Plugin manager
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	-- Language service - UI
 	use("MunifTanjim/nui.nvim")
-	-- use({
-	-- 	"folke/noice.nvim",
-	-- 	config = function()
-	-- 		require("noice").setup({
-	-- 			routes = {
-	-- 				filter = { cmdline = "^!" },
-	-- 				view = "split",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- })
-	-- use("folke/noice.nvim")
-  use("vigoux/notifier.nvim")
+	use("vigoux/notifier.nvim")
 	use({
 		"glepnir/lspsaga.nvim",
 		branch = "main",
@@ -104,10 +110,8 @@ return packer.startup(function(use)
 	use("kylechui/nvim-surround")
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
-	use("RishabhRD/nvim-cheat.sh")
-	use("RishabhRD/popfix")
-  -- Make NetRW pretty
-  use("prichrd/netrw.nvim")
+	-- Make NetRW pretty
+	use("prichrd/netrw.nvim")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

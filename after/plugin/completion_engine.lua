@@ -118,6 +118,9 @@ cmp.setup({
 			return item
 		end,
 	},
+  completion = {
+    autocomplete = false
+  }
 })
 
 -- Set configuration for specific filetype.
@@ -146,3 +149,10 @@ cmp.setup.cmdline(":", {
 		{ name = "cmdline" },
 	}),
 })
+
+vim.cmd([[
+  augroup CmpDebounceAuGroup
+    au!
+    au TextChangedI * lua require("nikp.cmp.debounce").debounce()
+  augroup end
+]])

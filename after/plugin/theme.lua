@@ -3,6 +3,7 @@ vim.g.tokyonight_transparent = true
 vim.opt.background = "dark"
 
 local theme = "tokyonight"
+-- Use to set up tokyonight
 require(theme).setup({
 	transparent = true,
 	terminal_colors = true,
@@ -20,12 +21,6 @@ vim.cmd("colorscheme " .. theme)
 -- })
 
 require("notifier").setup()
--- require'noice'.setup({
---   redirect = {
---     filter = { cmdline = true },
---     view = "cmdline_output"
---   }
--- })
 
 require("lualine").setup({
 	options = {
