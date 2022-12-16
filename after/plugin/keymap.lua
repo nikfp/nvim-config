@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 
 require'nikp.keymaps.base'.initialize()
 -- <<< other locations for keymaps >>>

@@ -10,12 +10,5 @@ end
 
 M.map = map
 
-
-
-
-
-
-
-
-
 return M
+

@@ -34,13 +34,25 @@ M.initialize = function()
 	map("i", "<C-K", "<Up>", { desc = "Move up arrow key closer to home row" })
 	-- move lines up and down
 	map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" }) -- up
-	map("v", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" }) -- up
 	map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" }) -- down
-	map("v", "<A-j>", ":m .+1<cr>", { desc = "move current line down" }) -- down
-	-- Save and source current buffer
-	map("n", "<leader><leader>x", ":w<cr>:source %<cr>", { desc = "Source current buffer" })
-	-- Format with prettier
-	map("n", "<leader>fmt", ":Format<cr>", { desc = "Stub for formatting" })
+	map("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" }) -- up
+	map("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
+	-- make sure cursor stays centered in screen
+	map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position"})
+	map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor"})
+	map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor"})
+  map("n", "n", "nzzzv", { desc = "Jump to next search position and center cursor"})
+  map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor"})
+	-- Easy open file explorer
+	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Open file explorer"})
+  -- Make pasting easier
+  map("n", "<leader>p", "\"_dp", { desc = "Paste over word without taking removed word to register"})
+  -- Disable Ex mode
+  map("n", "Q", "<nop>", { desc = "Gets rid of Ex mode"})
+  -- change word under cursor
+  map("n", "<leader>w", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+	-- format with prettier
+	map("n", "<leader>fmt", ":format<cr>", { desc = "stub for formatting" })
 	map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
 	-- <<< BASE LSP KEYMAPS >>>
 	map("n", "<space>e", vim.diagnostic.open_float, { silent = true, desc = "Open Diagnostic Float" })

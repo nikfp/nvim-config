@@ -1,4 +1,4 @@
-local DEBUGGER_PATH = vim.fn.stdpath "data" .. "/site/pack/packer/opt/vscode-js-debug"
+local DEBUGGER_PATH = vim.fn.stdpath "data" .. "/site/pack/packer/start/vscode-js-debug"
 
 local M = {}
 

@@ -20,10 +20,12 @@ ls.add_snippets("lua", {
 			i(1),
 		})
 	),
+  s("desc", fmt([[{{ desc = "{}"}}]], {i(1)}))
 })
 -- JAVASCRIPT SNIPPETS
 ls.add_snippets("javascript", {
 	s("log", fmt([[console.log({})]], { i(1) })),
+  s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) }))
 })
 -- TYPESCRIPT SNIPPETS
 ls.add_snippets("typescript", {
