@@ -8,34 +8,39 @@ M.setup = function()
 		return
 	end
 
-	require("dap").set_log_level("INFO")
+	for _, language in ipairs({ "typescript", "javascript" }) do
+		dap.configurations[language] = {
+			{
+				type = "node2",
+				name = "Launch",
+				request = "launch",
+				program = "${file}",
+				cwd = vim.fn.getcwd(),
+				sourceMaps = true,
+				protocol = "inspector",
+				console = "integratedTerminal",
+				outFiles = { "${workspaceFolder}/out/**/*.js" },
+			},
+			{
+				type = "node2",
+				name = "Attach",
+				request = "attach",
+				program = "${file}",
+				cwd = vim.fn.getcwd(),
+				sourceMaps = true,
+				protocol = "inspector",
+				console = "integratedTerminal",
+				outFiles = { "${workspaceFolder}/out/**/*.js" },
+			},
+		}
+	end
 
-	dap.configurations.javascript = {
-		{
-			type = "node2",
-			name = "Launch",
-			request = "launch",
-			program = "${file}",
-			cwd = vim.fn.getcwd(),
-			sourceMaps = true,
-			protocol = "inspector",
-			console = "integratedTerminal",
-		},
-		{
-			type = "node2",
-			name = "Attach",
-			request = "attach",
-			program = "${file}",
-			cwd = vim.fn.getcwd(),
-			sourceMaps = true,
-			protocol = "inspector",
-			console = "integratedTerminal",
-		},
-	}
+	require("dap").set_log_level("INFO")
 
 	dap.adapters.node2 = {
 		type = "executable",
 		command = "node",
+		-- args = { vim.fn.stdpath("data") .. "/mason/bin/js-debug-adapter" },
 		args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
 	}
 
