@@ -53,9 +53,9 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		-- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if ls.jumpable(1) then
+			if ls.locally_jumpable(1) then
 				ls.jump(1)
-			elseif cmp.visible() then
+      elseif cmp.visible() then
 				cmp.confirm({ select = true })
 			else
 				fallback()

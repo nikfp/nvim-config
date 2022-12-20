@@ -65,30 +65,14 @@ return packer.startup(function(use)
 		"L3MON4D3/LuaSnip",
 		after = "nvim-cmp",
 	})
-	use({
-		"mfussenegger/nvim-dap",
-		opt = true,
-		module = { "dap" },
-		requires = {
-			{
-				"microsoft/vscode-js-debug",
-				opt = true,
-				run = "npm install --legacy-peer-deps && npm run compile",
-			},
-		},
-		config = function()
-			require("nikp.dap.javascript").setup()
-		end,
-		disable = false,
-	})
-	use("mxsdev/nvim-dap-vscode-js")
+	use({ "mfussenegger/nvim-dap", })
 	use("rcarriga/nvim-dap-ui")
 	use("nvim-telescope/telescope-dap.nvim")
 	use("theHamsta/nvim-dap-virtual-text")
 	-- Language service - Plugin manager
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-  use('microsoft/vscode-js-debug');
+  use("jay-babu/mason-nvim-dap.nvim")
 	-- Language service - UI
 	use("MunifTanjim/nui.nvim")
 	use("vigoux/notifier.nvim")
@@ -111,6 +95,7 @@ return packer.startup(function(use)
 	use("kylechui/nvim-surround")
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
+  use("folke/which-key.nvim")
 	-- Make NetRW pretty
 	use("prichrd/netrw.nvim")
 

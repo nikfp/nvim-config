@@ -15,9 +15,7 @@ M.initialize = function()
 	map("n", "<leader>gg", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
 	-- <<< SHOWING THINGS >>>
-	vim.keymap.set("n", "<leader>sm", function()
-		popup.output_command(":map")
-	end, { desc = "Show list of current user keymaps" })
+	vim.keymap.set("n", "<leader>sm", ":Telescope keymaps<cr>", { desc = "Show list of current user keymaps" })
 	vim.keymap.set("n", "<leader>ch", function()
 		popup.output_command(":!~/.config/bash/cht.sh")
 	end, { desc = "Run cht.sh" })
@@ -35,8 +33,8 @@ M.initialize = function()
 	-- move lines up and down
 	map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" }) -- up
 	map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" }) -- down
-	map("v", "<A-k>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" }) -- up
-	map("v", "<A-j>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
+	map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" }) -- up
+	map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
 	-- make sure cursor stays centered in screen
 	map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position"})
 	map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor"})
@@ -44,16 +42,16 @@ M.initialize = function()
   map("n", "n", "nzzzv", { desc = "Jump to next search position and center cursor"})
   map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor"})
 	-- Easy open file explorer
-	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Open file explorer"})
+	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer"})
   -- Make pasting easier
-  map("n", "<leader>p", "\"_dp", { desc = "Paste over word without taking removed word to register"})
+  map("n", "<leader>p", "\"_diwhp", { desc = "Paste over word and discard deleted word"})
   -- Disable Ex mode
-  map("n", "Q", "<nop>", { desc = "Gets rid of Ex mode"})
+  map("n", "Q", "<nop>", { desc = "Get rid of Ex mode"})
   -- change word under cursor
-  map("n", "<leader>w", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-	-- format with prettier
-	map("n", "<leader>fmt", ":format<cr>", { desc = "stub for formatting" })
+  map("n", "<leader>w", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Change all occurences of word undor cursor"})
 	map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
+  -- ChatGPT maps
+  map("n", "<leader>tch", ":ChatGPT<cr>", { desc = "Open ChatGPT"})
 	-- <<< BASE LSP KEYMAPS >>>
 	map("n", "<space>e", vim.diagnostic.open_float, { silent = true, desc = "Open Diagnostic Float" })
 	map("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "Go to previous diagnostic item" })

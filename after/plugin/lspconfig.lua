@@ -73,7 +73,7 @@ nvim_lsp.tsserver.setup({
 		keymap("n", "<leader>fmt", ":Neoformat prettier<cr>")
 	end,
 	flags = lsp_flags,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
 })
@@ -164,25 +164,16 @@ require("lspconfig").sumneko_lua.setup({
 			},
 		},
 	},
-	server = {
-		capabilities = capabilities,
-		on_attach = function(client, bufnr)
-			on_attach(client, bufnr)
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
 
-			print("lua attached")
-			keymap("n", "<leader>rr", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
+		keymap("n", "<leader>rr", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
 
-			keymap(
-				"n",
-				"<leader>fmt",
-				"<cmd>:lua require'stylua-nvim'.format_file()<cr>",
-				{ noremap = true, silent = true, buffer = bufnr }
-			)
-		end,
-	},
+		keymap("n", "<leader>fmt", stylua.format_file, { noremap = true, silent = true, buffer = bufnr })
+	end,
 })
 
-require("dapui").setup();
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match

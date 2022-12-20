@@ -20,7 +20,8 @@ ls.add_snippets("lua", {
 			i(1),
 		})
 	),
-  s("desc", fmt([[{{ desc = "{}"}}]], {i(1)}))
+  s("desc", fmt([[{{ desc = "{}"}}]], {i(1)})),
+  s("map", fmt([[map("{}", "{}", {}{})]], { c(1, { t("n"), t("v"), t("i"), t("c") }), i(2), i(3), i(4)}))
 })
 -- JAVASCRIPT SNIPPETS
 ls.add_snippets("javascript", {

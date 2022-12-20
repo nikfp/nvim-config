@@ -1,6 +1,7 @@
 local map = require("nikp.keymaps.utils").map
 local dap = require("dap")
-local dapui = require'dapui'
+local dapui = require("dapui")
+local telescope = require("telescope.builtin")
 
 local M = {}
 -- Use an on_attach function to only map the following keys
@@ -11,39 +12,56 @@ M.on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	map("n", "gD", vim.lsp.buf.declaration, bufopts)
-	map("n", "gd", vim.lsp.buf.definition, bufopts)
-	-- map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
-	-- map("n", "K", vim.lsp.buf.hover, bufopts)
-	map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-	map("n", "gi", vim.lsp.buf.implementation, bufopts)
+	map(
+		"n",
+		"<leader>gD",
+		vim.lsp.buf.declaration,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol declaration" }
+	)
+	map(
+		"n",
+		"<leader>gd",
+		vim.lsp.buf.definition,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol definition" }
+	)
+	map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true, desc = "Show symbol information" })
+	map(
+		"n",
+		"<leader>gi",
+		vim.lsp.buf.implementation,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol implementation" }
+	)
 	-- Lsp finder find the symbol definition implement reference
 	-- if there is no implement it will hide
 	-- when you use action in finder like open vsplit then you can
 	-- use <C-t> to jump back
-	map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-	map("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Open LSP symbol help information" })
+	map("n", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
 	map("n", "<space>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, bufopts)
 	map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 	-- map('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-	map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
-	map("n", "gr", vim.lsp.buf.references, bufopts)
+	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { silent = true })
+	map(
+		"n",
+		"<leader>gr",
+		telescope.lsp_references,
+		{ noremap = true, silent = true, buffer = bufnr, desc = "Open LSP references in Telescope" }
+	)
 	map("n", "<leader>fmt", function()
 		vim.lsp.buf.format({ async = true })
-	end, bufopts)
+	end, { noremap = true, silent = true, buffer = bufnr, desc = "Format buffer with default formatter" })
 	-- map('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
-	map("n", "<leader>rr", "<cmd>Lspsaga rename<CR>", { silent = true })
+	map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { silent = true, desc = "Rename current symbol" })
 	-- DEBUG ADAPTER ITEMS
-	map("n", "<leader>db", dap.toggle_breakpoint, { silent = true })
-	map("n", "<leader>dc", dap.continue, { silent = true })
-	map("n", "<leader>do", dap.step_over, { silent = true })
-	map("n", "<leader>di", dap.step_into, { silent = true })
-	map("n", "<leader>db", dap.toggle_breakpoint, { silent = true })
-	map("n", "<leader>du", dapui.toggle, { silent = true })
+	map("n", "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "Toggle Breakpoint" })
+	map("n", "<leader>dc", dap.continue, { silent = true, desc = "DAP continue" })
+	map("n", "<leader>do", dap.step_over, { silent = true, desc = "DAP Step over" })
+	map("n", "<leader>di", dap.step_into, { silent = true, desc = "DAP step into" })
+	map("n", "<leader>du", dapui.toggle, { silent = true, desc = "DAP UI toggle" })
 end
 
 return M

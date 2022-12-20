@@ -16,6 +16,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.scrolloff = 8
+vim.opt.timeoutlen = 300
 -- vim.opt.mouse = 'a'
 -- vim.opt.cursorline = true:
 

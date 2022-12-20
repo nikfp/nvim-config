@@ -1,4 +1,3 @@
-
 require'nikp.keymaps.base'.initialize()
 -- <<< other locations for keymaps >>>
 -- Tried to avoid, but sometimes it makes sense in the modules
