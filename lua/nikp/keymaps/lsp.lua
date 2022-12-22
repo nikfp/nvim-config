@@ -62,6 +62,8 @@ M.on_attach = function(client, bufnr)
 	map("n", "<leader>do", dap.step_over, { silent = true, desc = "DAP Step over" })
 	map("n", "<leader>di", dap.step_into, { silent = true, desc = "DAP step into" })
 	map("n", "<leader>du", dapui.toggle, { silent = true, desc = "DAP UI toggle" })
+  map("n", "<leader>dt", ":DapStepOut<cr>", { silent = true, desc = "DAP step out"})
+	map("n", "<leader>ds", ":DapTerminate<cr>", { silent = true, desc = "Terminate debugging session" })
 end
 
 return M

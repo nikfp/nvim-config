@@ -14,7 +14,7 @@ M.setup = function()
 				type = "node2",
 				name = "Launch",
 				request = "launch",
-				program = "${file}",
+				program = "${workspaceFolder}/out/index.js",
 				cwd = vim.fn.getcwd(),
 				sourceMaps = true,
 				protocol = "inspector",
@@ -25,7 +25,7 @@ M.setup = function()
 				type = "node2",
 				name = "Attach",
 				request = "attach",
-				program = "${file}",
+				program = "${workspaceFolder}/out/index.js",
 				cwd = vim.fn.getcwd(),
 				sourceMaps = true,
 				protocol = "inspector",
@@ -58,6 +58,7 @@ M.setup = function()
 			{
 				elements = {
 					"scopes",
+          "watches"
 				},
 				size = 0.3,
 				position = "right",
