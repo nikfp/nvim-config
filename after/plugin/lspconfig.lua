@@ -70,7 +70,7 @@ nvim_lsp.tsserver.setup({
 			})
 		end
 		keymap("n", "<leader>rr", ":lua vim.lsp.buf.rename()<cr>")
-		keymap("n", "<leader>fmt", ":Neoformat prettier<cr>")
+		-- keymap("n", "<leader>fmt", ":Neoformat prettier<cr>")
 	end,
 	flags = lsp_flags,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
@@ -138,13 +138,13 @@ require("lspconfig").gopls.setup({
 })
 
 -- LUA
-local stylua = require("stylua-nvim")
+-- local stylua = require("stylua-nvim")
 require("lspconfig").sumneko_lua.setup({
 	cmd = { "/home/nikp/lua/bin/lua-language-server" },
 	commands = {
 		Format = {
 			function()
-				require("stylua-nvim").format_file()
+				vim.lsp.buf.format()
 			end,
 		},
 	},
@@ -170,7 +170,7 @@ require("lspconfig").sumneko_lua.setup({
 
 		keymap("n", "<leader>rr", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
 
-		keymap("n", "<leader>fmt", stylua.format_file, { noremap = true, silent = true, buffer = bufnr })
+		-- keymap("n", "<leader>fmt", stylua.format_file, { noremap = true, silent = true, buffer = bufnr })
 	end,
 })
 
