@@ -19,6 +19,12 @@ M.initialize = function()
 	vim.keymap.set("n", "<leader>ch", function()
 		popup.output_command(":!~/.config/bash/cht.sh")
 	end, { desc = "Run cht.sh" })
+	map("n", "<leader>ss", "<C-w>s", { silent = true, noremap = true, desc = "Split horizontal" })
+	map("n", "<leader>sv", "<C-w>v", { silent = true, noremap = true, desc = "Split Vertical" })
+	map("n", "<leader>sh", "<C-w>h", { silent = true, noremap = true, desc = "Move left by one split" })
+	map("n", "<leader>sj", "<C-w>j", { silent = true, noremap = true, desc = "Move down by one split"})
+	map("n", "<leader>sk", "<C-w>k", { silent = true, noremap = true, desc = "Move up by one split" })
+	map("n", "<leader>sl", "<C-w>l", { silent = true, noremap = true, desc = "Move right by one split" })
 	-- <<< QUALITY OF LIFE >>>
 
 	-- Easier reach to beginning and end of lines
@@ -36,22 +42,27 @@ M.initialize = function()
 	map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" }) -- up
 	map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
 	-- make sure cursor stays centered in screen
-	map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position"})
-	map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor"})
-	map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor"})
-  map("n", "n", "nzzzv", { desc = "Jump to next search position and center cursor"})
-  map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor"})
+	map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position" })
+	map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
+	map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+	map("n", "n", "nzzzv", { desc = "Jump to next search position and center cursor" })
+	map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor" })
 	-- Easy open file explorer
-	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer"})
-  -- Make pasting easier
-  map("n", "<leader>p", "\"_diwhp", { desc = "Paste over word and discard deleted word"})
-  -- Disable Ex mode
-  map("n", "Q", "<nop>", { desc = "Get rid of Ex mode"})
-  -- change word under cursor
-  map("n", "<leader>w", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Change all occurences of word undor cursor"})
+	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer" })
+	-- Make pasting easier
+	map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
+	-- Disable Ex mode
+	map("n", "Q", "<nop>", { desc = "Get rid of Ex mode" })
+	-- change word under cursor
+	map(
+		"n",
+		"<leader>w",
+		":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+		{ desc = "Change all occurences of word undor cursor" }
+	)
 	map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
-  -- ChatGPT maps
-  map("n", "<leader>tch", ":ChatGPT<cr>", { desc = "Open ChatGPT"})
+	-- ChatGPT maps
+	map("n", "<leader>tch", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
 	-- <<< BASE LSP KEYMAPS >>>
 	map("n", "<space>e", vim.diagnostic.open_float, { silent = true, desc = "Open Diagnostic Float" })
 	map("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "Go to previous diagnostic item" })
