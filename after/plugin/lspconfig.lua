@@ -51,6 +51,7 @@ local lsp_flags = {
 
 -- set up completion capabilities using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- C and Variants
 nvim_lsp.clangd.setup({
 	capabilities = capabilities,
@@ -163,6 +164,12 @@ require("lspconfig").sumneko_lua.setup({
 		-- keymap("n", "<leader>fmt", stylua.format_file, { noremap = true, silent = true, buffer = bufnr })
 	end,
 })
+
+-- print(require("lspconfig").util.available_servers())
+nvim_lsp.cssls.setup {
+  capabilities = capabilities
+}
+nvim_lsp.cssmodules_ls.setup{}
 
 --Set completeopt to have a better completion experience
 -- :help completeopt
