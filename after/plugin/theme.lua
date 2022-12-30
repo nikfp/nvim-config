@@ -5,8 +5,8 @@ vim.opt.background = "dark"
 local theme = "tokyonight"
 -- Use to set up tokyonight
 require(theme).setup({
-	transparent = true,
-	terminal_colors = true,
+  transparent = true,
+  terminal_colors = true,
 })
 vim.cmd("colorscheme " .. theme)
 
@@ -20,12 +20,13 @@ vim.cmd("colorscheme " .. theme)
 --   }
 -- })
 
+vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
 require("notifier").setup()
 
 require("lualine").setup({
-	options = {
-		theme = theme,
-	},
+  options = {
+    theme = theme,
+  },
 })
 -- require("transparent").setup({
 --   enable = true,  -- boolean: enable transparent
