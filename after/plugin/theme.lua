@@ -1,15 +1,16 @@
-vim.g.tokyonight_transparent_sidebar = true
-vim.g.tokyonight_transparent = true
 vim.opt.background = "dark"
 
-local theme = "tokyonight"
--- Use to set up tokyonight
-require(theme).setup({
-  transparent = true,
-  terminal_colors = true,
-})
-vim.cmd("colorscheme " .. theme)
+local theme = "nord"
 
+-- <<< TOKYONIGHT >>>
+-- vim.g.tokyonight_transparent_sidebar = true
+-- vim.g.tokyonight_transparent = true
+-- require(theme).setup({
+--   transparent = true,
+--   terminal_colors = true,
+-- })
+
+-- <<< DRACULA >>>
 -- local dracula = require("dracula")
 -- dracula.setup({
 --   colors = {
@@ -19,10 +20,18 @@ vim.cmd("colorscheme " .. theme)
 --     selection = "#75623b"
 --   }
 -- })
+vim.cmd("colorscheme " .. theme)
 
+-- <<< NORD THEME >>>
+vim.g.nord_borders = true
+vim.g.nord_disable_background = true
+require('nord').set()
+
+-- <<< Transparent background in Telescope >>>
 vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
-require("notifier").setup()
 
+-- <<< UTILITES >>>
+require("notifier").setup()
 require("lualine").setup({
   options = {
     theme = theme,

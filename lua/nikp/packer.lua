@@ -40,8 +40,10 @@ packer.init({
 return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
+  
 	-- Theme - managed in plugins/theme.lua
-	use("folke/tokyonight.nvim")
+  use('shaunsingh/nord.nvim')
+	-- use("folke/tokyonight.nvim")
 	-- use 'Mofiqul/dracula.nvim'
 	-- Enable this if the theme doesn't have a transparent option
 	-- use 'xiyaowong/nvim-transparent'
