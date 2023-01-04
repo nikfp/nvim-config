@@ -28,6 +28,14 @@ ls.add_snippets("javascript", {
 	s("log", fmt([[console.log({})]], { i(1) })),
   s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) }))
 })
+-- JAVASCRIPT REACT SNIPPETS
+ls.add_snippets("javascriptreact", {
+  s("frag", fmt([[
+  <>
+    {}
+  </>
+  ]], {i(1)}))
+})
 -- TYPESCRIPT SNIPPETS
 ls.add_snippets("typescript", {
 	s(
@@ -37,7 +45,7 @@ ls.add_snippets("typescript", {
 })
 
 ls.filetype_extend("typescript", { "javascript" })
-ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
+ls.filetype_extend("typescriptreact", { "typescript", "javascript", "javascriptreact" })
 ls.filetype_extend("svelte", { "typescript", "javascript" })
 
 -- RUST SNIPPETS
