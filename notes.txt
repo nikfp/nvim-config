@@ -1,3 +1,10 @@
 - If Treesitter starts acting up
   - run TSUpdate and see if it fixes things
   - Further info at https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
+
+sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+git clone https://github.com/neovim/neovim
+cd neovim
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+nvim -v
