@@ -8,3 +8,44 @@ cd neovim
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 nvim -v
+
+OR 
+
+#!/bin/bash
+if wget --spider https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage 2>/dev/null; then
+    curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o /tmp/nvim-nightly;
+    chmod +x /tmp/nvim-nightly;
+    sudo mv /tmp/nvim-nightly /usr/local/bin/nvim;
+else
+    echo Neovim nightly appimage not available.
+fi
+
+try this for eslint_d setup
+
+local null_sources = {
+    --[[ whatever sources you want ]]--
+}
+
+local eslint_check = vim.fs.find({
+    ".eslintrc.js",
+    ".eslintrc.cjs",
+    ".eslintrc.yml",
+    ".eslintrc.yaml",
+    ".eslintrc.json",
+    "eslintrc.config.js"
+}, {
+    upward = true,
+    stop = os.getenv("HOME"),
+    type = "file",
+    limit = 1
+})
+
+if eslint_check[1] then
+    table.insert(null_sources, diagnostics.eslint)
+    table.insert(null_sources, actions.eslint)
+end
+
+null_ls.setup({
+    sources = null_sources,
+    --[[ ... ]]--
+})
