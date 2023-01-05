@@ -166,10 +166,10 @@ require("lspconfig").sumneko_lua.setup({
 })
 
 -- print(require("lspconfig").util.available_servers())
-nvim_lsp.cssls.setup {
-  capabilities = capabilities
-}
-nvim_lsp.cssmodules_ls.setup{}
+nvim_lsp.cssls.setup({
+	capabilities = capabilities,
+})
+nvim_lsp.cssmodules_ls.setup({})
 
 --Set completeopt to have a better completion experience
 -- :help completeopt
