@@ -171,6 +171,9 @@ nvim_lsp.cssls.setup({
 })
 nvim_lsp.cssmodules_ls.setup({})
 
+nvim_lsp.prismals.setup({
+  on_attach = on_attach
+});
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match

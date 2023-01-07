@@ -49,3 +49,6 @@ null_ls.setup({
     sources = null_sources,
     --[[ ... ]]--
 })
+
+THIS WILL POPULATE QUICKFIX WITH DIAGNOSTIC DATA
+vim.diagnostics.setqflist()
