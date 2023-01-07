@@ -9,6 +9,11 @@ make CMAKE_BUILD_TYPE=Release
 sudo make install
 nvim -v
 
+DISTCLEAN
+distclean:
+    rm -rf $(DEPS_BUILD_DIR) build
+    $(MAKE) clean
+
 OR 
 
 #!/bin/bash
