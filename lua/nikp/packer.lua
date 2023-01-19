@@ -40,9 +40,9 @@ packer.init({
 return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
-  
+
 	-- Theme - managed in plugins/theme.lua
-  use('shaunsingh/nord.nvim')
+	use("shaunsingh/nord.nvim")
 	-- use("folke/tokyonight.nvim")
 	-- use 'Mofiqul/dracula.nvim'
 	-- Enable this if the theme doesn't have a transparent option
@@ -52,6 +52,8 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("natecraddock/telescope-zf-native.nvim")
+	use("nvim-telescope/telescope-file-browser.nvim")
+  use('ThePrimeagen/harpoon')
 	-- Language service - core
 	use("onsails/lspkind.nvim")
 	use("nvim-treesitter/nvim-treesitter")
@@ -67,14 +69,14 @@ return packer.startup(function(use)
 		"L3MON4D3/LuaSnip",
 		after = "nvim-cmp",
 	})
-	use({ "mfussenegger/nvim-dap", })
+	use({ "mfussenegger/nvim-dap" })
 	use("rcarriga/nvim-dap-ui")
 	use("nvim-telescope/telescope-dap.nvim")
 	use("theHamsta/nvim-dap-virtual-text")
 	-- Language service - Plugin manager
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
-  use("jay-babu/mason-nvim-dap.nvim")
+	use("jay-babu/mason-nvim-dap.nvim")
 	-- Language service - UI
 	use("MunifTanjim/nui.nvim")
 	use("vigoux/notifier.nvim")
@@ -89,19 +91,19 @@ return packer.startup(function(use)
 	-- language service - rust
 	use("simrat39/rust-tools.nvim")
 	-- language service - formatting
-  use("jose-elias-alvarez/null-ls.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 	-- utilities
 	use("nvim-lualine/lualine.nvim")
 	use("windwp/nvim-autopairs")
 	use("kylechui/nvim-surround")
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
-  use("folke/which-key.nvim")
+	use("folke/which-key.nvim")
 	-- Make NetRW pretty
 	use("prichrd/netrw.nvim")
 
-  -- Add OpeanAI Chat GPT
-  use("jackMort/ChatGPT.nvim")
+	-- Add OpeanAI Chat GPT
+	use("jackMort/ChatGPT.nvim")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

@@ -1,6 +1,7 @@
 local popup = require("nikp.popup")
 local map = require("nikp.keymaps.utils").map
 local M = {}
+local harpoon = require("harpoon")
 
 M.initialize = function()
 	-- <<< FINDING THINGS >>>
@@ -10,7 +11,14 @@ M.initialize = function()
 	map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Live grep files in starting directory" })
 	map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search for active buffers" })
 	map("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Search for help tags" })
-
+	map("n", "<leader>ft", ":Telescope file_browser path=%:p:h<CR>", { desc = "Telescope File Browser" })
+	-- <<<Harpoon>>>
+	map("n", "<leader>ht", ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { desc = "Toggle Harpoon Menu" })
+	map("n", "<leader>ha", ':lua require("harpoon.mark").add_file()<cr>', { desc = "Add file to harpoon list" })
+	map("n", "<leader>h1", ":lua require('harpoon.ui').nav_file(1)<cr>")
+	map("n", "<leader>h2", ":lua require('harpoon.ui').nav_file(2)<cr>")
+	map("n", "<leader>h3", ":lua require('harpoon.ui').nav_file(3)<cr>")
+	map("n", "<leader>h4", ":lua require('harpoon.ui').nav_file(4)<cr>")
 	-- <<< GIT Stuff >>>
 	map("n", "<leader>gg", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
@@ -22,7 +30,7 @@ M.initialize = function()
 	map("n", "<leader>ss", "<C-w>s", { silent = true, noremap = true, desc = "Split horizontal" })
 	map("n", "<leader>sv", "<C-w>v", { silent = true, noremap = true, desc = "Split Vertical" })
 	map("n", "<leader>sh", "<C-w>h", { silent = true, noremap = true, desc = "Move left by one split" })
-	map("n", "<leader>sj", "<C-w>j", { silent = true, noremap = true, desc = "Move down by one split"})
+	map("n", "<leader>sj", "<C-w>j", { silent = true, noremap = true, desc = "Move down by one split" })
 	map("n", "<leader>sk", "<C-w>k", { silent = true, noremap = true, desc = "Move up by one split" })
 	map("n", "<leader>sl", "<C-w>l", { silent = true, noremap = true, desc = "Move right by one split" })
 	-- <<< QUALITY OF LIFE >>>
