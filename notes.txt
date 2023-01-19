@@ -57,3 +57,6 @@ null_ls.setup({
 
 THIS WILL POPULATE QUICKFIX WITH DIAGNOSTIC DATA
 vim.diagnostics.setqflist()
+
+MIGHT NOT NEET MASON-LSPCONFIG
+https://github.com/amlanjlahkar/nvim/blob/main/lua/plugin/mason.lua
