@@ -20,21 +20,27 @@ ls.add_snippets("lua", {
 			i(1),
 		})
 	),
-  s("desc", fmt([[{{ desc = "{}"}}]], {i(1)})),
-  s("map", fmt([[map("{}", "{}", {}{})]], { c(1, { t("n"), t("v"), t("i"), t("c") }), i(2), i(3), i(4)}))
+	s("desc", fmt([[{{ desc = "{}"}}]], { i(1) })),
+	s("map", fmt([[map("{}", "{}", {}{})]], { c(1, { t("n"), t("v"), t("i"), t("c") }), i(2), i(3), i(4) })),
 })
 -- JAVASCRIPT SNIPPETS
 ls.add_snippets("javascript", {
 	s("log", fmt([[console.log({})]], { i(1) })),
-  s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) }))
+	s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) })),
 })
 -- JAVASCRIPT REACT SNIPPETS
 ls.add_snippets("javascriptreact", {
-  s("frag", fmt([[
+	s(
+		"frag",
+		fmt(
+			[[
   <>
     {}
   </>
-  ]], {i(1)}))
+  ]],
+			{ i(1) }
+		)
+	),
 })
 -- TYPESCRIPT SNIPPETS
 ls.add_snippets("typescript", {
@@ -46,6 +52,19 @@ ls.add_snippets("typescript", {
 
 ls.filetype_extend("typescript", { "javascript" })
 ls.filetype_extend("typescriptreact", { "typescript", "javascript", "javascriptreact" })
+-- SVELTE SNIPPETS
+ls.add_snippets("svelte", {
+	s(
+		"sv",
+		fmt([[
+    <script {}>
+      {}
+    </script>
+    ]],
+			{ c(1, { t('lang="ts"'), t("") }), i(2) }
+		)
+	),
+})
 ls.filetype_extend("svelte", { "typescript", "javascript" })
 
 -- RUST SNIPPETS

@@ -46,7 +46,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- Common flags
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
-	debounce_text_changes = 150,
+	debounce_text_changes = 50,
 }
 
 -- set up completion capabilities using nvim_cmp with LSP source
