@@ -12,6 +12,8 @@ M.initialize = function()
 	map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search for active buffers" })
 	map("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Search for help tags" })
 	map("n", "<leader>ft", ":Telescope file_browser path=%:p:h<CR>", { desc = "Telescope File Browser" })
+	-- where the heck am I?
+	map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
 	-- <<<Harpoon>>>
 	map("n", "<leader>ht", ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { desc = "Toggle Harpoon Menu" })
 	map("n", "<leader>ha", ':lua require("harpoon.mark").add_file()<cr>', { desc = "Add file to harpoon list" })
