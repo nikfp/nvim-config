@@ -125,12 +125,15 @@ rt.setup({
 local util = require("lspconfig/util")
 require("lspconfig").gopls.setup({
 	cmd = { "gopls", "serve" },
-	filetypes = { "go", "gomod" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		keymap("n", "<leader>ru", function()
+			popup.output_command(":!go run .")
+		end)
+	end,
 })
 
 -- LUA
@@ -177,8 +180,8 @@ nvim_lsp.cssls.setup({
 nvim_lsp.cssmodules_ls.setup({})
 
 nvim_lsp.prismals.setup({
-  on_attach = on_attach
-});
+	on_attach = on_attach,
+})
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match
