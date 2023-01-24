@@ -2,7 +2,12 @@ local popup = require("nikp.popup")
 local status, nvim_lsp = pcall(require, "lspconfig")
 local on_attach = require("nikp.keymaps.lsp").on_attach
 -- Initialize LSPSaga
-require("lspsaga").init_lsp_saga()
+require("lspsaga").setup({
+	symbol_in_winbar = {
+		folder_level = 4,
+		respect_root = true,
+	},
+})
 -- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
 local keymap = vim.keymap.set
 
