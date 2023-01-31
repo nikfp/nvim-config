@@ -47,18 +47,26 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		-- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-    ["<esc>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.abort()
-      else
-        fallback()
-      end
-    end, {"i"}),
+		["<esc>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.abort()
+			else
+				fallback()
+			end
+		end, { "i" }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if ls.locally_jumpable(1) then
 				ls.jump(1)
-      elseif cmp.visible() then
+			elseif cmp.visible() then
 				cmp.confirm({ select = true })
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			print("you hit shift-tab")
+			if ls.locally_jumpable(-1) then
+				ls.jump(-1)
 			else
 				fallback()
 			end
@@ -120,9 +128,9 @@ cmp.setup({
 			return item
 		end,
 	},
-  completion = {
-    autocomplete = false
-  }
+	completion = {
+		autocomplete = false,
+	},
 })
 
 -- Set configuration for specific filetype.
