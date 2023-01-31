@@ -28,11 +28,6 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
--- local map = vim.keymap.set
---
--- map('i', '<tab>', function() {
---
--- })
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -52,6 +47,13 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		-- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ["<esc>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.abort()
+      else
+        fallback()
+      end
+    end, {"i"}),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if ls.locally_jumpable(1) then
 				ls.jump(1)
