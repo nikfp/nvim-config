@@ -4,10 +4,13 @@ local on_attach = require("nikp.keymaps.lsp").on_attach
 -- Initialize LSPSaga
 require("lspsaga").setup({
 	symbol_in_winbar = {
-		folder_level = 4,
-		respect_root = true,
+    enable = false,
+		--     show_file = true,
+		-- folder_level = 4,
+		-- respect_root = true,
 	},
 })
+
 -- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
 local keymap = vim.keymap.set
 

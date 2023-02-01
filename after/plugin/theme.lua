@@ -1,4 +1,4 @@
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
 
 local theme = "nord"
 
@@ -36,6 +36,11 @@ require("lualine").setup({
   options = {
     theme = theme,
   },
+})
+require("barbecue").setup({
+  symbols = {
+    separator = ""
+  }
 })
 -- require("transparent").setup({
 --   enable = true,  -- boolean: enable transparent

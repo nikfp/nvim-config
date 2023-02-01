@@ -100,6 +100,12 @@ return packer.startup(function(use)
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
 	use("folke/which-key.nvim")
+	use({
+		"utilyre/barbecue.nvim",
+		requires = {
+			"SmiteshP/nvim-navic",
+		},
+	})
 	-- Make NetRW pretty
 	use("prichrd/netrw.nvim")
 
