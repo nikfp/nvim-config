@@ -1,4 +1,4 @@
-local popup = require("nikp.popup")
+local popup = require("nikp.utils.popup")
 local map = require("nikp.keymaps.utils").map
 local M = {}
 

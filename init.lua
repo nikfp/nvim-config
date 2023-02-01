@@ -1,5 +1,5 @@
 require("nikp.packer")
-require("nikp.set")
+require("nikp.utils.set")
 require("mason").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {

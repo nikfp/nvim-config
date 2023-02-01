@@ -1,4 +1,4 @@
-local popup = require("nikp.popup")
+local popup = require("nikp.utils.popup")
 local status, nvim_lsp = pcall(require, "lspconfig")
 local on_attach = require("nikp.keymaps.lsp").on_attach
 -- Initialize LSPSaga
