@@ -1,7 +1,6 @@
 local cmp = require("cmp")
 local ls = require("luasnip")
-local kind_icons = require("nikp.kind_icons").kind_icons
-
+local kind_icons = require("nikp.kind_icons")
 
 cmp.setup({
 	snippet = {

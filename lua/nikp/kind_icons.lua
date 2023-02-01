@@ -1,5 +1,4 @@
-local M = {}
-M.kind_icons = {
+local kind_icons = {
 	Class = "",
 	Color = "",
 	Constant = "",
@@ -29,4 +28,4 @@ M.kind_icons = {
 	Variable = "",
 }
 
-return M
+return kind_icons
