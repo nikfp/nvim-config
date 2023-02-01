@@ -1,0 +1,32 @@
+local M = {}
+M.kind_icons = {
+	Class = "",
+	Color = "",
+	Constant = "",
+	Constructor = "",
+	Enum = "",
+	EnumMember = "",
+	Event = "",
+	Field = "",
+	File = "",
+	Folder = "",
+	Function = "",
+	Interface = "",
+	Keyword = "",
+	Method = "m",
+	Module = "",
+  Namespace = "{}",
+	Operator = "",
+  Package = "",
+	Property = "",
+	Reference = "",
+	Snippet = "",
+	Struct = "",
+	Text = "",
+	TypeParameter = "",
+	Unit = "",
+	Value = "",
+	Variable = "",
+}
+
+return M
