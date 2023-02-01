@@ -1,7 +1,6 @@
 local popup = require("nikp.popup")
 local map = require("nikp.keymaps.utils").map
 local M = {}
-local harpoon = require("harpoon")
 
 M.initialize = function()
 	-- <<< FINDING THINGS >>>
@@ -15,12 +14,13 @@ M.initialize = function()
 	-- where the heck am I?
 	map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
 	-- <<<Harpoon>>>
-	map("n", "<leader>ht", ':lua require("harpoon.ui").toggle_quick_menu()<cr>', { desc = "Toggle Harpoon Menu" })
-	map("n", "<leader>ha", ':lua require("harpoon.mark").add_file()<cr>', { desc = "Add file to harpoon list" })
-	map("n", "<leader>h1", ":lua require('harpoon.ui').nav_file(1)<cr>")
-	map("n", "<leader>h2", ":lua require('harpoon.ui').nav_file(2)<cr>")
-	map("n", "<leader>h3", ":lua require('harpoon.ui').nav_file(3)<cr>")
-	map("n", "<leader>h4", ":lua require('harpoon.ui').nav_file(4)<cr>")
+	map("n", "<leader>ht", require("harpoon.ui").toggle_quick_menu, { desc = "Toggle Harpoon Menu" })
+	map("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "Add file to harpoon list" })
+	for pos = 0, 9 do
+		map("n", "<leader>h" .. pos, function()
+			require("harpoon.ui").nav_file(pos)
+		end, { desc = "Move to harpoon mark #" .. pos })
+	end
 	-- <<< GIT Stuff >>>
 	map("n", "<leader>gg", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
