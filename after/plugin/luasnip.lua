@@ -6,7 +6,7 @@ local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
-local utils = require("nikp.snip_utils")
+local utils = require("nikp.utils.snip_utils")
 
 -- LUA SNIPPETS
 ls.add_snippets("lua", {
