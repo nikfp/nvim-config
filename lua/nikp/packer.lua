@@ -55,7 +55,7 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-file-browser.nvim")
 	use("ThePrimeagen/harpoon")
 	-- Language service - core
-	use("onsails/lspkind.nvim")
+	-- use("onsails/lspkind.nvim")
 	use("nvim-treesitter/nvim-treesitter")
 	use("neovim/nvim-lspconfig")
 	use("hrsh7th/cmp-nvim-lsp")
