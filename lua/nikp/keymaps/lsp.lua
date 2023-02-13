@@ -31,11 +31,31 @@ M.on_attach = function(client, bufnr)
 		vim.lsp.buf.implementation,
 		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol implementation" }
 	)
+
+	map("n", "gp", function()
+		vim.api.nvim_open_win(0, true, {
+			relative = "cursor",
+			width = math.floor(0.4 * vim.o.columns),
+			height = math.floor(0.35 * vim.o.lines),
+			col = 0,
+			row = 1,
+			style = "minimal",
+			border = "single",
+		})
+		vim.lsp.buf.definition()
+    vim.wo.relativenumber = true
+    local innerbufnr = vim.api.nvim_get_current_win()
+    vim.keymap.set("n", "q", function()
+        vim.api.nvim_win_close(innerbufnr, true)
+        -- vim.keymap.del("n", "q", { buffer = bufnr })
+    end)
+	end, { buffer = bufnr })
 	-- Lsp finder find the symbol definition implement reference
 	-- if there is no implement it will hide
 	-- when you use action in finder like open vsplit then you can
 	-- use <C-t> to jump back
 	map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Open LSP symbol help information" })
+
 	map("n", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr })
 	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
 	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
@@ -62,7 +82,7 @@ M.on_attach = function(client, bufnr)
 	map("n", "<leader>do", dap.step_over, { silent = true, desc = "DAP Step over" })
 	map("n", "<leader>di", dap.step_into, { silent = true, desc = "DAP step into" })
 	map("n", "<leader>du", dapui.toggle, { silent = true, desc = "DAP UI toggle" })
-  map("n", "<leader>dt", ":DapStepOut<cr>", { silent = true, desc = "DAP step out"})
+	map("n", "<leader>dt", ":DapStepOut<cr>", { silent = true, desc = "DAP step out" })
 	map("n", "<leader>ds", ":DapTerminate<cr>", { silent = true, desc = "Terminate debugging session" })
 end
 

@@ -12,11 +12,14 @@ vim.opt.backup = false
 vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 vim.opt.timeoutlen = 300
+vim.opt.completeopt = "menu,noselect"
+vim.g.nord_italic = false
 -- vim.opt.mouse = 'a'
 -- vim.opt.cursorline = true:
 
