@@ -141,7 +141,7 @@ require("lspconfig").gopls.setup({
 
 -- LUA
 -- local stylua = require("stylua-nvim")
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	cmd = { "/home/nikp/lua/bin/lua-language-server" },
 	commands = {
 		Format = {
