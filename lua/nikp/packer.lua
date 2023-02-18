@@ -93,6 +93,7 @@ return packer.startup(function(use)
 	use("terrortylor/nvim-comment")
 	use("kdheepak/lazygit.nvim")
 	use("folke/which-key.nvim")
+	use("folke/neodev.nvim")
 	use({
 		"utilyre/barbecue.nvim",
 		requires = {

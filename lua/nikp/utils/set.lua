@@ -19,7 +19,7 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 vim.opt.timeoutlen = 300
 vim.opt.completeopt = "menu,noselect"
-vim.g.nord_italic = false
+-- vim.g.nord_italic = false
 -- vim.opt.mouse = 'a'
 -- vim.opt.cursorline = true:
 

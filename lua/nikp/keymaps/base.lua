@@ -72,7 +72,7 @@ M.initialize = function()
 	)
 	map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
 	-- ChatGPT maps
-	map("n", "<leader>tch", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
+	map("n", "<leader>uc", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
 	-- <<< BASE LSP KEYMAPS >>>
 	map("n", "<space>e", vim.diagnostic.open_float, { silent = true, desc = "Open Diagnostic Float" })
 	map("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "Go to previous diagnostic item" })

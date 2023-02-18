@@ -12,6 +12,17 @@ M.on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+	vim.api.nvim_create_autocmd("InsertLeave", {
+		command = "w",
+		buffer = bufnr,
+	})
+
+	vim.api.nvim_create_autocmd("TextChanged", {
+		command = "w",
+		buffer = bufnr,
+	})
+
 	map(
 		"n",
 		"<leader>gD",
@@ -43,12 +54,12 @@ M.on_attach = function(client, bufnr)
 			border = "single",
 		})
 		vim.lsp.buf.definition()
-    vim.wo.relativenumber = true
-    local innerbufnr = vim.api.nvim_get_current_win()
-    vim.keymap.set("n", "q", function()
-        vim.api.nvim_win_close(innerbufnr, true)
-        -- vim.keymap.del("n", "q", { buffer = bufnr })
-    end)
+		vim.wo.relativenumber = true
+		local innerbufnr = vim.api.nvim_get_current_win()
+		vim.keymap.set("n", "q", function()
+			vim.api.nvim_win_close(innerbufnr, true)
+			-- vim.keymap.del("n", "q", { buffer = bufnr })
+		end)
 	end, { buffer = bufnr })
 	-- Lsp finder find the symbol definition implement reference
 	-- if there is no implement it will hide

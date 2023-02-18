@@ -11,7 +11,7 @@ require("mason-tool-installer").setup({
 		"gopls",
 		"html-lsp",
 		"lua-language-server",
-    "node-debug2-adapter",
+		"node-debug2-adapter",
 		"prettierd",
 		"prisma-language-server",
 		"rust-analyzer",
@@ -24,7 +24,23 @@ require("mason-tool-installer").setup({
 require("chatgpt").setup({
 	yank_register = "r",
 })
-require("which-key").setup()
+
+local wk = require("which-key")
+
+wk.register({
+	c = { name = "Changing things" },
+	d = { name = "Debugging" },
+	f = { name = "Finding things" },
+	g = { name = "Going places" },
+	h = { name = "Harpoon" },
+	r = { name = "Run things" },
+	s = { name = "Controls splits" },
+	u = { name = "Utilities" },
+	w = { name = "Workspace" },
+}, { prefix = "<leader>" })
+
+wk.setup()
+
 require("mason-nvim-dap").setup({
 	ensure_installed = { "node2" },
 })
