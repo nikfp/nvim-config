@@ -44,3 +44,15 @@ require("mason-nvim-dap").setup({
 
 require("nikp.dap").setup()
 
+require("gitsigns").setup({
+	current_line_blame = true,
+})
+
+require("netrw").setup({
+	icons = {
+		symlink = "", -- Symlink icon (directory and file)
+		directory = "", -- Directory icon
+		file = "", -- File icon
+	},
+	use_devicons = true,
+})

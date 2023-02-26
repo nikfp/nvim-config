@@ -1,18 +1,18 @@
 local popup = require("nikp.utils.popup")
-local status, nvim_lsp = pcall(require, "lspconfig")
+local nvim_lsp = require("lspconfig")
 local on_attach = require("nikp.keymaps.lsp").on_attach
+local map = require("nikp.keymaps.utils").map
+
 -- Initialize LSPSaga
 require("lspsaga").setup({
 	symbol_in_winbar = {
-    enable = false,
+		enable = false,
 		--     show_file = true,
 		-- folder_level = 4,
 		-- respect_root = true,
 	},
 })
 
--- Mappings. See `:help vim.diagnostic.*` for documentation on any of the below functions
-local keymap = vim.keymap.set
 
 -- Common UI settings related to LSP
 
@@ -31,7 +31,9 @@ sign({ name = "DiagnosticSignHint", text = "" })
 sign({ name = "DiagnosticSignInfo", text = "" })
 
 vim.diagnostic.config({
-	virtual_text = false,
+  virtual_text = {
+    prefix = '●'
+  },
 	signs = true,
 	update_in_insert = true,
 	underline = true,
@@ -44,13 +46,13 @@ vim.diagnostic.config({
 	},
 })
 
+-- Fixed column for diagnostics to appear
+-- Show autodiagnostic popup on cursor hover_range
 vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
--- LSP setup per language
---
 -- Common flags
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
@@ -60,16 +62,19 @@ local lsp_flags = {
 -- set up completion capabilities using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- PER LANGUAGE SETUPS
+
 -- C and Variants
 nvim_lsp.clangd.setup({
 	capabilities = capabilities,
 	lsp_flags = lsp_flags,
 })
+
 -- TYPESCRIPT
 nvim_lsp.tsserver.setup({
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		keymap("n", "<leader>rr", ":lua vim.lsp.buf.rename()<cr>")
 	end,
 	flags = lsp_flags,
 	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
@@ -78,7 +83,7 @@ nvim_lsp.tsserver.setup({
 })
 
 --SVELTE
-require("lspconfig").svelte.setup({
+nvim_lsp.svelte.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
@@ -94,17 +99,17 @@ rt.setup({
 			-- add keymaps for the rest of things
 			on_attach(client, bufnr)
 			-- Hover actions
-			keymap("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+			map("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 			-- Code action groups
-			keymap("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			map("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 			-- easy run code
-			keymap("n", "<leader>ru", function()
+			map("n", "<leader>ru", function()
 				popup.output_command(":!cargo run")
 			end)
 			-- easy format
-			keymap("n", "<leader>fmt", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
+			map("n", "<leader>fmt", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
 			-- add semicolon easily
-			keymap("n", "<leader>;", "$a;<esc>o")
+			map("n", "<leader>;", "$a;<esc>o")
 		end,
 	},
 	["rust-analyzer"] = {
@@ -126,22 +131,21 @@ rt.setup({
 
 -- GOLANG
 local util = require("lspconfig/util")
-require("lspconfig").gopls.setup({
+nvim_lsp.gopls.setup({
 	cmd = { "gopls", "serve" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-		keymap("n", "<leader>ru", function()
+		map("n", "<leader>ru", function()
 			popup.output_command(":!go run .")
 		end)
 	end,
 })
 
 -- LUA
--- local stylua = require("stylua-nvim")
-require("lspconfig").lua_ls.setup({
+nvim_lsp.lua_ls.setup({
 	cmd = { "/home/nikp/lua/bin/lua-language-server" },
 	commands = {
 		Format = {
@@ -169,26 +173,32 @@ require("lspconfig").lua_ls.setup({
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
-
-		keymap("n", "<leader>rr", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
-
-		-- keymap("n", "<leader>fmt", stylua.format_file, { noremap = true, silent = true, buffer = bufnr })
 	end,
 })
 
--- print(require("lspconfig").util.available_servers())
+-- HTML
+nvim_lsp.html.setup({
+  capabilities = capabilities,
+  on_attach = on_attach
+})
+
+-- CSS
 nvim_lsp.cssls.setup({
 	capabilities = capabilities,
+  on_attach = on_attach
 })
 nvim_lsp.cssmodules_ls.setup({})
 
+-- PRISMA
 nvim_lsp.prismals.setup({
 	on_attach = on_attach,
 })
 
+-- BASH 
 nvim_lsp.bashls.setup({
-  on_attach = on_attach
+	on_attach = on_attach,
 })
+
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match
@@ -200,21 +210,5 @@ vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.api.nvim_set_option("updatetime", 300)
 
--- Fixed column for diagnostics to appear
--- Show autodiagnostic popup on cursor hover_range
--- Goto previous / next diagnostic warning / error
--- Show inlay_hints more frequently
-vim.cmd([[
-set signcolumn=yes
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
 
--- vim.diagnostic.config({
---   virtual_text = {
---     prefix = '●'
---   },
---   update_in_insert = true,
---   float = {
---     source = "always", -- Or "if_many"
---   },
--- })
+
