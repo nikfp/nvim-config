@@ -42,6 +42,7 @@ require("barbecue").setup({
     separator = ""
   }
 })
+require('colorful-winsep').setup();
 -- require("transparent").setup({
 --   enable = true,  -- boolean: enable transparent
 --   extra_groups = {  -- table/string: additional groups that should be cleared

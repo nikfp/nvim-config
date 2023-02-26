@@ -2,6 +2,26 @@ local popup = require("nikp.utils.popup")
 local map = require("nikp.keymaps.utils").map
 local M = {}
 
+local wk = require("which-key")
+wk.register({
+	c = { name = "Changing things" },
+	d = { name = "Debugging" },
+	f = { name = "Finding things" },
+	g = { name = "Going places" },
+	h = { name = "Harpoon" },
+	r = { name = "Run things" },
+	s = { name = "Controls splits" },
+	u = {
+		name = "Utilities",
+		g = {
+			name = "Github",
+		},
+	},
+	w = { name = "Workspace" },
+}, { prefix = "<leader>" })
+
+wk.setup()
+
 M.initialize = function()
 	-- <<< FINDING THINGS >>>
 	--shortcuts for Telescope
@@ -59,6 +79,11 @@ M.initialize = function()
 	map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor" })
 	-- Easy open file explorer
 	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer" })
+	-- EAsy open oil.nvim
+	map("n", "<leader>fo", function()
+		local oil = require("oil")
+		oil.open(oil.get_current_dir())
+	end, { desc = "Open Oil file manager in directory of current buffer" })
 	-- Make pasting easier
 	map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
 	-- Disable Ex mode
@@ -82,4 +107,5 @@ M.initialize = function()
 		popup.output_command(":echo 'run command not set up for this file type'")
 	end, { noremap = true, silent = true, desc = "Default run command" })
 end
+
 return M

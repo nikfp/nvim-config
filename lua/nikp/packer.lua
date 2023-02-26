@@ -100,6 +100,9 @@ return packer.startup(function(use)
 			"SmiteshP/nvim-navic",
 		},
 	})
+	use("stevearc/oil.nvim")
+	use("nvim-zh/colorful-winsep.nvim")
+	use("lukas-reineke/indent-blankline.nvim")
 	-- Make NetRW pretty
 	use("prichrd/netrw.nvim")
 
