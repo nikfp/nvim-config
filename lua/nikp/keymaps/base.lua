@@ -79,7 +79,7 @@ M.initialize = function()
 	map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor" })
 	-- Easy open file explorer
 	map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer" })
-	-- EAsy open oil.nvim
+	-- Easy open oil.nvim
 	map("n", "<leader>fo", function()
 		local oil = require("oil")
 		oil.open(oil.get_current_dir())
@@ -103,6 +103,7 @@ M.initialize = function()
 	map("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "Go to previous diagnostic item" })
 	map("n", "]d", vim.diagnostic.goto_next, { silent = true, desc = "Go to next diagnostic item" })
 	map("n", "<space>q", vim.diagnostic.setloclist, { silent = true, desc = "Set location list" })
+  -- Stub for run command
 	map("n", "<leader>ru", function()
 		popup.output_command(":echo 'run command not set up for this file type'")
 	end, { noremap = true, silent = true, desc = "Default run command" })

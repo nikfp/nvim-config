@@ -29,6 +29,7 @@ packer.init({
 		end,
 	},
 })
+
 return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
@@ -39,17 +40,38 @@ return packer.startup(function(use)
 	-- use 'Mofiqul/dracula.nvim'
 	-- Enable this if the theme doesn't have a transparent option
 	-- use 'xiyaowong/nvim-transparent'
-	use("kyazdani42/nvim-web-devicons")
-	-- Telescope and Fuzzy finder
+
+	-- Telescope, navigation, and Fuzzy finder
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use("natecraddock/telescope-zf-native.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
 	use("ThePrimeagen/harpoon")
+
+	-- File Management
+	use("nvim-telescope/telescope-file-browser.nvim")
+	use("stevearc/oil.nvim")
+
 	-- Language service - core
 	-- use("onsails/lspkind.nvim")
 	use("nvim-treesitter/nvim-treesitter")
 	use("neovim/nvim-lspconfig")
+	use("jose-elias-alvarez/null-ls.nvim")
+
+	-- Language service - UI
+	use("MunifTanjim/nui.nvim")
+	use("vigoux/notifier.nvim")
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+	})
+	-- language service - svelte
+	use("windwp/nvim-ts-autotag")
+	use("leafoftree/vim-svelte-plugin")
+
+	-- language service - rust
+	use("simrat39/rust-tools.nvim")
+
+	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("hrsh7th/cmp-buffer")
@@ -62,47 +84,44 @@ return packer.startup(function(use)
 		"L3MON4D3/LuaSnip",
 		after = "nvim-cmp",
 	})
+
+	-- Debuggers
 	use({ "mfussenegger/nvim-dap" })
 	use("rcarriga/nvim-dap-ui")
 	use("nvim-telescope/telescope-dap.nvim")
 	use("theHamsta/nvim-dap-virtual-text")
-	-- Language service - Plugin manager
+
+	-- Mason items
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("jay-babu/mason-nvim-dap.nvim")
 	use("WhoIsSethDaniel/mason-tool-installer.nvim")
-	-- Language service - UI
-	use("MunifTanjim/nui.nvim")
-	use("vigoux/notifier.nvim")
-	use({
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-	})
-	use("lewis6991/gitsigns.nvim")
-	-- language service - svelte
-	use("windwp/nvim-ts-autotag")
-	use("leafoftree/vim-svelte-plugin")
-	-- language service - rust
-	use("simrat39/rust-tools.nvim")
-	-- language service - formatting
-	use("jose-elias-alvarez/null-ls.nvim")
-	-- utilities
+
+	-- Utils - UI
+	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
-	use("windwp/nvim-autopairs")
-	use("kylechui/nvim-surround")
-	use("terrortylor/nvim-comment")
-	use("kdheepak/lazygit.nvim")
-	use("folke/which-key.nvim")
-	use("folke/neodev.nvim")
 	use({
 		"utilyre/barbecue.nvim",
 		requires = {
 			"SmiteshP/nvim-navic",
 		},
 	})
-	use("stevearc/oil.nvim")
-	use("nvim-zh/colorful-winsep.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
+
+	-- Utils - Editing
+	use("windwp/nvim-autopairs")
+	use("kylechui/nvim-surround")
+	use("terrortylor/nvim-comment")
+	use("folke/which-key.nvim")
+
+	-- Utils - Git
+	use("kdheepak/lazygit.nvim")
+	use("lewis6991/gitsigns.nvim")
+
+	-- Utils - plugin dev
+	use("folke/neodev.nvim")
+	use("nvim-zh/colorful-winsep.nvim")
+
 	-- Make NetRW pretty
 	use("prichrd/netrw.nvim")
 

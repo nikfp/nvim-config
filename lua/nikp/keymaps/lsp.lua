@@ -13,16 +13,17 @@ M.on_attach = function(client, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
+	-- Auto save in LSP buffers
 	vim.api.nvim_create_autocmd("InsertLeave", {
 		command = "w",
 		buffer = bufnr,
 	})
-
 	vim.api.nvim_create_autocmd("TextChanged", {
 		command = "w",
 		buffer = bufnr,
 	})
 
+	-- LSP Goto's
 	map(
 		"n",
 		"<leader>gD",
@@ -42,6 +43,7 @@ M.on_attach = function(client, bufnr)
 		vim.lsp.buf.implementation,
 		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol implementation" }
 	)
+	map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
 
 	map("n", "gp", function()
 		vim.api.nvim_open_win(0, true, {
@@ -58,35 +60,43 @@ M.on_attach = function(client, bufnr)
 		local innerbufnr = vim.api.nvim_get_current_win()
 		vim.keymap.set("n", "q", function()
 			vim.api.nvim_win_close(innerbufnr, true)
-			-- vim.keymap.del("n", "q", { buffer = bufnr })
 		end)
 	end, { buffer = bufnr })
+
 	-- Lsp finder find the symbol definition implement reference
 	-- if there is no implement it will hide
 	-- when you use action in finder like open vsplit then you can
 	-- use <C-t> to jump back
 	map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Open LSP symbol help information" })
 
-	map("n", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr })
-	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
-	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
-	map("n", "<space>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-	-- map('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { silent = true })
+	-- View references through telescope search
 	map(
 		"n",
 		"<leader>gr",
 		telescope.lsp_references,
 		{ noremap = true, silent = true, buffer = bufnr, desc = "Open LSP references in Telescope" }
 	)
+	-- Signature help
+	map("n", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr })
+
+	-- Worspace activities
+	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<space>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, bufopts)
+
+	-- Access available code actions
+	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { silent = true })
+
+	-- Trigger default formatter
 	map("n", "<leader>fmt", function()
 		vim.lsp.buf.format({ async = true })
 	end, { noremap = true, silent = true, buffer = bufnr, desc = "Format buffer with default formatter" })
-	-- map('n', '<leader>rr', vim.lsp.buf.rename, bufopts)
+
+	-- Activate LSP Rename
 	map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { silent = true, desc = "Rename current symbol" })
+
 	-- DEBUG ADAPTER ITEMS
 	map("n", "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "Toggle Breakpoint" })
 	map("n", "<leader>dc", dap.continue, { silent = true, desc = "DAP continue" })
