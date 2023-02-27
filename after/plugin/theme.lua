@@ -39,7 +39,7 @@ require("lualine").setup({
 })
 require("barbecue").setup({
   symbols = {
-    separator = ""
+    separator = ""
   }
 })
 require('colorful-winsep').setup();
