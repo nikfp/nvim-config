@@ -31,7 +31,7 @@ require('nord').set()
 vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
 
 -- <<< UTILITES >>>
-require("notifier").setup()
+-- require("notifier").setup()
 require("lualine").setup({
   options = {
     theme = theme,
