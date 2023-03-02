@@ -7,6 +7,7 @@ return {
 			"jay-babu/mason-nvim-dap.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
+    config = true
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",

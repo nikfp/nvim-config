@@ -11,15 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-P = function(v)
-	print(vim.inspect(v))
-	return v
-end
-
-Print = function(item)
-	vim.pretty_print(item)
-	return item
-end
-
-require("lazy").setup("plugins");
-require("nikp.core.startup")
+require("nikp.utils.set")
+require("lazy").setup("plugins")
+require("nikp.keymaps.base").initialize()
+require("nikp.utils")

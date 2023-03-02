@@ -3,7 +3,8 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"natecraddock/telescope-zf-native.nvim",
-    "nvim-telescope/telescope-dap.nvim"
+    "nvim-telescope/telescope-dap.nvim",
+	"nvim-telescope/telescope-file-browser.nvim"
 	},
 	config = function()
     local ts = require("telescope")
