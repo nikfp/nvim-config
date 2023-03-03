@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup({
 		"toml",
 		"typescript",
 		"javascript",
+		"help",
 		"html",
 		"css",
 		"regex",
@@ -28,4 +29,3 @@ require("nvim-treesitter.configs").setup({
 		max_file_lines = nil,
 	},
 })
-
