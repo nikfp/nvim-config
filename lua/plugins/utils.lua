@@ -20,17 +20,9 @@ return {
   { "theHamsta/nvim-dap-virtual-text" },
   {
     "utilyre/barbecue.nvim",
-    event = "BufAdd",
     dependencies = {
       "SmiteshP/nvim-navic",
     },
-    config = function()
-      require("barbecue").setup({
-        symbols = {
-          separator = "",
-        },
-      })
-    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -77,5 +69,12 @@ return {
       })
     end,
   },
-  { "folke/which-key.nvim" }
+  { "folke/which-key.nvim" },
+  {
+    "MaximilianLloyd/patternvault.nvim",
+    event = "VeryLazy", -- Customize here as wanted
+    config = function()
+      require("patternvault").setup()
+    end,
+  },
 }
