@@ -1,3 +1,7 @@
+local function window()
+  return vim.api.nvim_win_get_number(0)
+end
+
 return {
   {
     "folke/tokyonight.nvim",
@@ -22,9 +26,25 @@ return {
       -- <<< Transparent background in Telescope >>>
       vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
 
+      local function fg(name)
+        return function()
+          ---@type {foreground?:number}?
+          local hl = vim.api.nvim_get_hl_by_name(name, true)
+          return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+        end
+      end
+
       require("lualine").setup({
         options = {
           theme = "tokyonight",
+        },
+        inactive_sections = {
+          lualine_b = {
+            {
+              window,
+              color = fg("Constant"),
+            }
+          },
         },
       })
     end,

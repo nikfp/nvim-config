@@ -10,7 +10,6 @@ return {
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-    event = "UIEnter",
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
@@ -28,6 +27,7 @@ return {
 					"rust-analyzer",
 					"stylua",
 					"svelte-language-server",
+          "tailwindcss-language-server"
 				},
 				auto_update = true,
 			})

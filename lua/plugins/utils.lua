@@ -48,11 +48,6 @@ return {
   },
   { "folke/neodev.nvim", event = "Bufadd *.lua" },
   {
-    "nvim-zh/colorful-winsep.nvim",
-    event = "BufAdd",
-    config = true,
-  },
-  {
     "prichrd/netrw.nvim",
     event = "UIEnter",
     config = function()
