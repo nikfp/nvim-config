@@ -12,18 +12,9 @@ return {
       })
     end,
   },
-  { "MunifTanjim/nui.nvim" },
-  { "vigoux/notifier.nvim", lazy = false },
-  { "windwp/nvim-ts-autotag", config = true },
-  { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui" },
-  { "theHamsta/nvim-dap-virtual-text" },
-  {
-    "utilyre/barbecue.nvim",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-    },
-  },
+  { "MunifTanjim/nui.nvim", event = "VeryLazy" },
+  { "vigoux/notifier.nvim" },
+  { "windwp/nvim-ts-autotag", event = "VeryLazy", config = true },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufAdd",
@@ -31,12 +22,12 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "BufAdd",
+    event = "InsertEnter",
     config = true,
   },
   {
     "kylechui/nvim-surround",
-    event = "BufAdd",
+    event = "InsertEnter",
     config = true,
   },
   {
@@ -47,8 +38,14 @@ return {
     end,
   },
   { "folke/neodev.nvim" },
-  { "kdheepak/lazygit.nvim" },
-  { "lewis6991/gitsigns.nvim", event = "BufAdd" },
+  { "kdheepak/lazygit.nvim", event = "VeryLazy" },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "BufAdd",
+    config = function()
+      require("gitsigns").setup()
+    end,
+  },
   { "folke/neodev.nvim", event = "Bufadd *.lua" },
   {
     "nvim-zh/colorful-winsep.nvim",
@@ -57,7 +54,7 @@ return {
   },
   {
     "prichrd/netrw.nvim",
-    lazy = false,
+    event = "UIEnter",
     config = function()
       require("netrw").setup({
         icons = {
@@ -69,7 +66,13 @@ return {
       })
     end,
   },
-  { "folke/which-key.nvim" },
+  {
+    "folke/which-key.nvim",
+    event = "UIEnter",
+    config = function()
+      require("nikp.keymaps.base").initialize()
+    end,
+  },
   {
     "MaximilianLloyd/patternvault.nvim",
     event = "VeryLazy", -- Customize here as wanted

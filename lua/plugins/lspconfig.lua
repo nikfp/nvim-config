@@ -1,6 +1,7 @@
 return {
   {
     "glepnir/lspsaga.nvim",
+    event = "VeryLazy",
     branch = "main",
   },
   {
@@ -226,6 +227,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
     config = function()
       local null_ls = require("null-ls")
 

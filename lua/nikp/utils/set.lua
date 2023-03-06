@@ -7,6 +7,7 @@ vim.opt.cindent = true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.completeopt = "menu,noselect"
 vim.opt.expandtab = true
+vim.opt.guicursor = "n:blinkon500-blinkoff500"
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.number = true

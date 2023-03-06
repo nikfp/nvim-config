@@ -13,5 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("nikp.utils.set")
 require("lazy").setup("plugins")
-require("nikp.keymaps.base").initialize()
 require("nikp.utils")

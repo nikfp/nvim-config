@@ -1,7 +1,7 @@
 return {
-	"ThePrimeagen/harpoon",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-	},
+  "ThePrimeagen/harpoon",
+  event = "VeryLazy",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
 }
-

@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  event = "BufAdd",
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -17,7 +18,7 @@ return {
         "markdown_inline",
         "svelte",
       },
-      -- auto_install = true,
+      auto_install = true,
       highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,

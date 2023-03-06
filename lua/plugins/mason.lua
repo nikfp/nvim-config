@@ -1,16 +1,16 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
+    event = "UIEnter",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-			"jay-babu/mason-nvim-dap.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
     config = true
 	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "UIEnter",
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
@@ -32,11 +32,6 @@ return {
 				auto_update = true,
 			})
 
-			require("mason-nvim-dap").setup({
-				ensure_installed = { "node2" },
-			})
-
-			require("nikp.dap").setup()
 		end,
 	},
 }
