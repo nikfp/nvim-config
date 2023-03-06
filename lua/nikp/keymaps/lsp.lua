@@ -1,7 +1,7 @@
 local map = require("nikp.keymaps.utils").map
 local dap = require("dap")
 local dapui = require("dapui")
-local telescope = require("telescope.builtin")
+-- local telescope = require("telescope.builtin")
 
 local M = {}
 -- Use an on_attach function to only map the following keys
@@ -73,7 +73,7 @@ M.on_attach = function(client, bufnr)
 	map(
 		"n",
 		"<leader>gr",
-		telescope.lsp_references,
+		":Telescope lsp_references",
 		{ noremap = true, silent = true, buffer = bufnr, desc = "Open LSP references in Telescope" }
 	)
 	-- Signature help
