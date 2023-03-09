@@ -27,7 +27,8 @@ return {
 					"rust-analyzer",
 					"stylua",
 					"svelte-language-server",
-          "tailwindcss-language-server"
+          "tailwindcss-language-server",
+          "typescript-language-server"
 				},
 				auto_update = true,
 			})

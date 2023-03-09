@@ -92,7 +92,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 				end,
 				flags = lsp_flags,
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
-				cmd = { "typescript-language-server", "--stdio" },
 				capabilities = capabilities,
 			})
 
@@ -160,7 +159,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 			-- LUA
 			nvim_lsp.lua_ls.setup({
-				cmd = { "/home/nikp/lua/bin/lua-language-server" },
 				commands = {
 					Format = {
 						function()
@@ -178,6 +176,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 						},
 						workspace = {
 							library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false
 						},
 						telemetry = {
 							enable = false,

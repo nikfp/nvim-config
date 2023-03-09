@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  print("Lazy is not installed, please wait....")
+  print("Lazy package manager is installing, please wait.....")
   vim.fn.system({
     "git",
     "clone",
@@ -11,9 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
   })
   print("Finished installing lazy. Please close and reopen Noevim.")
 else
-vim.opt.rtp:prepend(lazypath)
+  vim.opt.rtp:prepend(lazypath)
 
-require("nikp.utils.set")
-require("lazy").setup("plugins")
-require("nikp.utils")
+  require("nikp.utils.set")
+  require("lazy").setup("plugins")
+  require("nikp.utils")
 end
