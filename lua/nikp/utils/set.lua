@@ -4,7 +4,7 @@ vim.g.netrw_liststyle = 3
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = true
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 vim.opt.completeopt = "menu,noselect"
 vim.opt.expandtab = true
 vim.opt.guicursor = "n:blinkon500-blinkoff500"
@@ -24,3 +24,10 @@ vim.opt.undofile = true
 -- vim.opt.mouse = 'a'
 -- vim.opt.cursorline = true:
 
+-- disable fsync on windows
+local system = vim.loop.os_uname().sysname
+
+if system == "Windows_NT" then
+  print("Setup detected windows - disabling fsync")
+  vim.g.nofsync = true
+end
