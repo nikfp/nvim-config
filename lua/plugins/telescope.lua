@@ -18,7 +18,6 @@ return {
         mappings = {
           i = {
             ["<esc>"] = actions.close,
-            ["jj"] = actions.close
           }
         }
       },

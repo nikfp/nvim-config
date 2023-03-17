@@ -21,8 +21,6 @@ vim.opt.tabstop = 2
 vim.opt.timeoutlen = 300
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
--- vim.opt.mouse = 'a'
--- vim.opt.cursorline = true:
 
 -- disable fsync on windows
 local system = vim.loop.os_uname().sysname
@@ -32,10 +30,14 @@ if system == "Windows_NT" then
   vim.g.nofsync = true
 end
 
+-- Make help open to the right and close with "q"
 vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = vim.api.nvim_create_augroup("help_window_right", {}),
-    pattern = { "*.txt" },
-    callback = function()
-        if vim.o.filetype == 'help' then vim.cmd.wincmd("L") end
+  group = vim.api.nvim_create_augroup("help_window_right", {}),
+  pattern = { "*.txt" },
+  callback = function(opts)
+    if vim.o.filetype == "help" then
+      vim.cmd.wincmd("L")
+      vim.keymap.set("n", "q", ":bd<cr>", { buffer = opts.buf })
     end
+  end,
 })
