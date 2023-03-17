@@ -49,6 +49,8 @@ M.initialize = function()
   vim.keymap.set("n", "<leader>ch", function()
     popup.output_command(":!~/.config/bash/cht.sh")
   end, { desc = "Run cht.sh" })
+
+  -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { silent = true, noremap = true, desc = "Split horizontal" })
   map("n", "<leader>sv", "<C-w>v", { silent = true, noremap = true, desc = "Split Vertical" })
   map("n", "<leader>sh", "<C-w>h", { silent = true, noremap = true, desc = "Move left by one split" })
@@ -61,6 +63,7 @@ M.initialize = function()
     map("n", lhs, rhs, { silent = true, noremap = true, desc = "Move to window " .. pos })
   end
   map("n", "<leader>sc", ":only<cr>", { silent = true, noremap = true, desc = "Close all but current windows" })
+  map("n", "<leader>sz", ":NoNeckPain<cr>", { silent = true, noremamp = ture, desc = "Toggle NoNeckPain"})
   -- <<< QUALITY OF LIFE >>>
 
   -- Easier reach to beginning and end of lines
