@@ -75,4 +75,11 @@ return {
       require("patternvault").setup()
     end,
   },
+  {
+    "shortcuts/no-neck-pain.nvim",
+    event = "UIEnter",
+    config = function()
+      require("no-neck-pain").setup()
+    end
+  }
 }
