@@ -8,12 +8,19 @@ return {
   event = "VeryLazy",
   config = function()
     local ts = require("telescope")
+    local actions = require("telescope.actions")
     ts.setup({
       defaults = {
         file_ignore_patterns = {
           "node_modules",
           ".git/",
         },
+        mappings = {
+          i = {
+            ["<esc>"] = actions.close,
+            ["jj"] = actions.close
+          }
+        }
       },
       extensions = {
         file_browser = {},

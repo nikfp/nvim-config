@@ -26,6 +26,7 @@ M.output_command = function(cmd)
 	end)
 
 	vim.api.nvim_buf_set_keymap(popup.bufnr, "n", "<cr>", ":q<cr>", { noremap = true, silent = true })
+	vim.api.nvim_buf_set_keymap(popup.bufnr, "n", "q", ":q<cr>", { noremap = true, silent = true })
 
 	local stuff = vim.api.nvim_exec(cmd, true)
 
