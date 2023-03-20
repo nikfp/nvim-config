@@ -9,7 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
     "--branch=stable", -- latest stable release
     lazypath,
   })
-  print("Finished installing lazy. Please close and reopen Noevim.")
+  print("Finished installing lazy. Please close and reopen Neovim.")
 else
   vim.opt.rtp:prepend(lazypath)
 
