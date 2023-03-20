@@ -89,7 +89,7 @@ M.on_attach = function(client, bufnr)
 	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { desc = "Execute code actions "})
 
 	-- Trigger default formatter
-	map("n", "<leader>fmt", function()
+	map("n", "<leader>cf", function()
 		vim.lsp.buf.format({ async = true })
 	end, { buffer = bufnr, desc = "Format buffer with default formatter" })
 

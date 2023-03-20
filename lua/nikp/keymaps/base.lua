@@ -13,9 +13,6 @@ wk.register({
   s = { name = "Controls splits" },
   u = {
     name = "Utilities",
-    g = {
-      name = "Github",
-    },
   },
   w = { name = "Workspace" },
 }, { prefix = "<leader>" })
@@ -45,7 +42,7 @@ M.initialize = function()
   map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
   -- <<< SHOWING THINGS >>>
-  vim.keymap.set("n", "<leader>sm", ":Telescope keymaps<cr>", { desc = "Show list of current user keymaps" })
+  vim.keymap.set("n", "<leader>fm", ":Telescope keymaps<cr>", { desc = "Show list of current user keymaps" })
   vim.keymap.set("n", "<leader>ch", function()
     popup.output_command(":!~/.config/bash/cht.sh")
   end, { desc = "Run cht.sh" })
