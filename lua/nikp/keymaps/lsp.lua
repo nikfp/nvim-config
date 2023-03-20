@@ -11,7 +11,6 @@ M.on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 	-- Auto save in LSP buffers
 	vim.api.nvim_create_autocmd("InsertLeave", {
@@ -23,27 +22,27 @@ M.on_attach = function(client, bufnr)
 		buffer = bufnr,
 	})
 
-	-- LSP Goto's
+	-- LSP Goto'skeylsp
 	map(
 		"n",
 		"<leader>gD",
 		vim.lsp.buf.declaration,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol declaration" }
+		{ buffer = bufnr, desc = "Go to symbol declaration" }
 	)
 	map(
 		"n",
 		"<leader>gd",
 		vim.lsp.buf.definition,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol definition" }
+		{ buffer = bufnr, desc = "Go to symbol definition" }
 	)
-	map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true, desc = "Show symbol information" })
+	map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Show symbol information" })
 	map(
 		"n",
 		"<leader>gi",
 		vim.lsp.buf.implementation,
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Go to symbol implementation" }
+		{ buffer = bufnr, desc = "Go to symbol implementation" }
 	)
-	map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+	map("n", "<space>D", vim.lsp.buf.type_definition, { buffer = bufnr })
 
 	map("n", "gp", function()
 		vim.api.nvim_open_win(0, true, {
@@ -67,44 +66,44 @@ M.on_attach = function(client, bufnr)
 	-- if there is no implement it will hide
 	-- when you use action in finder like open vsplit then you can
 	-- use <C-t> to jump back
-	map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc = "Open LSP symbol help information" })
+	map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { desc = "Open LSP symbol help information" })
 
 	-- View references through telescope search
 	map(
 		"n",
 		"<leader>gr",
 		":Telescope lsp_references",
-		{ noremap = true, silent = true, buffer = bufnr, desc = "Open LSP references in Telescope" }
+		{ buffer = bufnr, desc = "Open LSP references in Telescope" }
 	)
 	-- Signature help
-	map("n", "<C-k>", vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
 
 	-- Worspace activities
-	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
-	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { noremap = true, silent = true, buffer = bufnr })
+	map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { buffer = bufnr })
+	map("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, { buffer = bufnr })
 	map("n", "<space>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
+	end, { buffer = bufnr })
 
 	-- Access available code actions
-	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { silent = true })
+	map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { desc = "Execute code actions "})
 
 	-- Trigger default formatter
 	map("n", "<leader>fmt", function()
 		vim.lsp.buf.format({ async = true })
-	end, { noremap = true, silent = true, buffer = bufnr, desc = "Format buffer with default formatter" })
+	end, { buffer = bufnr, desc = "Format buffer with default formatter" })
 
 	-- Activate LSP Rename
-	map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { silent = true, desc = "Rename current symbol" })
+	map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { desc = "Rename current symbol" })
 
 	-- DEBUG ADAPTER ITEMS
-	map("n", "<leader>db", dap.toggle_breakpoint, { silent = true, desc = "Toggle Breakpoint" })
-	map("n", "<leader>dc", dap.continue, { silent = true, desc = "DAP continue" })
-	map("n", "<leader>do", dap.step_over, { silent = true, desc = "DAP Step over" })
-	map("n", "<leader>di", dap.step_into, { silent = true, desc = "DAP step into" })
-	map("n", "<leader>du", dapui.toggle, { silent = true, desc = "DAP UI toggle" })
-	map("n", "<leader>dt", ":DapStepOut<cr>", { silent = true, desc = "DAP step out" })
-	map("n", "<leader>ds", ":DapTerminate<cr>", { silent = true, desc = "Terminate debugging session" })
+	map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+	map("n", "<leader>dc", dap.continue, { desc = "DAP continue" })
+	map("n", "<leader>do", dap.step_over, { desc = "DAP Step over" })
+	map("n", "<leader>di", dap.step_into, { desc = "DAP step into" })
+	map("n", "<leader>du", dapui.toggle, { desc = "DAP UI toggle" })
+	map("n", "<leader>dt", ":DapStepOut<cr>", { desc = "DAP step out" })
+	map("n", "<leader>ds", ":DapTerminate<cr>", { desc = "Terminate debugging session" })
 end
 
 return M

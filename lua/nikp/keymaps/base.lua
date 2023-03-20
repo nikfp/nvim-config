@@ -42,7 +42,7 @@ M.initialize = function()
     end, { desc = "Move to harpoon mark #" .. pos })
   end
   -- <<< GIT Stuff >>>
-  map("n", "<leader>gg", ":LazyGit<cr>", { desc = "Start LazyGit" })
+  map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
   -- <<< SHOWING THINGS >>>
   vim.keymap.set("n", "<leader>sm", ":Telescope keymaps<cr>", { desc = "Show list of current user keymaps" })
@@ -51,19 +51,25 @@ M.initialize = function()
   end, { desc = "Run cht.sh" })
 
   -- <<< Window / Split Management >>>
-  map("n", "<leader>ss", "<C-w>s", { silent = true, noremap = true, desc = "Split horizontal" })
-  map("n", "<leader>sv", "<C-w>v", { silent = true, noremap = true, desc = "Split Vertical" })
-  map("n", "<leader>sh", "<C-w>h", { silent = true, noremap = true, desc = "Move left by one split" })
-  map("n", "<leader>sj", "<C-w>j", { silent = true, noremap = true, desc = "Move down by one split" })
-  map("n", "<leader>sk", "<C-w>k", { silent = true, noremap = true, desc = "Move up by one split" })
-  map("n", "<leader>sl", "<C-w>l", { silent = true, noremap = true, desc = "Move right by one split" })
+  map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
+  map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
+  map("n", "<leader>sh", "<C-w>h", { desc = "Move left by one split" })
+  map("n", "<leader>sj", "<C-w>j", { desc = "Move down by one split" })
+  map("n", "<leader>sk", "<C-w>k", { desc = "Move up by one split" })
+  map("n", "<leader>sl", "<C-w>l", { desc = "Move right by one split" })
   for pos = 1, 9 do
     local lhs = "<leader>s" .. pos
     local rhs = pos .. "<C-W>w"
-    map("n", lhs, rhs, { silent = true, noremap = true, desc = "Move to window " .. pos })
+    map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
-  map("n", "<leader>sc", ":only<cr>", { silent = true, noremap = true, desc = "Close all but current windows" })
-  map("n", "<leader>sz", ":NoNeckPain<cr>", { silent = true, noremamp = ture, desc = "Toggle NoNeckPain"})
+  map(
+    "n",
+    "<leader>sru",
+    require("nikp.utils.resize").inc_height,
+    { desc = "Increase window height" }
+  )
+  map("n", "<leader>sc", ":only<cr>", { desc = "Close all but current windows" })
+  map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain"})
   -- <<< QUALITY OF LIFE >>>
 
   -- Easier reach to beginning and end of lines
@@ -108,14 +114,14 @@ M.initialize = function()
   -- ChatGPT maps
   map("n", "<leader>uc", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
   -- <<< BASE LSP KEYMAPS >>>
-  map("n", "<space>e", vim.diagnostic.open_float, { silent = true, desc = "Open Diagnostic Float" })
-  map("n", "[d", vim.diagnostic.goto_prev, { silent = true, desc = "Go to previous diagnostic item" })
-  map("n", "]d", vim.diagnostic.goto_next, { silent = true, desc = "Go to next diagnostic item" })
-  map("n", "<space>q", vim.diagnostic.setloclist, { silent = true, desc = "Set location list" })
+  map("n", "<space>e", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
+  map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })
+  map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic item" })
+  map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
   -- Stub for run command
   map("n", "<leader>ru", function()
     popup.output_command(":echo 'run command not set up for this file type'")
-  end, { noremap = true, silent = true, desc = "Default run command" })
+  end, { desc = "Default run command" })
 end
 
 return M
