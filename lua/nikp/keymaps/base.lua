@@ -59,14 +59,9 @@ M.initialize = function()
     local rhs = pos .. "<C-W>w"
     map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
-  map(
-    "n",
-    "<leader>sru",
-    require("nikp.utils.resize").inc_height,
-    { desc = "Increase window height" }
-  )
+  map("n", "<leader>sru", require("nikp.utils.resize").inc_height, { desc = "Increase window height" })
   map("n", "<leader>sc", ":only<cr>", { desc = "Close all but current windows" })
-  map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain"})
+  map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain" })
   -- <<< QUALITY OF LIFE >>>
 
   -- Easier reach to beginning and end of lines
@@ -79,9 +74,9 @@ M.initialize = function()
   map("i", "<C-j>", "<Down>", { desc = "Move down arrow key closer to home row" })
   map("i", "<C-K", "<Up>", { desc = "Move up arrow key closer to home row" })
   -- move lines up and down
-  map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" }) -- up
-  map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" }) -- down
-  map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" }) -- up
+  map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })          -- up
+  map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })        -- down
+  map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })  -- up
   map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
   -- make sure cursor stays centered in screen
   map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position" })
@@ -107,6 +102,8 @@ M.initialize = function()
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { desc = "Change all occurences of word undor cursor" }
   )
+  -- Goto alternate file
+  map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
   map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
   -- ChatGPT maps
   map("n", "<leader>uc", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
