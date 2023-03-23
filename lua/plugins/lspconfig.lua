@@ -212,6 +212,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 				on_attach = on_attach,
 			})
 
+      -- JSON
+      nvim_lsp.jsonls.setup({
+        on_attach = on_attach
+      })
+
 			--Set completeopt to have a better completion experience
 			-- :help completeopt
 			-- menuone: popup even when there's only one match
