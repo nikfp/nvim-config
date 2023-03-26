@@ -55,7 +55,7 @@ return {
           end
         end, { "i", "s" }),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        -- ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<C-j>"] = function(fallback)
           if ls.choice_active() then
             ls.change_choice(1)
