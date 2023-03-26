@@ -15,10 +15,6 @@ return {
 
     local utils = require("nikp.utils.snip_utils")
 
-    -- testing json snips again
-    require("luasnip.loaders.from_vscode").lazy_load({
-      paths = { "./snippets" },
-    })
 
     -- LUA SNIPPETS
     ls.add_snippets("lua", {
