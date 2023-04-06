@@ -60,7 +60,10 @@ M.initialize = function()
     map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
   map("n", "<leader>sru", require("nikp.utils.resize").inc_height, { desc = "Increase window height" })
-  map("n", "<leader>sc", ":only<cr>", { desc = "Close all but current windows" })
+  map("n", "<leader>sc", function() 
+    vim.cmd("only")
+    require("no-neck-pain").disable()
+  end, { desc = "Close all but current windows" })
   map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain" })
   -- <<< QUALITY OF LIFE >>>
 
