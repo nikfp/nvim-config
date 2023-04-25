@@ -95,7 +95,11 @@ M.initialize = function()
     oil.open(oil.get_current_dir())
   end, { desc = "Open Oil file manager in directory of current buffer" })
   -- Make pasting easier
-  map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
+  -- map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
+  -- Yank to and Paste from system ceipboard
+  map("n", "<leader>y", "\"+yy", { desc = "Yank to system clipboard"})
+  map("v", "<leader>y", "\"+yy", { desc = "Yank to system clipboard"})
+  map("n", "<leader>p", "\"+p", { desc = "Paste from system clipboard"})
   -- Disable Ex mode
   map("n", "Q", "<nop>", { desc = "Get rid of Ex mode" })
   -- change word under cursor

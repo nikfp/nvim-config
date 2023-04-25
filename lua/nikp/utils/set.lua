@@ -1,10 +1,11 @@
+vim.g.formatoptions = "jcql"
 vim.g.mapleader = " "
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = true
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.completeopt = "menu,noselect"
 vim.opt.expandtab = true
 vim.opt.guicursor = "n:blinkon500-blinkoff500"
@@ -21,6 +22,7 @@ vim.opt.tabstop = 2
 vim.opt.timeoutlen = 300
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.loader.enable()
 
 -- disable fsync on windows
 local system = vim.loop.os_uname().sysname
@@ -39,5 +41,27 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
       vim.cmd.wincmd("L")
       vim.keymap.set("n", "q", ":bd<cr>", { buffer = opts.buf })
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("json_lsp", {}),
+  pattern = { "*.json", "*.jsonc" },
+  callback = function(opts)
+    require("lspconfig")
+    vim.cmd(":LspStart jsonls");
+    local keymaps = require("nikp.keymaps.lsp");
+    keymaps.on_attach({}, opts.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("bash_lsp", {}),
+  pattern = { "*.sh", "*.bash", "*.bashrc" },
+  callback = function(opts)
+    require("lspconfig")
+    vim.cmd(":LspStart bashls");
+    local keymaps = require("nikp.keymaps.lsp");
+    keymaps.on_attach({}, opts.buf)
   end,
 })

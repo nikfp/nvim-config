@@ -23,7 +23,7 @@ return {
           "json-lsp",
           "lua-language-server",
           "node-debug2-adapter",
-          "prettierd",
+          "prettier",
           "prisma-language-server",
           "rust-analyzer",
           "stylua",

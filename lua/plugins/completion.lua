@@ -38,22 +38,35 @@ return {
           end
         end, { "i" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if ls.locally_jumpable(1) then
-            ls.jump(1)
-          elseif cmp.visible() then
+          -- if ls.locally_jumpable(1) then
+          --   ls.jump(1)
+          if cmp.visible() then
             cmp.confirm({ select = true })
           else
             fallback()
           end
         end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          print("you hit shift-tab")
+        -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+        --   if ls.locally_jumpable(-1) then
+        --     ls.jump(-1)
+        --   else
+        --     fallback()
+        --   end
+        -- end, { "i", "s" }),
+        ["<C-n>"] = cmp.mapping(function(fallback)
+          if ls.locally_jumpable(1) then
+            ls.jump(1)
+          else
+            fallback()
+          end
+        end, {"i", "s"}),
+        ["<C-p>"] = cmp.mapping(function(fallback)
           if ls.locally_jumpable(-1) then
             ls.jump(-1)
           else
             fallback()
           end
-        end, { "i", "s" }),
+        end, {"i", "s"}),
         ["<C-e>"] = cmp.mapping.abort(),
         -- ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<C-j>"] = function(fallback)

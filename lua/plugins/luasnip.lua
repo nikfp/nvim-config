@@ -85,5 +85,9 @@ return {
     -- vim.keymap.set("n", "<leader><leader>lc",function()
     --   ls.cleanup()
     -- end, {silent = true, noremap = true})
+
+    ls.setup({
+      delete_check_events = { "InsertLeave", "TextChanged" }
+    })
   end,
 }

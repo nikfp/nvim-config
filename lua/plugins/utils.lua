@@ -12,7 +12,7 @@ return {
       })
     end,
   },
-  { "MunifTanjim/nui.nvim", event = "VeryLazy" },
+  { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
   { "vigoux/notifier.nvim" },
   { "windwp/nvim-ts-autotag", event = "VeryLazy", config = true },
   {
@@ -80,6 +80,18 @@ return {
     event = "UIEnter",
     config = function()
       require("no-neck-pain").setup()
-    end
-  }
+    end,
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
 }

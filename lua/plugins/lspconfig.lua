@@ -6,7 +6,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = "BufAdd",
+    event = "BufAdd",
 		dependencies = {
 			"jose-elias-alvarez/null-ls.nvim",
 			"glepnir/lspsaga.nvim",
@@ -93,6 +93,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 				flags = lsp_flags,
 				filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
 				capabilities = capabilities,
+        single_file_support = true,
 			})
 
 			--SVELTE
@@ -157,6 +158,17 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 				end,
 			})
 
+			-- JSON
+			nvim_lsp.jsonls.setup({
+				capabilities = capabilities,
+			})
+
+			-- HTML
+			nvim_lsp.html.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+      
 			-- LUA
 			nvim_lsp.lua_ls.setup({
 				commands = {
@@ -176,7 +188,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 						},
 						workspace = {
 							library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false
+							checkThirdParty = false,
 						},
 						telemetry = {
 							enable = false,
@@ -189,33 +201,30 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 				end,
 			})
 
-			-- HTML
-			nvim_lsp.html.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
 
 			-- CSS
 			nvim_lsp.cssls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
-			nvim_lsp.cssmodules_ls.setup({})
+			nvim_lsp.cssmodules_ls.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
 
 			-- PRISMA
 			nvim_lsp.prismals.setup({
+				capabilities = capabilities,
 				on_attach = on_attach,
 			})
 
 			-- BASH
 			nvim_lsp.bashls.setup({
+				capabilities = capabilities,
 				on_attach = on_attach,
+				filetypes = { "sh", "*.bashrc", "shell" },
 			})
 
-      -- JSON
-      nvim_lsp.jsonls.setup({
-        on_attach = on_attach
-      })
 
 			--Set completeopt to have a better completion experience
 			-- :help completeopt
@@ -238,7 +247,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.prettierd.with({
+					null_ls.builtins.formatting.prettier.with({
 						extra_filetypes = { "svelte" },
 					}),
 					null_ls.builtins.diagnostics.eslint.with({
