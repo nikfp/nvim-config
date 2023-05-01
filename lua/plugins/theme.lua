@@ -38,6 +38,15 @@ return {
         options = {
           theme = "tokyonight",
         },
+        sections = {
+          lualine_y = {
+            "progress",
+            "location"
+          },
+          lualine_z = {
+            "lualine_lsp"
+          }
+        },
         inactive_sections = {
           lualine_b = {
             {
