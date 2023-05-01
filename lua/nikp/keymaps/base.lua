@@ -75,7 +75,7 @@ M.initialize = function()
   map("i", "jj", "<Esc>", { desc = "Remap escape to 'j' key twice for ergonomics - Insert mod" })
   -- Get down key function closer
   map("i", "<C-j>", "<Down>", { desc = "Move down arrow key closer to home row" })
-  map("i", "<C-K", "<Up>", { desc = "Move up arrow key closer to home row" })
+  map("i", "<C-k>", "<Up>", { desc = "Move up arrow key closer to home row" })
   -- move lines up and down
   map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })          -- up
   map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })        -- down

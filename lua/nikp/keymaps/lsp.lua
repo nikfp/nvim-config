@@ -9,10 +9,6 @@ local M = {}
 M.on_attach = function(_, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-  --
-  print("YOU ATTACHED WITH AN LSP!")
 
 	-- Auto save in LSP buffers
 	vim.api.nvim_create_autocmd("InsertLeave", {
