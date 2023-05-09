@@ -128,15 +128,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             map("n", "<leader>;", "$a;<esc>o")
           end,
 
-          ["rust-analyzer"] = {
-            cargo = {
-              features = "all",
-            },
-
-            checkOnSave = {
-              enable = true,
-              command = "clippy",
-              features = "all",
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = { command = "clippy" },
             },
           },
         },
@@ -148,19 +142,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             other_hints_prefix = "",
           },
         },
-        -- ["rust-analyzer"] = {
-        -- 	checkOnSave = {
-        -- 		-- allFeatures = true,
-        -- 		overrideCommand = {
-        -- 			"cargo",
-        -- 			"clippy",
-        -- 			"--workspace",
-        -- 			"--message-format=json",
-        -- 			"--all-targets",
-        -- 			"--all-features",
-        -- 		},
-        -- 	},
-        -- },
 
         flags = lsp_flags,
       })
