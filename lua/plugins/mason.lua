@@ -3,7 +3,6 @@ return {
     "williamboman/mason.nvim",
     event = "UIEnter",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = true

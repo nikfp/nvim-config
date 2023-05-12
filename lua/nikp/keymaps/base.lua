@@ -47,6 +47,9 @@ M.initialize = function()
     popup.output_command(":!~/.config/bash/cht.sh")
   end, { desc = "Run cht.sh" })
 
+  -- <<< Terminal Management >>>
+  map("n", "<leader>tr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
+  map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
   -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
   map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
@@ -60,7 +63,7 @@ M.initialize = function()
     map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
   map("n", "<leader>sru", require("nikp.utils.resize").inc_height, { desc = "Increase window height" })
-  map("n", "<leader>sc", function() 
+  map("n", "<leader>sc", function()
     vim.cmd("only")
     require("no-neck-pain").disable()
   end, { desc = "Close all but current windows" })
@@ -97,9 +100,9 @@ M.initialize = function()
   -- Make pasting easier
   -- map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
   -- Yank to and Paste from system ceipboard
-  map("n", "<leader>y", "\"+yy", { desc = "Yank to system clipboard"})
-  map("v", "<leader>y", "\"+yy", { desc = "Yank to system clipboard"})
-  map("n", "<leader>p", "\"+p", { desc = "Paste from system clipboard"})
+  map("n", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
+  map("v", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
+  map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
   -- Disable Ex mode
   map("n", "Q", "<nop>", { desc = "Get rid of Ex mode" })
   -- change word under cursor

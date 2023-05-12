@@ -49,8 +49,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
   callback = function(opts)
     require("lspconfig")
-    vim.cmd(":LspStart jsonls");
-    local keymaps = require("nikp.keymaps.lsp");
+    vim.cmd(":LspStart jsonls")
+    local keymaps = require("nikp.keymaps.lsp")
     keymaps.on_attach({}, opts.buf)
   end,
 })
@@ -60,8 +60,18 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.sh", "*.bash", "*.bashrc" },
   callback = function(opts)
     require("lspconfig")
-    vim.cmd(":LspStart bashls");
-    local keymaps = require("nikp.keymaps.lsp");
+    vim.cmd(":LspStart bashls")
+    local keymaps = require("nikp.keymaps.lsp")
     keymaps.on_attach({}, opts.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("term", {}),
+  callback = function(opts)
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+    vim.opt.signcolumn = "no"
+    vim.keymap.set("n", "q", ":q<cr>", { buffer = opts.buf })
   end,
 })

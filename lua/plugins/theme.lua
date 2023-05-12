@@ -44,7 +44,7 @@ return {
             "location"
           },
           lualine_z = {
-            "lualine_lsp"
+            "lualine_lsp",
           }
         },
         inactive_sections = {
