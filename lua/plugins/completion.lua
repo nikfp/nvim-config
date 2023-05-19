@@ -111,16 +111,9 @@ return {
         { name = "buffer" },
       }),
       formatting = {
-        fields = { "menu", "abbr", "kind" },
-        format = function(entry, item)
+        fields = { "kind", "abbr", },
+        format = function(_, item)
           item.kind = string.format("%s", kind_icons[item.kind])
-          local menu_icon = {
-            nvim_lsp = "λ",
-            vsnip = "⋗",
-            buffer = "Ω",
-            path = "🖫",
-          }
-          item.menu = menu_icon[entry.source.name]
           return item
         end,
       },
@@ -163,3 +156,5 @@ return {
     ]])
   end,
 }
+
+
