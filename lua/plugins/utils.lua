@@ -12,6 +12,18 @@ return {
       })
     end,
   },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "kyazdani42/nvim-web-devicons",
+    },
+    event = "VeryLazy",
+    config = function()
+      require("octo").setup()
+    end,
+  },
   { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
   { "vigoux/notifier.nvim" },
   { "windwp/nvim-ts-autotag", event = "VeryLazy", config = true },
