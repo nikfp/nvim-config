@@ -25,7 +25,6 @@ return {
           "prettier",
           "prisma-language-server",
           "rust-analyzer",
-          "stylua",
           "svelte-language-server",
           "tailwindcss-language-server",
           "typescript-language-server"
