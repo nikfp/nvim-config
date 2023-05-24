@@ -114,7 +114,6 @@ M.initialize = function()
   )
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
-  map("n", "<leader>shaye", ":echo 'shaye is awesome'<cr>", { desc = "Tell the truth" })
   -- ChatGPT maps
   map("n", "<leader>uc", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
   -- <<< BASE LSP KEYMAPS >>>
