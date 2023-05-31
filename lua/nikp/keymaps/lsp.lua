@@ -14,10 +14,12 @@ M.on_attach = function(_, bufnr)
   vim.api.nvim_create_autocmd("InsertLeave", {
     command = "w",
     buffer = bufnr,
+    nested = true
   })
   vim.api.nvim_create_autocmd("TextChanged", {
     command = "w",
     buffer = bufnr,
+    nested = true
   })
 
   -- LSP Goto's
