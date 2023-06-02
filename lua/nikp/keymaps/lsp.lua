@@ -22,6 +22,16 @@ M.on_attach = function(_, bufnr)
     nested = true
   })
 
+  -- Cancel luasnip snippets when exiting insert mode
+  local ls = require("luasnip")
+
+  vim.api.nvim_create_autocmd("InsertLeave", {
+    callback = function()
+      ls.session.current_nodes[vim.api.nvim_get_current_buf()] = nil
+    end,
+    buffer = bufnr,
+  })
+
   -- LSP Goto's
   map("n", "<leader>gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Go to symbol declaration" })
   map("n", "<leader>gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to symbol definition" })
