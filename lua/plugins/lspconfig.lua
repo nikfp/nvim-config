@@ -161,6 +161,13 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
 
+      -- TAILWINDCSS
+      nvim_lsp.tailwindcss.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        autostart = false
+      })
+
       -- JSON
       nvim_lsp.jsonls.setup({
         capabilities = capabilities,
