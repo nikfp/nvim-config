@@ -69,6 +69,17 @@ M.on_attach = function(_, bufnr)
   -- Activate LSP Rename
   map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { desc = "Rename current symbol" })
 
+  -- Toggle Tailwind LSP
+  map("n", "<leader>ut", function()
+    local toggler = require('nikp.utils.lsp_toggler')
+    local tailwind_id = toggler.get_lsp_num("tailwindcss")
+    if (tailwind_id == 0) then 
+      toggler.start_server("tailwindcss")
+    else
+      toggler.stop_server(tailwind_id)
+    end
+  end, { desc = "Toggle Tailwind LSP Active / Inactive" })
+
   -- DEBUG ADAPTER ITEMS
   map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
   map("n", "<leader>dc", dap.continue, { desc = "DAP continue" })
