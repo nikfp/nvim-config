@@ -4,18 +4,19 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
-        "vim",
-        "lua",
-        "rust",
-        "toml",
-        "typescript",
-        "javascript",
-        "html",
-        "css",
-        "regex",
         "bash",
+        "css",
+        "html",
+        "javascript",
+        "lua",
         "markdown",
+        "regex",
+        "rust",
         "svelte",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
       },
       auto_install = true,
       highlight = {
@@ -28,6 +29,9 @@ return {
         extended_mode = true,
         max_file_lines = nil,
       },
+      autotag = {
+        enable = true
+      }
     })
   end,
 }
