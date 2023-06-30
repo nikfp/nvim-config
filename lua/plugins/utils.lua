@@ -1,6 +1,8 @@
 return {
   {
     "stevearc/oil.nvim",
+    lazy = false,
+    priority = 51,
     config = function()
       require("oil").setup({
         view_options = {
@@ -26,7 +28,7 @@ return {
   },
   { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
   { "vigoux/notifier.nvim" },
-  { "windwp/nvim-ts-autotag", event = "VeryLazy", config = true },
+  { "windwp/nvim-ts-autotag", event = "VeryLazy" },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufAdd",
@@ -67,7 +69,7 @@ return {
         icons = {
           symlink = "", -- Symlink icon (directory and file)
           directory = "", -- Directory icon
-          file = "", -- File icon
+          file = "",    -- File icon
         },
         use_devicons = true,
       })
@@ -106,4 +108,10 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end
+  }  
 }
