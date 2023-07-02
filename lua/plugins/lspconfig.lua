@@ -11,7 +11,7 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
       "glepnir/lspsaga.nvim",
       "windwp/nvim-ts-autotag",
-      "leafoftree/vim-svelte-plugin",
+      -- "leafoftree/vim-svelte-plugin",
       "glepnir/lspsaga.nvim",
       "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
@@ -83,6 +83,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- C and Variants
       nvim_lsp.clangd.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
         lsp_flags = lsp_flags,
       })
 
@@ -90,6 +91,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.tsserver.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
+          client.server_capabilities.documentFormattingProvider = false
         end,
         flags = lsp_flags,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
@@ -106,6 +108,15 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       -- RUST
       local rt = require("rust-tools")
+
+      -- local dap = rt.dap
+      -- local dap_table = {}
+      -- local extension_path = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/codelldb/extension"
+      -- local codelldb_path = extension_path .. "/adapter/codelldb"
+      -- local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+      -- if dap then
+      --   dap_table.adapter = dap.get_codelldb_adapter(codelldb_path, liblldb_path)
+      -- end
 
       rt.setup({
         server = {
@@ -142,7 +153,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             other_hints_prefix = "",
           },
         },
-
+        -- dap = dap_table,
         flags = lsp_flags,
       })
 
@@ -171,6 +182,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- JSON
       nvim_lsp.jsonls.setup({
         capabilities = capabilities,
+        on_attach = on_attach,
       })
 
       -- HTML
@@ -254,6 +266,16 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
   --     config = true
   -- }
   --   },
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  --   dependencies = {
+  --     "mfussenegger/nvim-dap",
+  --     "rcarriga/nvim-dap-ui",
+  --   },
+  --   config = function()
+  --     require("nikp.dap.init").setup()
+  --   end
+  -- },
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
@@ -262,7 +284,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier.with({
             extra_filetypes = { "svelte" },
           }),

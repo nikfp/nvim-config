@@ -1,6 +1,9 @@
 return {
   "ThePrimeagen/harpoon",
-  event = "VeryLazy",
+  -- dir = "~/Documents/Github/harpoon",
+  -- event = "VeryLazy",
+  lazy = false,
+  priority = 52,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
