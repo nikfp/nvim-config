@@ -30,7 +30,8 @@ return {
         max_file_lines = nil,
       },
       autotag = {
-        enable = true
+        enable = true,
+        enable_close_on_slash = false
       },
       incremental_selection = {
         enable = true,
