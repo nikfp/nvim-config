@@ -10,6 +10,7 @@ return {
         "javascript",
         "lua",
         "markdown",
+        "markdown_inline",
         "regex",
         "rust",
         "svelte",

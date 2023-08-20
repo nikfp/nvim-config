@@ -114,8 +114,6 @@ M.initialize = function()
   )
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
-  -- ChatGPT maps
-  map("n", "<leader>uc", ":ChatGPT<cr>", { desc = "Open ChatGPT" })
   -- <<< BASE LSP KEYMAPS >>>
   map("n", "<space>e", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
   map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })

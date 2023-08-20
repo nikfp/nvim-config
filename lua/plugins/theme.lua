@@ -4,8 +4,8 @@ end
 
 return {
   {
-    -- "folke/tokyonight.nvim",
-    "savq/melange-nvim",
+    "folke/tokyonight.nvim",
+    -- "savq/melange-nvim",
     dependencies = {
       "nvim-lualine/lualine.nvim",
       "kyazdani42/nvim-web-devicons",
@@ -14,13 +14,23 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- require("tokyonight").setup({
-      --   transparent = true,
-      -- })
+      require("tokyonight").setup({
+        transparent = true,
+      })
       -- local theme = "melange"
+      --
+      local os_theme = vim.env.OS_THEME
+
+      print(os_theme)
+      local theme = ""
+      if os_theme == "Light" then
+        theme = "tokyonight-day"
+      else
+        theme = "tokyonight-moon"
+      end
       vim.opt.termguicolors = true
-      vim.cmd.colorscheme "melange"
-      -- vim.cmd("colorscheme " .. theme)
+      -- vim.cmd.colorscheme "melange"
+      vim.cmd("colorscheme " .. theme)
 
       -- <<< NORD THEME >>>
       -- vim.g.nord_borders = true
@@ -31,7 +41,7 @@ return {
       vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
 
       -- Make NVIM transparent
-      require("transparent").setup()
+      -- require("transparent").setup()
 
       local function fg(name)
         return function()
@@ -42,9 +52,9 @@ return {
       end
 
       require("lualine").setup({
-        -- options = {
-        --   theme = "tokyonight",
-        -- },
+        options = {
+          theme = "tokyonight",
+        },
         sections = {
           lualine_y = {
             "progress",
