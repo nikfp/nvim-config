@@ -1,6 +1,4 @@
 local map = require("nikp.keymaps.utils").map
-local dap = require("dap")
-local dapui = require("dapui")
 -- local telescope = require("telescope.builtin")
 
 local M = {}
@@ -80,14 +78,6 @@ M.on_attach = function(_, bufnr)
     end
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
-  -- DEBUG ADAPTER ITEMS
-  map("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-  map("n", "<leader>dc", dap.continue, { desc = "DAP continue" })
-  map("n", "<leader>do", dap.step_over, { desc = "DAP Step over" })
-  map("n", "<leader>di", dap.step_into, { desc = "DAP step into" })
-  map("n", "<leader>du", dapui.toggle, { desc = "DAP UI toggle" })
-  map("n", "<leader>dt", ":DapStepOut<cr>", { desc = "DAP step out" })
-  map("n", "<leader>ds", ":DapTerminate<cr>", { desc = "Terminate debugging session" })
 end
 
 return M

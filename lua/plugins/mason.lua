@@ -21,7 +21,6 @@ return {
           "html-lsp",
           "json-lsp",
           "lua-language-server",
-          "node-debug2-adapter",
           "prettier",
           "prisma-language-server",
           "rust-analyzer",

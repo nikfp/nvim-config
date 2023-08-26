@@ -109,15 +109,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- RUST
       local rt = require("rust-tools")
 
-      -- local dap = rt.dap
-      -- local dap_table = {}
-      -- local extension_path = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/codelldb/extension"
-      -- local codelldb_path = extension_path .. "/adapter/codelldb"
-      -- local liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
-      -- if dap then
-      --   dap_table.adapter = dap.get_codelldb_adapter(codelldb_path, liblldb_path)
-      -- end
-
       rt.setup({
         server = {
           standalone = true,
@@ -153,7 +144,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             other_hints_prefix = "",
           },
         },
-        -- dap = dap_table,
         flags = lsp_flags,
       })
 
@@ -269,12 +259,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
   -- {
   --   "simrat39/rust-tools.nvim",
   --   dependencies = {
-  --     "mfussenegger/nvim-dap",
-  --     "rcarriga/nvim-dap-ui",
   --   },
-  --   config = function()
-  --     require("nikp.dap.init").setup()
-  --   end
   -- },
   {
     "jose-elias-alvarez/null-ls.nvim",
