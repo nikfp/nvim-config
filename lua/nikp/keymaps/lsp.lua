@@ -57,7 +57,7 @@ M.on_attach = function(_, bufnr)
   end, { buffer = bufnr })
 
   -- Access available code actions
-  map({ "n", "v" }, "<leader>fa", "<cmd>Lspsaga code_action<CR>", { desc = "Execute code actions " })
+  map({ "n", "v" }, "<leader>fa", ":Lspsaga code_action<CR>", { desc = "Execute code actions " })
 
   -- Trigger default formatter
   map("n", "<leader>cf", function()
