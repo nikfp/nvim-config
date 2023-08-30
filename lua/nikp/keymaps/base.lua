@@ -103,6 +103,7 @@ M.initialize = function()
   map("n", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
   map("v", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
   map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+  map("v", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
   -- Disable Ex mode
   map("n", "Q", "<nop>", { desc = "Get rid of Ex mode" })
   -- change word under cursor
