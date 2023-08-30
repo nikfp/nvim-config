@@ -5,7 +5,7 @@ local M = {}
 local wk = require("which-key")
 wk.register({
   c = { name = "Changing things" },
-  d = { name = "Debugging" },
+  d = { name = "Diagnostics" },
   f = { name = "Finding things" },
   g = { name = "Going places" },
   h = { name = "Harpoon" },
@@ -116,10 +116,10 @@ M.initialize = function()
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
   -- <<< BASE LSP KEYMAPS >>>
-  map("n", "<space>e", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
-  map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })
-  map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic item" })
-  map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set location list" })
+  map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
+  map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })
+  map("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "Go to next diagnostic item" })
+  map("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Set location list" })
   -- Stub for run command
   map("n", "<leader>ru", function()
     popup.output_command(":echo 'run command not set up for this file type'")

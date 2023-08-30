@@ -14,18 +14,6 @@ return {
       })
     end,
   },
-  {
-    "pwntester/octo.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "kyazdani42/nvim-web-devicons",
-    },
-    event = "VeryLazy",
-    config = function()
-      require("octo").setup()
-    end,
-  },
   { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
   { "vigoux/notifier.nvim" },
   { "windwp/nvim-ts-autotag", event = "VeryLazy" },
@@ -80,13 +68,6 @@ return {
     event = "UIEnter",
     config = function()
       require("nikp.keymaps.base").initialize()
-    end,
-  },
-  {
-    "MaximilianLloyd/patternvault.nvim",
-    event = "VeryLazy", -- Customize here as wanted
-    config = function()
-      require("patternvault").setup()
     end,
   },
   {

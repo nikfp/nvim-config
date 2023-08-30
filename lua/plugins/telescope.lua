@@ -3,7 +3,6 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "natecraddock/telescope-zf-native.nvim",
-    "nvim-telescope/telescope-file-browser.nvim",
   },
   event = "VeryLazy",
   config = function()
@@ -26,6 +25,5 @@ return {
       },
     })
     ts.load_extension("zf-native")
-    ts.load_extension("file_browser")
   end,
 }
