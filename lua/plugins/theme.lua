@@ -9,14 +9,12 @@ return {
     dependencies = {
       "nvim-lualine/lualine.nvim",
       "kyazdani42/nvim-web-devicons",
-      "xiyaowong/transparent.nvim"
+      "xiyaowong/transparent.nvim",
+      "maxmx03/fluoromachine.nvim"
     },
     lazy = false,
     priority = 1000,
     config = function()
-      require("tokyonight").setup({
-        transparent = true,
-      })
       -- local theme = "melange"
       --
       local os_theme = vim.env.OS_THEME
@@ -24,9 +22,18 @@ return {
       print(os_theme)
       local theme = ""
       if os_theme == "Light" then
+        require("tokyonight").setup({
+          transparent = true,
+        })
         theme = "tokyonight-day"
       else
-        theme = "tokyonight-moon"
+        local fm = require 'fluoromachine'
+
+        fm.setup {
+          glow = false,
+          theme = 'fluoromachine'
+        }
+        theme = "fluoromachine"
       end
       vim.opt.termguicolors = true
       -- vim.cmd.colorscheme "melange"
@@ -38,7 +45,7 @@ return {
       -- require("nord").set()
 
       -- <<< Transparent background in Telescope >>>
-      vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
+      -- vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
 
       -- Make NVIM transparent
       -- require("transparent").setup()
@@ -53,7 +60,7 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = "tokyonight",
+          theme = theme,
         },
         sections = {
           lualine_y = {
