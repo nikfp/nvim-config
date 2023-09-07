@@ -11,6 +11,7 @@ return {
         buf_options = {
           buflisted = true,
         },
+        default_file_explorer = false
       })
     end,
   },
@@ -57,7 +58,7 @@ return {
         icons = {
           symlink = "", -- Symlink icon (directory and file)
           directory = "", -- Directory icon
-          file = "",    -- File icon
+          file = "", -- File icon
         },
         use_devicons = true,
       })
