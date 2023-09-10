@@ -17,3 +17,6 @@ else
   require("lazy").setup("plugins")
   require("nikp.utils")
 end
+
+local oil = require("oil")
+oil.open(oil.get_current_dir())
