@@ -26,7 +26,8 @@ function M:update_status()
         end
     end
     local base = table.concat(buf_client_names, self.options.separator)
-    return string.sub(base, 1, 14)
+    -- return string.sub(base, 1, 14)
+    return base
 end
 
 return M
