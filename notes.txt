@@ -4,9 +4,3 @@
 
 THIS WILL POPULATE QUICKFIX WITH DIAGNOSTIC DATA
 vim.diagnostics.setqflist()
-
-MIGHT NOT NEET MASON-LSPCONFIG
-https://github.com/amlanjlahkar/nvim/blob/main/lua/plugin/mason.lua
-
-This is me trying to write lines of text. Let's see how this behaves when I try to so this in soft wrap mode. 
-
