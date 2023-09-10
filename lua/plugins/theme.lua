@@ -10,7 +10,6 @@ return {
       "nvim-lualine/lualine.nvim",
       "kyazdani42/nvim-web-devicons",
       "xiyaowong/transparent.nvim",
-      "maxmx03/fluoromachine.nvim"
     },
     lazy = false,
     priority = 1000,
@@ -27,13 +26,11 @@ return {
         })
         theme = "tokyonight-day"
       else
-        local fm = require 'fluoromachine'
 
-        fm.setup {
-          glow = false,
-          theme = 'fluoromachine'
-        }
-        theme = "fluoromachine"
+        require("tokyonight").setup({
+          transparent = true,
+        })
+        theme = "tokyonight-moon"
       end
       vim.opt.termguicolors = true
       -- vim.cmd.colorscheme "melange"
@@ -60,7 +57,7 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = theme,
+          theme = 'auto',
         },
         sections = {
           lualine_y = {
