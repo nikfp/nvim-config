@@ -80,9 +80,9 @@ M.initialize = function()
   map("i", "<C-j>", "<Down>", { desc = "Move down arrow key closer to home row" })
   map("i", "<C-k>", "<Up>", { desc = "Move up arrow key closer to home row" })
   -- move lines up and down
-  map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })          -- up
-  map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })        -- down
-  map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })  -- up
+  map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })           -- up
+  map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })         -- down
+  map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })   -- up
   map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
   -- make sure cursor stays centered in screen
   map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position" })
