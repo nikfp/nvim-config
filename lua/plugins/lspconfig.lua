@@ -248,19 +248,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.api.nvim_set_option("updatetime", 300)
     end,
   },
-  --   {
-  -- "ErichDonGubler/lsp_lines.nvim",
-  -- event = "VeryLazy",
-  -- dependencies = {
-  -- 		"neovim/nvim-lspconfig",
-  --     config = true
-  -- }
-  --   },
-  -- {
-  --   "simrat39/rust-tools.nvim",
-  --   dependencies = {
-  --   },
-  -- },
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",

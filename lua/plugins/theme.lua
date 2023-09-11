@@ -26,7 +26,6 @@ return {
         })
         theme = "tokyonight-day"
       else
-
         require("tokyonight").setup({
           transparent = true,
         })

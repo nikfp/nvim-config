@@ -1,7 +1,5 @@
 return {
   "ThePrimeagen/harpoon",
-  -- dir = "~/Documents/Github/harpoon",
-  -- event = "VeryLazy",
   lazy = false,
   priority = 52,
   dependencies = {

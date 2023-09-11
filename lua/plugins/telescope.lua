@@ -20,9 +20,7 @@ return {
           }
         }
       },
-      extensions = {
-        file_browser = {},
-      },
+      extensions = {},
     })
     ts.load_extension("zf-native")
   end,
