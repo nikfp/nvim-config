@@ -10,6 +10,7 @@ return {
     dependencies = {
       "jose-elias-alvarez/null-ls.nvim",
       "glepnir/lspsaga.nvim",
+      "stevearc/conform.nvim",
       "windwp/nvim-ts-autotag",
       -- "leafoftree/vim-svelte-plugin",
       "glepnir/lspsaga.nvim",
@@ -91,6 +92,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.tsserver.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
+          map("n", "<leader>cf", function()
+            require("conform").format({ buffer = bufnr })
+          end, { desc = "Format with prettier", buffer = bufnr })
           client.server_capabilities.documentFormattingProvider = false
         end,
         flags = lsp_flags,
@@ -101,7 +105,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       --SVELTE
       nvim_lsp.svelte.setup({
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          map("n", "<leader>cf", function()
+            require("conform").format({ buffer = bufnr })
+          end, { desc = "Format with prettier", buffer = bufnr })
+        end,
         flags = lsp_flags,
       })
       vim.g.vim_svelte_plugin_use_typescript = 1
@@ -125,7 +134,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
               popup.output_command(":!cargo run")
             end)
             -- easy format
-            map("n", "<leader>fmt", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
+            map("n", "<leader>cf", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
             -- add semicolon easily
             map("n", "<leader>;", "$a;<esc>o")
           end,
@@ -165,20 +174,30 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- TAILWINDCSS
       nvim_lsp.tailwindcss.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        -- on_attach = on_attach,
         autostart = false
       })
 
       -- JSON
       nvim_lsp.jsonls.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          map("n", "<leader>cf", function()
+            require("conform").format({ buffer = bufnr })
+          end, { desc = "Format with prettier", buffer = bufnr })
+        end,
       })
 
       -- HTML
       nvim_lsp.html.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          map("n", "<leader>cf", function()
+            require("conform").format({ buffer = bufnr })
+          end, { desc = "Format with prettier", buffer = bufnr })
+        end,
       })
 
       -- LUA
@@ -216,11 +235,15 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- CSS
       nvim_lsp.cssls.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          map("n", "<leader>cf", function()
+            require("conform").format({ buffer = bufnr })
+          end, { desc = "Format with prettier", buffer = bufnr })
+        end,
       })
       nvim_lsp.cssmodules_ls.setup({
         capabilities = capabilities,
-        on_attach = on_attach,
       })
 
       -- PRISMA
@@ -256,9 +279,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       null_ls.setup({
         sources = {
-          null_ls.builtins.formatting.prettier.with({
-            extra_filetypes = { "svelte" },
-          }),
           null_ls.builtins.diagnostics.eslint.with({
             extra_filetypes = { "svelte" },
             condition = function(utils)
