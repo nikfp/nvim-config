@@ -14,7 +14,11 @@ else
   vim.opt.rtp:prepend(lazypath)
 
   require("nikp.utils.set")
-  require("lazy").setup("plugins")
+  require("lazy").setup("plugins", {
+    change_detection = {
+      enabled = false
+    }
+  })
   require("nikp.utils")
 end
 
