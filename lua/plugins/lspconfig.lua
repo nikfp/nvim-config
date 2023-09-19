@@ -8,7 +8,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "BufAdd",
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      -- "jose-elias-alvarez/null-ls.nvim",
       "glepnir/lspsaga.nvim",
       "stevearc/conform.nvim",
       "windwp/nvim-ts-autotag",
@@ -23,6 +23,7 @@ return {
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local map = require("nikp.keymaps.utils").map
       require("notifier").setup()
+      require("lint")
 
       -- Common UI settings related to LSP
 
@@ -246,31 +247,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
       vim.opt.shortmess = vim.opt.shortmess + { c = true }
       vim.api.nvim_set_option("updatetime", 300)
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.eslint.with({
-            extra_filetypes = { "svelte" },
-            condition = function(utils)
-              local check = utils.root_has_file({
-                ".eslintrc.js",
-                ".eslintrc.cjs",
-                ".eslintrc.yaml",
-                ".eslintrc.yml",
-                ".eslintrc.json",
-              })
-              return check
-            end,
-          }),
-        },
-      })
     end,
   },
 }
