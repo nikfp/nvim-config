@@ -92,9 +92,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.tsserver.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-          map("n", "<leader>cf", function()
-            require("conform").format({ buffer = bufnr })
-          end, { desc = "Format with prettier", buffer = bufnr })
           client.server_capabilities.documentFormattingProvider = false
         end,
         flags = lsp_flags,
@@ -105,12 +102,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       --SVELTE
       nvim_lsp.svelte.setup({
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          map("n", "<leader>cf", function()
-            require("conform").format({ buffer = bufnr })
-          end, { desc = "Format with prettier", buffer = bufnr })
-        end,
+        on_attach = on_attach,
         flags = lsp_flags,
       })
       vim.g.vim_svelte_plugin_use_typescript = 1
@@ -174,30 +166,20 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- TAILWINDCSS
       nvim_lsp.tailwindcss.setup({
         capabilities = capabilities,
-        -- on_attach = on_attach,
+        on_attach = on_attach,
         autostart = false
       })
 
       -- JSON
       nvim_lsp.jsonls.setup({
         capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          map("n", "<leader>cf", function()
-            require("conform").format({ buffer = bufnr })
-          end, { desc = "Format with prettier", buffer = bufnr })
-        end,
+        on_attach = on_attach
       })
 
       -- HTML
       nvim_lsp.html.setup({
         capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          map("n", "<leader>cf", function()
-            require("conform").format({ buffer = bufnr })
-          end, { desc = "Format with prettier", buffer = bufnr })
-        end,
+        on_attach = on_attach
       })
 
       -- LUA
@@ -235,12 +217,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- CSS
       nvim_lsp.cssls.setup({
         capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          map("n", "<leader>cf", function()
-            require("conform").format({ buffer = bufnr })
-          end, { desc = "Format with prettier", buffer = bufnr })
-        end,
+        on_attach = on_attach
       })
       nvim_lsp.cssmodules_ls.setup({
         capabilities = capabilities,

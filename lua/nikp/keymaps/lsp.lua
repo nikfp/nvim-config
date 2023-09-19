@@ -61,7 +61,11 @@ M.on_attach = function(_, bufnr)
 
   -- Trigger default formatter
   map("n", "<leader>cf", function()
-    vim.lsp.buf.format({ async = true })
+    require("conform").format({
+      bufnr = bufnr,
+      lsp_fallback = true,
+      async = true
+    })
   end, { buffer = bufnr, desc = "Format buffer with default formatter" })
 
   -- Activate LSP Rename
