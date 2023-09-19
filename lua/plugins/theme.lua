@@ -18,7 +18,6 @@ return {
       --
       local os_theme = vim.env.OS_THEME
 
-      print(os_theme)
       local theme = ""
       if os_theme == "Light" then
         require("tokyonight").setup({
