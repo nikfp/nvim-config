@@ -97,9 +97,17 @@ return {
         { name = "buffer" },
       }),
       formatting = {
-        fields = { "kind", "abbr", },
-        format = function(_, item)
+        fields = { "kind", "abbr", "menu", },
+        format = function(entry, item)
           item.kind = string.format("%s", kind_icons[item.kind])
+
+          item.menu = ({
+            buffer = "[Buff]",
+            nvim_lsp = "[LSP]",
+            path = "[Path]",
+            luasnip = "[Snip]",
+            nvim_lua = "[Lua]",
+          })[entry.source.name]
           return item
         end,
       },
@@ -107,7 +115,6 @@ return {
         autocomplete = false,
       },
     })
-
     vim.cmd([[
       augroup CmpDebounceAuGroup
         au!
