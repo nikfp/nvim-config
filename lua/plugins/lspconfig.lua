@@ -27,11 +27,11 @@ return {
 
       -- Common UI settings related to LSP
 
-      require("lspsaga").setup({
-        symbol_in_winbar = {
-          enable = false,
-        },
-      })
+      -- require("lspsaga").setup({
+      --   symbol_in_winbar = {
+      --     enable = false,
+      --   },
+      -- })
       -- LSP Diagnostics Options Setup
       local sign = function(opts)
         vim.fn.sign_define(opts.name, {

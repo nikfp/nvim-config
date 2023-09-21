@@ -22,6 +22,7 @@ vim.opt.tabstop = 2
 vim.opt.timeoutlen = 300
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+vim.opt.jumpoptions = "stack"
 vim.loader.enable()
 
 -- disable fsync on windows
@@ -40,6 +41,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     if vim.o.filetype == "help" then
       vim.cmd.wincmd("L")
       vim.keymap.set("n", "q", ":bd<cr>", { buffer = opts.buf })
+      -- vim.keymap.del("n", "K", { buffer = opts.buf })
     end
   end,
 })
