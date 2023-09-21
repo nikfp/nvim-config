@@ -31,4 +31,3 @@ if arg ~= nil then
   end
 end
 
--- look at _G.arg and fs_stat

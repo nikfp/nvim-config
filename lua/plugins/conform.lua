@@ -1,27 +1,27 @@
 return {
-"stevearc/conform.nvim",
-event = 'VeryLazy',
-config = function()
-  local filetypes = {
-    "css",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "svelte",
-    "typescript",
-    "typescriptreact",
-  }
+  "stevearc/conform.nvim",
+  event = 'VeryLazy',
+  config = function()
+    local filetypes = {
+      "css",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "json",
+      "svelte",
+      "typescript",
+      "typescriptreact",
+    }
 
-  local formatter = { "prettier" }
-  local ft_configs = {}
+    local formatter = { "prettier" }
+    local ft_configs = {}
 
-  for _, value in pairs(filetypes) do
-    -- vim.tbl_extend("force", { [value] = })
-    ft_configs[value] = formatter
+    for _, value in pairs(filetypes) do
+      -- vim.tbl_extend("force", { [value] = })
+      ft_configs[value] = formatter
+    end
+    require("conform").setup({
+      formatters_by_ft = ft_configs
+    })
   end
-  require("conform").setup({
-    formatters_by_ft = ft_configs
-  })
-end
 }
