@@ -20,14 +20,13 @@ else
     }
   })
   require("nikp.utils")
-end
 
-local arg = vim.fn.argv()[1]
+  local arg = vim.fn.argv()[1]
 
-if arg ~= nil then
-  if arg == "." then
-    local oil = require("oil")
-    oil.open(oil.get_current_dir())
+  if arg ~= nil then
+    if arg == "." then
+      local oil = require("oil")
+      oil.open(oil.get_current_dir())
+    end
   end
 end
-
