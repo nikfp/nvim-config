@@ -9,6 +9,7 @@ wk.register({
   f = { name = "Finding things" },
   g = { name = "Going places" },
   h = { name = "Harpoon" },
+  m = { name = "Meta-functions" },
   r = { name = "Run things" },
   s = { name = "Controls splits" },
   u = {
@@ -68,8 +69,8 @@ M.initialize = function()
     require("no-neck-pain").disable()
   end, { desc = "Close all but current windows" })
   map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain" })
-  -- <<< QUALITY OF LIFE >>>
 
+  -- <<< QUALITY OF LIFE >>>
   -- Easier reach to beginning and end of lines
   map("n", "H", "^", { desc = "Move to beginning of text on current line" })
   map("n", "L", "g_", { desc = "Move to end of text on current line" })
@@ -97,8 +98,8 @@ M.initialize = function()
     local oil = require("oil")
     oil.open(oil.get_current_dir())
   end, { desc = "Open Oil file manager in directory of current buffer" })
-  -- Make pasting easier
-  -- map("n", "<leader>p", '"_diwhp', { desc = "Paste over word and discard deleted word" })
+  -- Make pasting easier - don't yank replaced word to register
+  map("n", "<leader>mp", '"_diwp', { desc = "Paste over word and discard deleted word" })
   -- Yank to and Paste from system ceipboard
   map("n", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
   map("v", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
@@ -109,7 +110,7 @@ M.initialize = function()
   -- change word under cursor
   map(
     "n",
-    "<leader>w",
+    "<leader>cw",
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { desc = "Change all occurences of word undor cursor" }
   )
@@ -125,5 +126,4 @@ M.initialize = function()
     popup.output_command(":echo 'run command not set up for this file type'")
   end, { desc = "Default run command" })
 end
-
 return M
