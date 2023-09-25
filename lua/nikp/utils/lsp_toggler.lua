@@ -1,7 +1,7 @@
 local M = {}
 
 M.get_lsp_num = function(lsp_name)
-  local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  local clients = vim.lsp.get_clients({ bufnr = 0 })
 
   local out = nil
 

@@ -33,30 +33,6 @@ if system == "Windows_NT" then
   vim.g.nofsync = true
 end
 
--- Make help open to the right and close with "q"
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  group = vim.api.nvim_create_augroup("help_window_right", {}),
-  pattern = { "*.txt" },
-  callback = function(opts)
-    if vim.o.filetype == "help" then
-      vim.cmd.wincmd("L")
-      vim.keymap.set("n", "q", ":bd<cr>", { buffer = opts.buf })
-      -- vim.keymap.del("n", "K", { buffer = opts.buf })
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("json_lsp", {}),
-  pattern = { "*.json", "*.jsonc" },
-  callback = function(opts)
-    require("lspconfig")
-    vim.cmd(":LspStart jsonls")
-    local keymaps = require("nikp.keymaps.lsp")
-    keymaps.on_attach({}, opts.buf)
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("bash_lsp", {}),
   pattern = { "*.sh", "*.bash", "*.bashrc" },

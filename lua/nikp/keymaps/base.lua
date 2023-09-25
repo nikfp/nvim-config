@@ -31,6 +31,7 @@ M.initialize = function()
   map("n", "<leader>ft", ":Telescope file_browser path=%:p:h<CR>", { desc = "Telescope File Browser" })
   -- where the heck am I?
   map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
+
   -- <<<Harpoon>>>
   map("n", "<leader>ht", require("harpoon.ui").toggle_quick_menu, { desc = "Toggle Harpoon Menu" })
   map("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "Add file to harpoon list" })
@@ -39,6 +40,7 @@ M.initialize = function()
       require("harpoon.ui").nav_file(pos)
     end, { desc = "Move to harpoon mark #" .. pos })
   end
+
   -- <<< GIT Stuff >>>
   map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
 
@@ -51,6 +53,7 @@ M.initialize = function()
   -- <<< Terminal Management >>>
   map("n", "<leader>tr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
   map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
+
   -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
   map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
@@ -112,7 +115,7 @@ M.initialize = function()
     "n",
     "<leader>cw",
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
-    { desc = "Change all occurences of word undor cursor" }
+    { desc = "Change all occurences of word under cursor" }
   )
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })

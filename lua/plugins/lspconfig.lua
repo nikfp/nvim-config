@@ -27,11 +27,11 @@ return {
 
       -- Common UI settings related to LSP
 
-      -- require("lspsaga").setup({
-      --   symbol_in_winbar = {
-      --     enable = false,
-      --   },
-      -- })
+      require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false,
+        },
+      })
       -- LSP Diagnostics Options Setup
       local sign = function(opts)
         vim.fn.sign_define(opts.name, {
@@ -235,6 +235,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         on_attach = on_attach,
         filetypes = { "sh", "*.bashrc", "shell" },
+        {
+          bashIde = {
+            globPattern = "*@(.sh|.inc|.bash|.command)"
+          }
+        }
       })
 
       --Set completeopt to have a better completion experience
