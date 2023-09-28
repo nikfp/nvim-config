@@ -22,6 +22,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufAdd",
     config = true,
+    main = "ibl"
   },
   {
     "windwp/nvim-autopairs",
@@ -37,7 +38,13 @@ return {
     "terrortylor/nvim-comment",
     event = "BufAdd",
     config = function()
-      require("nvim_comment").setup()
+      require("nvim_comment").setup({
+        hook = function()
+          if vim.api.nvim_buf_get_option(0, "filetype") == "svelte" then
+            require("ts_context_commentstring.internal").update_commentstring()
+          end
+        end
+      })
     end,
   },
   { "folke/neodev.nvim" },
