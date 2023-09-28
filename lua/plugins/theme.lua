@@ -59,8 +59,12 @@ return {
           theme = 'auto',
         },
         sections = {
+          lualine_c = {
+            function()
+              return vim.fn.expand("%:.")
+            end
+          },
           lualine_y = {
-            "progress",
             "location"
           },
           lualine_z = {
@@ -86,6 +90,7 @@ return {
     },
     config = function()
       require("barbecue").setup({
+        show_dirname = false,
         symbols = {
           separator = "",
         },
