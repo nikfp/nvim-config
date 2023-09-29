@@ -17,6 +17,12 @@ return {
         mappings = {
           i = {
             ["<esc>"] = actions.close,
+          },
+          n = {
+            ["<leader>q"] = function(prompt_bufnr)
+              actions.send_to_qflist(prompt_bufnr)
+              actions.open_qflist(prompt_bufnr)
+            end
           }
         }
       },

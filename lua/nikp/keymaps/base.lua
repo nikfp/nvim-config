@@ -10,6 +10,7 @@ wk.register({
   g = { name = "Going places" },
   h = { name = "Harpoon" },
   m = { name = "Meta-functions" },
+  q = { name = "Quickfix" },
   r = { name = "Run things" },
   s = { name = "Controls splits" },
   u = {
@@ -72,6 +73,12 @@ M.initialize = function()
     require("no-neck-pain").disable()
   end, { desc = "Close all but current windows" })
   map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain" })
+
+  -- <<< Quickfix list >>>
+  map("n", "<leader>qo", ":copen<cr>", { desc = "Open quickfix list" })
+  map("n", "<leader>qc", ":cclose<cr>", { desc = "Close quickfix list" })
+  map("n", "<leader>qn", ":cn<cr>", { desc = "Next quickfix item" })
+  map("n", "<leader>qp", ":cp<cr>", { desc = "Prev quickfix item" })
 
   -- <<< QUALITY OF LIFE >>>
   -- Easier reach to beginning and end of lines

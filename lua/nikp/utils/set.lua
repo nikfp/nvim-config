@@ -23,6 +23,7 @@ vim.opt.timeoutlen = 300
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.jumpoptions = "stack"
+vim.opt.switchbuf = "uselast"
 vim.loader.enable()
 
 -- disable fsync on windows

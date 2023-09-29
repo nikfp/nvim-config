@@ -38,7 +38,7 @@ M.on_attach = function(_, bufnr)
   -- if there is no implement it will hide
   -- when you use action in finder like open vsplit then you can
   -- use <C-t> to jump back
-  map("n", "<leader>gh", "<cmd>Lspsaga lsp_finder<CR>", { desc = "Open LSP symbol help information" })
+  map("n", "<leader>gh", "<cmd>Lspsaga finder<CR>", { desc = "Open LSP symbol help information" })
 
   -- View references through telescope search
   map("n", "<leader>gr", ":Telescope lsp_references<cr>", { buffer = bufnr, desc = "Open LSP references in Telescope" })
