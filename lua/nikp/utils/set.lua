@@ -20,11 +20,9 @@ vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.tabstop = 2
 vim.opt.timeoutlen = 300
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.jumpoptions = "stack"
 vim.opt.switchbuf = "uselast"
-vim.loader.enable()
 
 -- disable fsync on windows
 local system = vim.loop.os_uname().sysname
@@ -32,6 +30,9 @@ local system = vim.loop.os_uname().sysname
 if system == "Windows_NT" then
   print("Setup detected windows - disabling fsync")
   vim.g.nofsync = true
+else 
+  vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+  vim.loader.enable()
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
