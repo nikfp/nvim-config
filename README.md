@@ -5,6 +5,7 @@ This config works for me on Mac, Windows, and Linux. No Guarantees it will work 
 
 ### Requirements
 
+- Neovim nightly installed
 - Nodejs installed
 - Ripgrep installed
 - Git installed
