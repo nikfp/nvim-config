@@ -66,11 +66,11 @@ return {
         "sv",
         fmt(
           [[
-    <script {}>
+    <script lang="ts">
       {}
     </script>
     ]],
-          { c(1, { t('lang="ts"'), t("") }), i(2) }
+          { i(1) }
         )
       ),
     })

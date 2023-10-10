@@ -92,4 +92,9 @@ return {
       require("no-neck-pain").setup()
     end,
   },
+  {
+    "aserowy/tmux.nvim",
+    config = true,
+    event = "UIEnter"
+  }
 }

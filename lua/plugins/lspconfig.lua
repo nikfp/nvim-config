@@ -222,6 +222,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       })
       nvim_lsp.cssmodules_ls.setup({
         capabilities = capabilities,
+        filetypes = { "javascriptreact", "typescriptreact" }
       })
 
       -- PRISMA
