@@ -14,7 +14,6 @@ return {
       local ft_configs = {}
 
       for _, value in pairs(filetypes) do
-        -- vim.tbl_extend("force", { [value] = })
         ft_configs[value] = linter
       end
 
