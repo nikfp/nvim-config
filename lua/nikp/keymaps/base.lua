@@ -93,8 +93,12 @@ M.initialize = function()
   -- move lines up and down
   map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })           -- up
   map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })         -- down
+  map("n", "<M-k>", ":m .-2<cr>", { desc = "Move current line up" })           -- up
+  map("n", "<M-j>", ":m .+1<cr>", { desc = "Move current line down" })         -- down
   map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })   -- up
   map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
+  map("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })   -- up
+  map("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
   -- make sure cursor stays centered in screen
   map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position" })
   map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
