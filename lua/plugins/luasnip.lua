@@ -73,6 +73,13 @@ return {
           { i(1) }
         )
       ),
+      s("pd",
+        fmt([[
+    import type {{ PageData }} from './$types'
+
+    export let data: PageData;
+    {}
+        ]], { i(1) }))
     })
     ls.filetype_extend("svelte", { "typescript", "javascript" })
 

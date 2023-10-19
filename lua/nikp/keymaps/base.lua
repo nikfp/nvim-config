@@ -114,7 +114,7 @@ M.initialize = function()
   end, { desc = "Open Oil file manager in directory of current buffer" })
   -- Make pasting easier - don't yank replaced word to register
   map("n", "<leader>mp", '"_diwp', { desc = "Paste over word and discard deleted word" })
-  -- Yank to and Paste from system ceipboard
+  -- Yank to and Paste from system clipboard
   map("n", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
   map("v", "<leader>y", '"+yy', { desc = "Yank to system clipboard" })
   map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
@@ -128,6 +128,8 @@ M.initialize = function()
     ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
     { desc = "Change all occurences of word under cursor" }
   )
+  -- change contents of tag
+  map('n', "<leader>mt", "T>ct<", { desc = "Change html tag contents" })
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
   -- <<< BASE LSP KEYMAPS >>>
