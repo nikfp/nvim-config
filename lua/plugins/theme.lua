@@ -52,6 +52,7 @@ return {
           return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
         end
       end
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg="NONE"})
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "NONE", bg = "NONE", underline = true })
 
       require("lualine").setup({

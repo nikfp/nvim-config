@@ -66,7 +66,7 @@ return {
       -- Fixed column for diagnostics to appear
       -- Show autodiagnostic popup on cursor hover_range
       vim.cmd([[
-autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = true })
 ]])
 
       -- Common flags

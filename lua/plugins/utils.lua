@@ -11,7 +11,7 @@ return {
         buf_options = {
           buflisted = true,
         },
-        default_file_explorer = false
+        -- default_file_explorer = false
       })
     end,
   },

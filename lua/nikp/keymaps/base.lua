@@ -132,6 +132,14 @@ M.initialize = function()
   map('n', "<leader>mt", "T>ct<", { desc = "Change html tag contents" })
   -- Goto alternate file
   map("n", "<leader>ga", "<c-^>", { desc = "Go to alternate file" })
+  -- Smart delete line with null register
+  vim.keymap.set("n", "dd", function()
+    ---@diagnostic disable-next-line: param-type-mismatch
+    if vim.fn.getline(".") == "" then
+      return '"_dd'
+    end
+    return "dd"
+  end, { expr = true })
   -- <<< BASE LSP KEYMAPS >>>
   map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
   map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })
