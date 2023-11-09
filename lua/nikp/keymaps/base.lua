@@ -62,6 +62,7 @@ M.initialize = function()
   map("n", "<leader>sj", "<C-w>j", { desc = "Move down by one split" })
   map("n", "<leader>sk", "<C-w>k", { desc = "Move up by one split" })
   map("n", "<leader>sl", "<C-w>l", { desc = "Move right by one split" })
+  map("n", "<leader>so", "<C-w><C-r>", { desc = "Rotate windows in view" })
   for pos = 1, 9 do
     local lhs = "<leader>s" .. pos
     local rhs = pos .. "<C-W>w"

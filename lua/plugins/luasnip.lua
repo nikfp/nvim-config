@@ -35,6 +35,7 @@ return {
     ls.add_snippets("javascript", {
       s("log", fmt([[console.log({})]], { i(1) })),
       s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) })),
+      s("dest", fmt([[const {{ {} }} = {};]], { i(2), i(1)}))
     })
     -- JAVASCRIPT REACT SNIPPETS
     ls.add_snippets("javascriptreact", {

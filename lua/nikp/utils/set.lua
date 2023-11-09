@@ -23,6 +23,7 @@ vim.opt.timeoutlen = 300
 vim.opt.undofile = true
 vim.opt.jumpoptions = "stack"
 vim.opt.switchbuf = "uselast"
+vim.opt.splitright = true
 
 -- disable fsync on windows
 local system = vim.loop.os_uname().sysname
