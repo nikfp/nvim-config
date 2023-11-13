@@ -29,7 +29,7 @@ M.initialize = function()
   map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Live grep files in starting directory" })
   map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search for active buffers" })
   map("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Search for help tags" })
-  map("n", "<leader>ft", ":Telescope file_browser path=%:p:h<CR>", { desc = "Telescope File Browser" })
+  map("n", "<leader>fd", ":Telescope find_files find_command=find,-type,d,!,-name,'node_modules'<cr>", { desc = "Search for directories"})
   -- where the heck am I?
   map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
 
