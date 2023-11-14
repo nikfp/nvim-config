@@ -113,7 +113,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             col = diagnostic.range.start.character,
             end_col = diagnostic.range["end"].character,
             severity = diagnostic.severity,
-            message = vim.fn.join(output, "\n\n"),
+            message = table.concat(output, "\n\n"),
             source = diagnostic.source,
             code = diagnostic.code,
           }
