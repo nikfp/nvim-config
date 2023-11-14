@@ -88,6 +88,39 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = on_attach,
         lsp_flags = lsp_flags,
       })
+      --- @param err lsp.ResponseError
+      --- @param result lsp.PublishDiagnosticsParams
+      --- @param ctx lsp.HandlerContext
+      local function diagnostics_handler(err, result, ctx)
+        if err ~= nil then
+          error("Failed to request diagnostics: " .. vim.inspect(err))
+        end
+
+        if result == nil then
+          return
+        end
+
+        local buffer = vim.uri_to_bufnr(result.uri)
+        local namespace = vim.lsp.diagnostic.get_namespace(ctx.client_id)
+
+        local diagnostics = vim.tbl_map(function(diagnostic)
+          local resultLines = vim.split(diagnostic.message, '\n')
+          local output = vim.fn.reverse(resultLines)
+          return {
+            bufnr = buffer,
+            lnum = diagnostic.range.start.line,
+            end_lnum = diagnostic.range["end"].line,
+            col = diagnostic.range.start.character,
+            end_col = diagnostic.range["end"].character,
+            severity = diagnostic.severity,
+            message = vim.fn.join(output, "\n\n"),
+            source = diagnostic.source,
+            code = diagnostic.code,
+          }
+        end, result.diagnostics)
+
+        vim.diagnostic.set(namespace, buffer, diagnostics)
+      end
 
       -- TYPESCRIPT
       nvim_lsp.tsserver.setup({
@@ -95,6 +128,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           on_attach(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
         end,
+        handlers = {
+          ["textDocument/publishDiagnostics"] = diagnostics_handler
+        },
         flags = lsp_flags,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
         capabilities = capabilities,
