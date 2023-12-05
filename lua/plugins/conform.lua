@@ -20,6 +20,9 @@ return {
       -- vim.tbl_extend("force", { [value] = })
       ft_configs[value] = formatter
     end
+
+    ft_configs["ocaml"] = { "ocamlformat" }
+
     require("conform").setup({
       formatters_by_ft = ft_configs
     })
