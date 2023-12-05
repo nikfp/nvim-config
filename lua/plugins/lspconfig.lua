@@ -20,6 +20,7 @@ return {
     config = function()
       local popup = require("nikp.utils.popup")
       local nvim_lsp = require("lspconfig")
+      local nvim_lsp_configs = require("lspconfig.configs")
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local map = require("nikp.keymaps.utils").map
       require("notifier").setup()
@@ -277,6 +278,50 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             globPattern = "*@(.sh|.inc|.bash|.command)"
           }
         }
+      })
+
+      -- OCAML
+      nvim_lsp.ocamllsp.setup({
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+
+          map("n", "<leader>ru", function()
+            popup.output_command(":!")
+          end)
+        end,
+      })
+
+      -- ELIXIR
+      local lexical_config = {
+        filetypes = { "elixir", "eelixir", "heex" },
+        cmd = { "/home/nikp/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+        settings = {},
+      }
+
+      if not nvim_lsp_configs.lexical then
+        nvim_lsp_configs.lexical = {
+          default_config = {
+            filetypes = lexical_config.filetypes,
+            cmd = lexical_config.cmd,
+            root_dir = function(fname)
+              return nvim_lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+            end,
+            -- optional settings
+            -- settings = lexical_config.settings,
+          },
+        }
+      end
+
+      nvim_lsp.lexical.setup({
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          map("n", "<leader>ru", function()
+            local file = vim.fn.expand("%")
+            popup.output_command(":!elixir " .. file)
+          end, { desc = "Run current elixir file" })
+        end,
+        capabilities = capabilities
       })
 
       --Set completeopt to have a better completion experience
