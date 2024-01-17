@@ -3,8 +3,7 @@ local map = require("nikp.keymaps.utils").map
 local M = {}
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach = function(_, bufnr)
-
+M.on_attach = function(client, bufnr)
   -- Auto save in LSP buffers
   vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
     command = "w",
@@ -79,5 +78,22 @@ M.on_attach = function(_, bufnr)
     end
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 end
+
+M.diagnostic_config = {
+  virtual_text = {
+    prefix = "●",
+  },
+  signs = true,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = false,
+  severity = { min = vim.diagnostic.severity.HINT },
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+}
 
 return M

@@ -22,6 +22,7 @@ return {
       local nvim_lsp = require("lspconfig")
       local nvim_lsp_configs = require("lspconfig.configs")
       local on_attach = require("nikp.keymaps.lsp").on_attach
+      local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
       require("notifier").setup()
       require("lint")
@@ -47,22 +48,7 @@ return {
       sign({ name = "DiagnosticSignHint", text = "" })
       sign({ name = "DiagnosticSignInfo", text = "" })
 
-      vim.diagnostic.config({
-        virtual_text = {
-          prefix = "●",
-        },
-        signs = true,
-        update_in_insert = true,
-        underline = true,
-        severity_sort = false,
-        severity = { min = vim.diagnostic.severity.HINT },
-        float = {
-          border = "rounded",
-          source = "always",
-          header = "",
-          prefix = "",
-        },
-      })
+      vim.diagnostic.config(diagnostic_config)
 
       -- Fixed column for diagnostics to appear
       -- Show autodiagnostic popup on cursor hover_range
@@ -293,12 +279,18 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       })
 
       -- ELIXIR
+      --
+      nvim_lsp.elixirls.setup({
+        cmd = { "/home/nikp/elixirls/language_server.sh" },
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
       local lexical_config = {
         filetypes = { "elixir", "eelixir", "heex" },
         cmd = { "/home/nikp/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
         settings = {},
       }
-
+      
       if not nvim_lsp_configs.lexical then
         nvim_lsp_configs.lexical = {
           default_config = {
@@ -312,7 +304,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           },
         }
       end
-
+      
       nvim_lsp.lexical.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
@@ -320,10 +312,17 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             local file = vim.fn.expand("%")
             popup.output_command(":!elixir " .. file)
           end, { desc = "Run current elixir file" })
+          diag_namespace = vim.lsp.diagnostic.get_namespace(client.id)
+      
+          diag_config = diagnostic_config
+      
+          diag_config["update_in_insert"] = false
+          vim.diagnostic.config(diag_config, diag_namespace)
+      
         end,
         capabilities = capabilities
       })
-
+      --
       --Set completeopt to have a better completion experience
       -- :help completeopt
       -- menuone: popup even when there's only one match

@@ -53,6 +53,7 @@ M.initialize = function()
 
   -- <<< Terminal Management >>>
   map("n", "<leader>tr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
+  map("n", "<leader>tl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
   map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
 
   -- <<< Window / Split Management >>>

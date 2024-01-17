@@ -16,6 +16,7 @@ return {
           "codelldb",
           "css-lsp",
           "cssmodules-language-server",
+          "elixir-ls",
           "eslint-lsp",
           "gopls",
           "html-lsp",
