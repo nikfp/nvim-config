@@ -6,6 +6,17 @@ vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = true
 -- vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    -- ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    -- ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 vim.opt.completeopt = "menu,noselect"
 vim.opt.expandtab = true
 vim.opt.guicursor = "n-i-v-c-o:block-blinkon500-blinkoff500-CursorIM"
@@ -31,7 +42,7 @@ local system = vim.loop.os_uname().sysname
 if system == "Windows_NT" then
   print("Setup detected windows - disabling fsync")
   vim.g.nofsync = true
-else 
+else
   vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
   vim.loader.enable()
 end
