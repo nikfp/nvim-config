@@ -1,6 +1,7 @@
 local popup = require("nikp.utils.popup")
 local map = require("nikp.keymaps.utils").map
 local M = {}
+local builtin = require("telescope.builtin")
 
 local wk = require("which-key")
 wk.register({
@@ -23,13 +24,25 @@ wk.setup()
 
 M.initialize = function()
   -- <<< FINDING THINGS >>>
-  --shortcuts for Telescope
 
-  map("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", { desc = "Find files with Telescope" })
-  map("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Live grep files in starting directory" })
-  map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Search for active buffers" })
-  map("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Search for help tags" })
-  map("n", "<leader>fd", ":Telescope find_files find_command=find,-type,d,!,-name,'node_modules'<cr>", { desc = "Search for directories"})
+  --shortcuts for Telescope
+  map("n", "<leader>ff", function() builtin.find_files({ hidden = true }) end, { desc = "Find files with Telescope" })
+  map("n", "<leader>fg", builtin.live_grep, { desc = "Live grep files in starting directory" })
+  map("n", "<leader>fb", builtin.buffers, { desc = "Search for active buffers" })
+  map("n", "<leader>fh", builtin.help_tags, { desc = "Search for help tags" })
+  map("n", "<leader>fd", function()
+      builtin.find_files({ find_command = { "find", "-type", "d", "!", "-name", "'node_modules'" } })
+    end,
+    { desc = "Search for directories" })
+  map("n", "<leader>f/", function()
+    builtin.current_buffer_fuzzy_find(
+      require("telescope.themes").get_dropdown {
+        winblend = 0,
+        previewer = false
+      }
+    )
+  end, { desc = "Telescope search in current buffer" })
+
   -- where the heck am I?
   map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
 
@@ -70,6 +83,9 @@ M.initialize = function()
     map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
   map("n", "<leader>sru", require("nikp.utils.resize").inc_height, { desc = "Increase window height" })
+  map("n", "<leader>srd", require("nikp.utils.resize").dec_height, { desc = "Decrease window height" })
+  map("n", "<leader>srw", require("nikp.utils.resize").inc_width, { desc = "Increase window width" })
+  map("n", "<leader>srn", require("nikp.utils.resize").dec_width, { desc = "Decrease window width" })
   map("n", "<leader>sc", function()
     vim.cmd("only")
     require("no-neck-pain").disable()
@@ -107,8 +123,6 @@ M.initialize = function()
   map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
   map("n", "n", "nzzzv", { desc = "Jump to next search position and center cursor" })
   map("n", "N", "Nzzzv", { desc = "Jump to previous search position and center cursor" })
-  -- Easy open file explorer
-  map("n", "<leader>fe", vim.cmd.Ex, { desc = "Easy open file explorer" })
   -- Easy open oil.nvim
   map("n", "<leader>fo", function()
     local oil = require("oil")
@@ -142,6 +156,7 @@ M.initialize = function()
     end
     return "dd"
   end, { expr = true })
+
   -- <<< BASE LSP KEYMAPS >>>
   map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
   map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })

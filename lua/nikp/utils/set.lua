@@ -48,7 +48,7 @@ else
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("bash_lsp", {}),
+  group = vim.api.nvim_create_augroup("bash_lsp", { clear = true }),
   pattern = { "*.sh", "*.bash", "*.bashrc" },
   callback = function(opts)
     require("lspconfig")
@@ -66,4 +66,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt.signcolumn = "no"
     vim.keymap.set("n", "q", ":q<cr>", { buffer = opts.buf })
   end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking text",
+  group = vim.api.nvim_create_augroup("nikfp-yank-augroup", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end
 })

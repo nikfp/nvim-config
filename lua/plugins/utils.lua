@@ -1,4 +1,5 @@
 return {
+  { "tpope/vim-sleuth" },
   {
     "stevearc/oil.nvim",
     lazy = false,

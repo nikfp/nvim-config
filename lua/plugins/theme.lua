@@ -5,7 +5,6 @@ end
 return {
   {
     "folke/tokyonight.nvim",
-    -- "savq/melange-nvim",
     dependencies = {
       "nvim-lualine/lualine.nvim",
       "kyazdani42/nvim-web-devicons",
@@ -14,8 +13,6 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- local theme = "melange"
-      --
       local os_theme = vim.env.OS_THEME
 
       local theme = ""
@@ -31,19 +28,7 @@ return {
         theme = "tokyonight-moon"
       end
       vim.opt.termguicolors = true
-      -- vim.cmd.colorscheme "melange"
       vim.cmd("colorscheme " .. theme)
-
-      -- <<< NORD THEME >>>
-      -- vim.g.nord_borders = true
-      -- vim.g.nord_disable_background = true
-      -- require("nord").set()
-
-      -- <<< Transparent background in Telescope >>>
-      -- vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = "#c0caf5" })
-
-      -- Make NVIM transparent
-      -- require("transparent").setup()
 
       local function fg(name)
         return function()
@@ -52,7 +37,7 @@ return {
           return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
         end
       end
-      vim.api.nvim_set_hl(0, "NormalFloat", { bg="NONE"})
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "NONE", bg = "NONE", underline = true })
 
       require("lualine").setup({
@@ -61,9 +46,9 @@ return {
         },
         sections = {
           lualine_c = {
-            function()
-              return vim.fn.expand("%:.")
-            end
+            -- function()
+            --   return vim.fn.expand("%:.")
+            -- end
           },
           lualine_y = {
             "location"
@@ -99,4 +84,33 @@ return {
       })
     end,
   },
+  {
+    "b0o/incline.nvim",
+    event = "UIEnter",
+    config = function()
+      local helpers = require 'incline.helpers'
+      local devicons = require 'nvim-web-devicons'
+      require('incline').setup {
+        window = {
+          padding = 0,
+          margin = { horizontal = 0 },
+        },
+        render = function(props)
+          local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ':.')
+          if filename == '' then
+            filename = '[No Name]'
+          end
+          local ft_icon, ft_color = devicons.get_icon_color(filename)
+          local modified = vim.bo[props.buf].modified
+          return {
+            ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or '',
+            ' ',
+            { filename, gui = modified and 'bold,italic' or 'bold' },
+            ' ',
+            guibg = '#44406e',
+          }
+        end,
+      }
+    end
+  }
 }

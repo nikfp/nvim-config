@@ -25,6 +25,7 @@ M.output_command = function(cmd)
     popup:unmount()
   end)
 
+  -- set dismissal keymaps
   vim.api.nvim_buf_set_keymap(popup.bufnr, "n", "<cr>", ":q<cr>", { noremap = true, silent = true })
   vim.api.nvim_buf_set_keymap(popup.bufnr, "n", "q", ":q<cr>", { noremap = true, silent = true })
 
@@ -35,10 +36,8 @@ M.output_command = function(cmd)
   for s in stuff:gmatch("([^\n]*)\n?") do
     table.insert(lines, s)
   end
-  -- get buffer number
-  -- -- set content
+  -- set content
   vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, lines)
-  -- bind keymap to buffer to close
 end
 
 return M

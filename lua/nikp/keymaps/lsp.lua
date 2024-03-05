@@ -6,15 +6,12 @@ local M = {}
 M.on_attach = function(client, bufnr)
   -- Auto save in LSP buffers
   vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+    desc = "Autosave when lsp is attached for faster UI updates",
+    group = vim.api.nvim_create_augroup("nikfp-lsp-save", { clear = true }),
     command = "w",
     buffer = bufnr,
     nested = true
   })
-  -- vim.api.nvim_create_autocmd("TextChanged", {
-  --   command = "w",
-  --   buffer = bufnr,
-  --   nested = true
-  -- })
 
   -- Cancel luasnip snippets when exiting insert mode
   local ls = require("luasnip")
