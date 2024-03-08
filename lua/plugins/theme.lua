@@ -49,7 +49,7 @@ return {
         end
 
         local base = table.concat(buf_client_names, ",")
-        return base
+        return "󰌘 " .. base
       end
 
       require("lualine").setup({
