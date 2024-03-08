@@ -65,20 +65,6 @@ return {
   },
   { "folke/neodev.nvim", event = "Bufadd *.lua" },
   {
-    "prichrd/netrw.nvim",
-    event = "UIEnter",
-    config = function()
-      require("netrw").setup({
-        icons = {
-          symlink = "", -- Symlink icon (directory and file)
-          directory = "", -- Directory icon
-          file = "󰈔", -- File icon
-        },
-        use_devicons = true,
-      })
-    end,
-  },
-  {
     "folke/which-key.nvim",
     event = "UIEnter",
     config = function()
