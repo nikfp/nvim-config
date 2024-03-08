@@ -58,7 +58,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       -- Common flags
       local lsp_flags = {
-        -- This is the default in Nvim 0.7+
         debounce_text_changes = 50,
       }
 
@@ -75,6 +74,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = on_attach,
         lsp_flags = lsp_flags,
       })
+
+      -- THIS FIXES THE ORDER OF TYPESCRIPT DIAGNOSTIC LINES
+      -- PUT THE MOST RELEVANT INFO FIRST
       --- @param err lsp.ResponseError
       --- @param result lsp.PublishDiagnosticsParams
       --- @param ctx lsp.HandlerContext
@@ -124,12 +126,55 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         single_file_support = true,
       })
 
+      -- HTML
+      nvim_lsp.html.setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
+
+      -- CSS
+      nvim_lsp.cssls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
+
+      -- CSS MODULES
+      nvim_lsp.cssmodules_ls.setup({
+        capabilities = capabilities,
+        filetypes = { "javascriptreact", "typescriptreact" }
+      })
+
+      -- TAILWINDCSS
+      nvim_lsp.tailwindcss.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        autostart = false
+      })
+
+      -- ESLINT
+      nvim_lsp.eslint.setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
+
       --SVELTE
       nvim_lsp.svelte.setup({
         on_attach = on_attach,
         flags = lsp_flags,
       })
       vim.g.vim_svelte_plugin_use_typescript = 1
+
+      -- PRISMA
+      nvim_lsp.prismals.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+
+      -- JSON
+      nvim_lsp.jsonls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
 
       -- RUST
       local rt = require("rust-tools")
@@ -187,30 +232,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
 
-      -- TAILWINDCSS
-      nvim_lsp.tailwindcss.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        autostart = false
-      })
-
-      -- JSON
-      nvim_lsp.jsonls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-
-      -- HTML
-      nvim_lsp.html.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-
-      nvim_lsp.eslint.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-
       -- LUA
       nvim_lsp.lua_ls.setup({
         commands = {
@@ -241,22 +262,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
         end,
-      })
-
-      -- CSS
-      nvim_lsp.cssls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      nvim_lsp.cssmodules_ls.setup({
-        capabilities = capabilities,
-        filetypes = { "javascriptreact", "typescriptreact" }
-      })
-
-      -- PRISMA
-      nvim_lsp.prismals.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
       })
 
       -- BASH
@@ -295,7 +300,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         cmd = { "/home/nikp/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
         settings = {},
       }
-      
+
       if not nvim_lsp_configs.lexical then
         nvim_lsp_configs.lexical = {
           default_config = {
@@ -309,7 +314,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           },
         }
       end
-      
+
       nvim_lsp.lexical.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
@@ -318,15 +323,15 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             popup.output_command(":!elixir " .. file)
           end, { desc = "Run current elixir file" })
           diag_namespace = vim.lsp.diagnostic.get_namespace(client.id)
-      
+
           diag_config = diagnostic_config
-      
+
           diag_config["update_in_insert"] = false
           vim.diagnostic.config(diag_config, diag_namespace)
-      
         end,
         capabilities = capabilities
       })
+
       --
       --Set completeopt to have a better completion experience
       -- :help completeopt
