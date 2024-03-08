@@ -40,6 +40,18 @@ return {
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "NONE", bg = "NONE", underline = true })
 
+      local lualine_lsp = function()
+        local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+        local buf_client_names = {}
+
+        for _, client in pairs(buf_clients) do
+          table.insert(buf_client_names, client.name)
+        end
+
+        local base = table.concat(buf_client_names, ",")
+        return base
+      end
+
       require("lualine").setup({
         options = {
           theme = 'auto',
@@ -54,7 +66,7 @@ return {
             "location"
           },
           lualine_z = {
-            "lualine_lsp",
+            lualine_lsp,
           }
         },
         inactive_sections = {
