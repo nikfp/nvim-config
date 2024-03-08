@@ -25,7 +25,7 @@ return {
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
       require("notifier").setup()
-      require("lint")
+      -- require("lint")
 
       -- Common UI settings related to LSP
 
@@ -202,6 +202,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
       -- HTML
       nvim_lsp.html.setup({
+        capabilities = capabilities,
+        on_attach = on_attach
+      })
+
+      nvim_lsp.eslint.setup({
         capabilities = capabilities,
         on_attach = on_attach
       })
