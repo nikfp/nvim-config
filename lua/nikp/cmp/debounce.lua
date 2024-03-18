@@ -1,7 +1,7 @@
 local M = {}
 
 local cmp = require("cmp")
-local timer = vim.loop.new_timer()
+local timer = vim.uv.new_timer()
 
 local DEBOUNCE_DELAY = 50
 
