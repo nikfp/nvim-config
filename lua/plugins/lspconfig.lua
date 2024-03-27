@@ -121,7 +121,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           ["textDocument/publishDiagnostics"] = diagnostics_handler
         },
         flags = lsp_flags,
-        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact", "*.spec.ts", "*.test.ts" },
         capabilities = capabilities,
         single_file_support = true,
       })
