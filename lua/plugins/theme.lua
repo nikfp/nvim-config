@@ -56,11 +56,20 @@ return {
         options = {
           theme = 'auto',
         },
+        extensions = {
+          "oil"
+        },
         sections = {
           lualine_c = {
-            -- function()
-            --   return vim.fn.expand("%:.")
-            -- end
+            function()
+              local buf_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
+
+              if buf_modified then
+                return "[Mod]"
+              else
+                return ""
+              end
+            end
           },
           lualine_y = {
             "location"

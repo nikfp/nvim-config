@@ -16,6 +16,7 @@ return {
       "glepnir/lspsaga.nvim",
       "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
+      "elixir-tools/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")
@@ -288,50 +289,21 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
 
-      -- ELIXIR
-      --
-      nvim_lsp.elixirls.setup({
-        cmd = { "/home/nikp/elixirls/language_server.sh" },
-        capabilities = capabilities,
-        on_attach = on_attach
-      })
-      local lexical_config = {
-        filetypes = { "elixir", "eelixir", "heex" },
-        cmd = { "/home/nikp/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
-        settings = {},
-      }
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
 
-      if not nvim_lsp_configs.lexical then
-        nvim_lsp_configs.lexical = {
-          default_config = {
-            filetypes = lexical_config.filetypes,
-            cmd = lexical_config.cmd,
-            root_dir = function(fname)
-              return nvim_lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
-            end,
-            -- optional settings
-            -- settings = lexical_config.settings,
+      elixir.setup {
+        nextls = { enable = false },
+        credo = {},
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings {
+            dialyzerEnabled = false,
+            enableTestLenses = false,
           },
+          on_attach = on_attach,
         }
-      end
-
-      nvim_lsp.lexical.setup({
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          map("n", "<leader>ru", function()
-            local file = vim.fn.expand("%")
-            popup.output_command(":!elixir " .. file)
-          end, { desc = "Run current elixir file" })
-          diag_namespace = vim.lsp.diagnostic.get_namespace(client.id)
-
-          diag_config = diagnostic_config
-
-          diag_config["update_in_insert"] = false
-          vim.diagnostic.config(diag_config, diag_namespace)
-        end,
-        capabilities = capabilities
-      })
-
+      }
       --
       --Set completeopt to have a better completion experience
       -- :help completeopt
@@ -345,4 +317,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.api.nvim_set_option("updatetime", 300)
     end,
   },
+  {
+    "elixir-tools/elixir-tools.nvim",
+    version = "*",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    }
+  }
 }
