@@ -9,6 +9,7 @@ return {
       ensure_installed = {
         "bash",
         "css",
+        "heex",
         "html",
         "javascript",
         "lua",

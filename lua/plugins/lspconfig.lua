@@ -139,6 +139,25 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = on_attach
       })
 
+      -- EMMET
+      nvim_lsp.emmet_language_server.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = {
+          "css",
+          "eruby",
+          "heex",
+          "html",
+          "htmldjango",
+          "javascriptreact",
+          "less",
+          "pug",
+          "sass",
+          "scss",
+          "svelte",
+          "typescriptreact" }
+      })
+
       -- CSS MODULES
       nvim_lsp.cssmodules_ls.setup({
         capabilities = capabilities,
@@ -289,6 +308,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
 
+      -- ELIXIR
       local elixir = require("elixir")
       local elixirls = require("elixir.elixirls")
 
@@ -301,7 +321,14 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             dialyzerEnabled = false,
             enableTestLenses = false,
           },
-          on_attach = on_attach,
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+
+            vim.keymap.set("n", "<leader>gd", function()
+              local word =  vim.fn.expand("<cword>")
+              require("telescope.builtin").lsp_workspace_symbols({ query = word })
+            end, { buffer = bufnr })
+          end,
         }
       }
       --

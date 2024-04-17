@@ -17,6 +17,7 @@ return {
           "css-lsp",
           "cssmodules-language-server",
           -- "elixir-ls",
+          "emmet-language-server",
           "eslint-lsp",
           "gopls",
           "html-lsp",
