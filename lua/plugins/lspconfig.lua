@@ -171,6 +171,22 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
+        init_options = {
+          userLanguages = {
+            elixir = "html-eex",
+            eelixir = "html-eex",
+            heex = "html-eex",
+          },
+        },
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                'class[:]\\s*"([^"]*)"',
+              },
+            },
+          },
+        },
       })
 
       -- ESLINT
@@ -327,7 +343,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             on_attach(client, bufnr)
 
             vim.keymap.set("n", "<leader>gd", function()
-              local word =  vim.fn.expand("<cword>")
+              local word = vim.fn.expand("<cword>")
               require("telescope.builtin").lsp_workspace_symbols({ query = word })
             end, { buffer = bufnr })
           end,
