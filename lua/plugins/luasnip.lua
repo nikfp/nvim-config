@@ -84,6 +84,11 @@ return {
     })
     ls.filetype_extend("svelte", { "typescript", "javascript" })
 
+    -- ELIXIR SNIPPETS
+    ls.add_snippets("elixir", {
+      s("hb", fmt([[<%= {} %>]], {i(1)}))
+    })
+
     -- RUST SNIPPETS
     ls.add_snippets("rust", {
       s("printfmt", fmt([[println!("{{:?}}{}", {});]], { i(1), i(2) })),

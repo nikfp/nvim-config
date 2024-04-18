@@ -145,6 +145,8 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = on_attach,
         filetypes = {
           "css",
+          "eelixir",
+          "elixir",
           "eruby",
           "heex",
           "html",
@@ -168,7 +170,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        autostart = false
+        autostart = false,
       })
 
       -- ESLINT

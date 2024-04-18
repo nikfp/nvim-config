@@ -45,7 +45,13 @@ return {
         local buf_client_names = {}
 
         for _, client in pairs(buf_clients) do
-          table.insert(buf_client_names, client.name)
+          if client.name == "emmet_language_server" then
+            table.insert(buf_client_names, "Emmet")
+          elseif client.name == "tailwindcss" then
+            table.insert(buf_client_names, "Tailwind")
+          else
+            table.insert(buf_client_names, client.name)
+          end
         end
 
         local base = table.concat(buf_client_names, ",")
