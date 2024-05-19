@@ -11,7 +11,7 @@ return {
     local c = ls.choice_node
     local f = ls.function_node
     local fmt = require("luasnip.extras.fmt").fmt
-    local rep = require("luasnip.extras").rep
+
 
     local utils = require("nikp.utils.snip_utils")
 
@@ -35,7 +35,7 @@ return {
     ls.add_snippets("javascript", {
       s("log", fmt([[console.log({})]], { i(1) })),
       s("import", fmt([[import {} from '{}{}';]], { i(3), i(1), i(2) })),
-      s("dest", fmt([[const {{ {} }} = {};]], { i(2), i(1)}))
+      s("dest", fmt([[const {{ {} }} = {};]], { i(2), i(1) }))
     })
     -- JAVASCRIPT REACT SNIPPETS
     ls.add_snippets("javascriptreact", {
@@ -86,8 +86,17 @@ return {
 
     -- ELIXIR SNIPPETS
     ls.add_snippets("elixir", {
-      s("hb", fmt([[<%= {} %>]], {i(1)}))
+      s("hb", fmt([[<%= {} %>]], { i(1) })),
+        s("ht", fmt(
+          [[
+      <{} {}>
+        {}
+      </{}>
+          ]]
+          , { i(1), i(2), i(0), utils.repeat_node(1) }))
     })
+
+    ls.filetype_extend("heex", { "elixir" })
 
     -- RUST SNIPPETS
     ls.add_snippets("rust", {

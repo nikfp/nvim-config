@@ -11,4 +11,11 @@ M.capitalize_first_letter = function(index)
   end, { index })
 end
 
+M.repeat_node = function(index)
+  return f(function(arg)
+    local str = arg[1][1]
+    return str
+  end, { index })
+end
+
 return M
