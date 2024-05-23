@@ -89,6 +89,8 @@ return {
       s("hb", fmt([[<%= {} %>]], {i(1)}))
     })
 
+    ls.filetype_extend("heex", {"elixir"})
+
     -- RUST SNIPPETS
     ls.add_snippets("rust", {
       s("printfmt", fmt([[println!("{{:?}}{}", {});]], { i(1), i(2) })),

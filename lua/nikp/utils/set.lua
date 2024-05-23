@@ -5,16 +5,24 @@ vim.g.netrw_liststyle = 3
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = true
+
+
+local function no_paste(_)
+  return function(_)
+    -- Do nothing! We can't paste with OSC52
+  end
+end
+
 -- vim.opt.clipboard = "unnamedplus"
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {
     ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    -- ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
   },
   paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    -- ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+    ['+'] = no_paste("+"),
+    ['*'] = no_paste("*")
   },
 }
 vim.opt.completeopt = "menu,noselect"
