@@ -71,7 +71,7 @@ return {
               local buf_modified = vim.api.nvim_get_option_value("modified", { buf = 0 })
 
               if buf_modified then
-                return "[Mod]"
+                return string.format("%%#Constant#%s%%*", "[Mod]")
               else
                 return ""
               end
