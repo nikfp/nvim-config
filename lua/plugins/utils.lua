@@ -83,7 +83,15 @@ return {
     "aserowy/tmux.nvim",
     config = function()
       require("tmux").setup({
-        enable_default_keybindings = false,
+        -- copy_sync = {
+        --   sync_clipboard = false
+        -- },
+        navigation = {
+          enable_default_keybindings = false,
+        },
+        resize = {
+          enable_default_keybindings = false,
+        }
       })
     end,
     event = "VeryLazy"
