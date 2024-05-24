@@ -78,4 +78,12 @@ return {
       require("no-neck-pain").setup()
     end,
   },
+
+  {
+    "aserowy/tmux.nvim",
+    config = function()
+      require("tmux").setup()
+    end,
+    event = "VeryLazy"
+  }
 }
