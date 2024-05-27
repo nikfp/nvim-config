@@ -82,14 +82,22 @@ return {
   {
     "aserowy/tmux.nvim",
     config = function()
-      require("tmux").setup({
-        navigation = {
-          enable_default_keybindings = false,
-        },
-        resize = {
-          enable_default_keybindings = false,
-        }
-      })
+      local os_tmux = vim.env.TMUX
+
+      if os_tmux == nil then
+        vim.notify("Tmux not detected, skipping integration setup", 2)
+        return
+      else
+        vim.notify("Tmux detected, setting up integration", 2)
+        require("tmux").setup({
+          navigation = {
+            enable_default_keybindings = false,
+          },
+          resize = {
+            enable_default_keybindings = false,
+          }
+        })
+      end
     end,
     event = "VeryLazy"
   }
