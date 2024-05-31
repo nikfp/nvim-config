@@ -65,7 +65,7 @@ return {
   },
   { "folke/neodev.nvim", event = "Bufadd *.lua" },
   {
-    "folke/which-key.nvim",
+    "nikfp/which-key.nvim",
     event = "UIEnter",
     config = function()
       require("nikp.keymaps.base").initialize()

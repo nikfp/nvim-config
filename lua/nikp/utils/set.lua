@@ -7,13 +7,24 @@ vim.opt.backup = false
 vim.opt.cindent = true
 
 
-local function no_paste(_)
-  return function(_)
-    -- Do nothing! We can't paste with OSC52
-  end
-end
+-- local function no_paste(_)
+--   return function(_)
+--     -- Do nothing! We can't paste with OSC52
+--   end
+-- end
 
 -- vim.opt.clipboard = "unnamedplus"
+-- vim.g.clipboard = {
+--   name = 'OSC 52',
+--   copy = {
+--     ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+--     ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+--   },
+--   paste = {
+--     ['+'] = no_paste("+"),
+--     ['*'] = no_paste("*")
+--   },
+-- }
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {
@@ -21,10 +32,11 @@ vim.g.clipboard = {
     ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
   },
   paste = {
-    ['+'] = no_paste("+"),
-    ['*'] = no_paste("*")
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
   },
 }
+
 vim.opt.completeopt = "menu,noselect"
 vim.opt.expandtab = true
 vim.opt.guicursor = "n-i-v-c-o:block-blinkon500-blinkoff500-CursorIM"
