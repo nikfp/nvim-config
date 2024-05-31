@@ -87,13 +87,14 @@ return {
     -- ELIXIR SNIPPETS
     ls.add_snippets("elixir", {
       s("hb", fmt([[<%= {} %>]], { i(1) })),
-        s("ht", fmt(
-          [[
+      s("ht", fmt(
+        [[
       <{} {}>
         {}
       </{}>
           ]]
-          , { i(1), i(2), i(0), utils.repeat_node(1) }))
+        , { i(1), i(2), i(0), utils.repeat_node(1) })),
+      s("hsc", fmt([[<{} {} />]], { i(1), i(0) }))
     })
 
     ls.filetype_extend("heex", { "elixir" })
