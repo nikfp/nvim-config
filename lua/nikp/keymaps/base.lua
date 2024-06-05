@@ -157,6 +157,18 @@ M.initialize = function()
     return "dd"
   end, { expr = true })
 
+  -- <<< CODEIUM >>>
+  map('i', '<C-CR>', function() return vim.fn['codeium#Accept']() end,
+    { expr = true, silent = true, desc = "Accept Codeium Suggestion" })
+  map('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+    { expr = true, silent = true, desc = "Next Codeium Suggestion" })
+  map('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+    { expr = true, silent = true, desc = "Previous Codeium Suggestion" })
+  map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end,
+    { expr = true, silent = true, desc = "Clear Codeium" })
+
+  map("n", "<leader>uc", ":CodeiumToggle<cr>", { desc = "Toggle Codeium" })
+
   -- <<< BASE LSP KEYMAPS >>>
   map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
   map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })

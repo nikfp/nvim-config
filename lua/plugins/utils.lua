@@ -67,6 +67,9 @@ return {
   {
     "folke/which-key.nvim",
     event = "UIEnter",
+    dependencies = {
+    "Exafunction/codeium.vim",
+    },
     config = function()
       require("nikp.keymaps.base").initialize()
     end,
@@ -100,5 +103,8 @@ return {
       end
     end,
     event = "VeryLazy"
+  },
+  {
+    "Exafunction/codeium.vim",
   }
 }

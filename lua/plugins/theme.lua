@@ -79,7 +79,11 @@ return {
             end
           },
           lualine_y = {
-            "location"
+            function()
+              -- get codeium status as local
+              local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
+              return " " .. status
+            end
           },
           lualine_z = {
             lualine_lsp,

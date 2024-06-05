@@ -6,6 +6,8 @@ vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = true
 
+vim.g.codeium_disable_bindings = 1
+
 
 -- local function no_paste(_)
 --   return function(_)
