@@ -166,9 +166,10 @@ M.initialize = function()
     { expr = true, silent = true, desc = "Previous Codeium Suggestion" })
   map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end,
     { expr = true, silent = true, desc = "Clear Codeium" })
+  map("n", "<leader>ucc", function() return vim.fn['codeium#Chat']() end,
+    { expr = true, silent = true, desc = "Open Codeium Chat" })
 
-  map("n", "<leader>uc", ":CodeiumToggle<cr>", { desc = "Toggle Codeium" })
-
+  map("n", "<leader>uct", ":CodeiumToggle<cr>", { desc = "Toggle Codeium" })
   -- <<< BASE LSP KEYMAPS >>>
   map("n", "<leader>de", vim.diagnostic.open_float, { desc = "Open Diagnostic Float" })
   map("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic item" })

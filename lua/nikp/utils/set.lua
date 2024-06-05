@@ -7,6 +7,7 @@ vim.opt.backup = false
 vim.opt.cindent = true
 
 vim.g.codeium_disable_bindings = 1
+vim.g.codeium_enabled = false
 
 
 -- local function no_paste(_)
