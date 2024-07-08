@@ -28,7 +28,7 @@ return {
           "prisma-language-server",
           "rust-analyzer",
           "svelte-language-server",
-          {"tailwindcss-language-server", version = "0.0.16"},
+          "tailwindcss-language-server",
           "typescript-language-server"
         },
         auto_update = true,

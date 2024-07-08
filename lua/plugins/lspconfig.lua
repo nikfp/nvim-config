@@ -171,15 +171,20 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
-        init_options = {
-          userLanguages = {
-            elixir = "html-eex",
-            eelixir = "html-eex",
-            heex = "html-eex",
-          },
-        },
+        -- init_options = {
+        --   includedLanguages = {
+        --     elixir = "html-eex",
+        --     eelixir = "html-eex",
+        --     heex = "html-eex",
+        --   },
+        -- },
         settings = {
           tailwindCSS = {
+            includeLanguages = {
+              elixir = "html-eex",
+              eelixir = "html-eex",
+              heex = "html-eex",
+            },
             experimental = {
               classRegex = {
                 'class[:]\\s*"([^"]*)"',
