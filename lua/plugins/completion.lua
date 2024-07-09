@@ -17,9 +17,6 @@ return {
     local ls = require("luasnip")
     local kind_icons = require("nikp.utils.kind_icons")
 
-    -- require("tailwind-tools").setup()
-    local tailwind_format = require("tailwind-tools.cmp").lspkind_format
-
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -104,8 +101,6 @@ return {
         fields = { "kind", "abbr", "menu", },
         format = function(entry, item)
           item.kind = string.format("%s", kind_icons[item.kind])
-
-          tailwind_format(entry, item)
 
           item.menu = ({
             buffer = "[Buff]",
