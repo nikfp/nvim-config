@@ -65,7 +65,7 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { desc = "Rename current symbol" })
 
   -- Toggle Tailwind LSP
-  map("n", "<leader>ut", function()
+  map("n", "<leader>tt", function()
     local toggler = require('nikp.utils.lsp_toggler')
     local tailwind_id = toggler.get_lsp_num("tailwindcss")
     if (tailwind_id == 0) then

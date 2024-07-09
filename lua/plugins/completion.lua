@@ -9,12 +9,16 @@ return {
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
     "L3MON4D3/LuaSnip",
+    "luckasRanarison/tailwind-tools.nvim",
   },
   event = "InsertEnter",
   config = function()
     local cmp = require("cmp")
     local ls = require("luasnip")
     local kind_icons = require("nikp.utils.kind_icons")
+
+    -- require("tailwind-tools").setup()
+    local tailwind_format = require("tailwind-tools.cmp").lspkind_format
 
     cmp.setup({
       snippet = {
@@ -100,6 +104,8 @@ return {
         fields = { "kind", "abbr", "menu", },
         format = function(entry, item)
           item.kind = string.format("%s", kind_icons[item.kind])
+
+          tailwind_format(entry, item)
 
           item.menu = ({
             buffer = "[Buff]",

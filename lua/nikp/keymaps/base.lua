@@ -14,6 +14,7 @@ wk.register({
   q = { name = "Quickfix" },
   r = { name = "Run things" },
   s = { name = "Controls splits" },
+  t = { name = "Tailwind utilities" }, 
   u = {
     name = "Utilities",
   },
@@ -65,9 +66,13 @@ M.initialize = function()
   end, { desc = "Run cht.sh" })
 
   -- <<< Terminal Management >>>
-  map("n", "<leader>tr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
-  map("n", "<leader>tl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
+  map("n", "<leader>utr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
+  map("n", "<leader>utl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
   map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
+
+  -- <<< Tailwind Things >>>
+  map("n", "<leader>tc", ":TailwindConcealToggle", { desc = "Toggle Tailwind Concealing" })
+  map("n", "<leader>ts", ":TailwindSort", { desc = "Sort Tailwind Classes" })
 
   -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })

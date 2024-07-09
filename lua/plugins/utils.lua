@@ -68,7 +68,7 @@ return {
     "folke/which-key.nvim",
     event = "UIEnter",
     dependencies = {
-    "Exafunction/codeium.vim",
+      "Exafunction/codeium.vim",
     },
     config = function()
       require("nikp.keymaps.base").initialize()
@@ -106,5 +106,16 @@ return {
   },
   {
     "Exafunction/codeium.vim",
+  },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      document_color = {
+        kind = "background"
+      }
+    }
   }
 }
