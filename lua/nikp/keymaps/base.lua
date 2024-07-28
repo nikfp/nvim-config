@@ -163,13 +163,13 @@ M.initialize = function()
   end, { expr = true })
 
   -- <<< CODEIUM >>>
-  map('i', '<M-Space>', function() return vim.fn['codeium#Accept']() end,
+  map('i', '<M-l>', function() return vim.fn['codeium#Accept']() end,
     { expr = true, silent = true, desc = "Accept Codeium Suggestion" })
-  map('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+  map('i', '<M-j>', function() return vim.fn['codeium#CycleCompletions'](1) end,
     { expr = true, silent = true, desc = "Next Codeium Suggestion" })
-  map('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+  map('i', '<M-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
     { expr = true, silent = true, desc = "Previous Codeium Suggestion" })
-  map('i', '<C-x>', function() return vim.fn['codeium#Clear']() end,
+  map('i', '<M-x>', function() return vim.fn['codeium#Clear']() end,
     { expr = true, silent = true, desc = "Clear Codeium" })
   map("n", "<leader>ucc", function() return vim.fn['codeium#Chat']() end,
     { expr = true, silent = true, desc = "Open Codeium Chat" })
