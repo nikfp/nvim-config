@@ -4,20 +4,20 @@ local M = {}
 local builtin = require("telescope.builtin")
 
 local wk = require("which-key")
+local icons = require("nikp.utils.system_icons")
 wk.register({
-  c = { name = "Changing things" },
-  d = { name = "Diagnostics" },
+  ["<space>"] = { name = "Lua helpers" },
+  c = { name = "Changing things", icon = icons.Edit },
+  d = { name = "Diagnostics", icon = icons.Stethoscope },
   f = { name = "Finding things" },
-  g = { name = "Going places" },
-  h = { name = "Harpoon" },
-  m = { name = "Meta-functions" },
+  g = { name = "Going places", icon = icons.Travel },
+  h = { name = "Harpoon", icon = icons.Harpoon },
+  m = { name = "Meta-functions", icon = icons.Meta },
   q = { name = "Quickfix" },
-  r = { name = "Run things" },
-  s = { name = "Controls splits" },
-  t = { name = "Tailwind utilities" }, 
-  u = {
-    name = "Utilities",
-  },
+  r = { name = "Run things", icon = icons.Run },
+  s = { name = "Controls splits", icon = icons.Split },
+  t = { name = "Tailwind utilities", icon = icons.Tailwind },
+  u = { name = "Utilities", icon = icons.Utilities },
   w = { name = "Workspace" },
 }, { prefix = "<leader>" })
 

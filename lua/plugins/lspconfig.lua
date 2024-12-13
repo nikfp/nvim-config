@@ -113,7 +113,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       end
 
       -- TYPESCRIPT
-      nvim_lsp.tsserver.setup({
+      nvim_lsp.ts_ls.setup({
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
@@ -299,7 +299,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.bashls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "sh", "*.bashrc", "shell" },
+        filetypes = { "sh", "*.bashrc", "shell", "tmux" },
         {
           bashIde = {
             globPattern = "*@(.sh|.inc|.bash|.command)"
