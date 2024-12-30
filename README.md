@@ -10,7 +10,9 @@ This config works for me on Mac, Windows, and Linux. No Guarantees it will work 
 - Ripgrep installed
 - Git installed
 - A compiler for C available in PATH
+- A current Elixir and OTP (erlang) version installed
 - Lazygit installed (optional)
+- Golang installed(optional)
 
 ### To install: 
 - Add to the appropriate location for Neovim config on your OS
