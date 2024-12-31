@@ -17,6 +17,10 @@ return {
     local ls = require("luasnip")
     local kind_icons = require("nikp.utils.kind_icons")
 
+    cmp.config.formatting = {
+      format = require("tailwindcss-colorizer-cmp").formatter
+    }
+
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -99,6 +103,7 @@ return {
       }),
       formatting = {
         fields = { "kind", "abbr", "menu", },
+        -- format = require("tailwindcss-colorizer-cmp").formatter,
         format = function(entry, item)
           item.kind = string.format("%s", kind_icons[item.kind])
 
@@ -109,7 +114,8 @@ return {
             luasnip = "[Snip]",
             nvim_lua = "[Lua]",
           })[entry.source.name]
-          return item
+          local updated = require("tailwindcss-colorizer-cmp").formatter(entry, item)
+          return updated
         end,
       },
       completion = {
