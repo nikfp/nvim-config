@@ -12,6 +12,9 @@ return {
         buf_options = {
           buflisted = true,
         },
+        win_options = {
+          signcolumn = "number"
+        }
       })
     end,
   },
@@ -129,5 +132,13 @@ return {
         color_square_width = 2,
       })
     end
+  },
+  {
+    "SirZenith/oil-vcs-status",
+    dependencies = {
+      {
+        "stevearc/oil.nvim"
+      }
+    }
   }
 }
