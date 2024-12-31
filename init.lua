@@ -17,7 +17,7 @@ else
   require("lazy").setup("plugins", {
     change_detection = {
       enabled = false
-    }
+    },
   })
   require("nikp.utils")
 end

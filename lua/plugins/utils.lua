@@ -113,9 +113,12 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+      server = {
+        override = false
+      },
       document_color = {
         kind = "background"
       }
-    }
-  }
+    },
+  },
 }
