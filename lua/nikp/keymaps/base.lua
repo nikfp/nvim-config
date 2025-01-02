@@ -7,6 +7,7 @@ local wk = require("which-key")
 local icons = require("nikp.utils.system_icons")
 wk.register({
   ["<space>"] = { name = "Lua helpers" },
+  b = { name = "Spelunk", icon = icons.Bookmark },
   c = { name = "Changing things", icon = icons.Edit },
   d = { name = "Diagnostics", icon = icons.Stethoscope },
   f = { name = "Finding things" },
@@ -47,13 +48,11 @@ M.initialize = function()
   -- where the heck am I?
   map("n", "<leader>fl", ":lua print(vim.fn.expand('%'))<cr>", { desc = "Print CWD relative to project root" })
 
-  -- <<<Harpoon>>>
-  map("n", "<leader>ht", require("harpoon.ui").toggle_quick_menu, { desc = "Toggle Harpoon Menu" })
-  map("n", "<leader>ha", require("harpoon.mark").add_file, { desc = "Add file to harpoon list" })
+  -- <<<Spelunk>>>
   for pos = 0, 9 do
-    map("n", "<leader>h" .. pos, function()
-      require("harpoon.ui").nav_file(pos)
-    end, { desc = "Move to harpoon mark #" .. pos })
+    map("n", "<leader>b" .. pos, function()
+      require("spelunk").goto_bookmark_at_index(pos)
+    end, { desc = "Move to Spelunk index #" .. pos })
   end
 
   -- <<< GIT Stuff >>>

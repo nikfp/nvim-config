@@ -1,4 +1,5 @@
 local system_icons = {
+  Bookmark = "",
   ClipboardMinus = "󱘙",
   ClipboardPlus = "󱌟",
   Edit = "",
