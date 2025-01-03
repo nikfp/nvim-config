@@ -110,29 +110,29 @@ return {
   {
     "Exafunction/codeium.vim",
   },
-  {
-    "luckasRanarison/tailwind-tools.nvim",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      server = {
-        override = false
-      },
-      document_color = {
-        kind = "background"
-      }
-    },
-  },
-  {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
-    config = function()
-      require("tailwindcss-colorizer-cmp").setup({
-        color_square_width = 2,
-      })
-    end
-  },
+  -- {
+  --   "luckasRanarison/tailwind-tools.nvim",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   opts = {
+  --     server = {
+  --       override = false
+  --     },
+  --     document_color = {
+  --       kind = "background"
+  --     }
+  --   },
+  -- },
+  -- {
+  --   "roobert/tailwindcss-colorizer-cmp.nvim",
+  --   -- optionally, override the default options:
+  --   config = function()
+  --     require("tailwindcss-colorizer-cmp").setup({
+  --       color_square_width = 2,
+  --     })
+  --   end
+  -- },
   {
     "SirZenith/oil-vcs-status",
     dependencies = {

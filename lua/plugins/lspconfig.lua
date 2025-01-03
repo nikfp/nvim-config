@@ -25,7 +25,7 @@ return {
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
-      require("notifier").setup()
+      -- require("notifier").setup()
       -- require("lint")
 
       -- Common UI settings related to LSP
@@ -63,9 +63,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       }
 
       -- set up completion capabilities using nvim_cmp with LSP source
+      -- local capabilities =
+      --     require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- capabilities.textDocument.completion.completionItem.snippetSupport = true
       local capabilities =
-          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
+          require("blink.cmp").get_lsp_capabilities()
 
       -- PER LANGUAGE SETUPS
 
