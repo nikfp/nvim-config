@@ -110,20 +110,20 @@ return {
   {
     "Exafunction/codeium.vim",
   },
-  -- {
-  --   "luckasRanarison/tailwind-tools.nvim",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   opts = {
-  --     server = {
-  --       override = false
-  --     },
-  --     document_color = {
-  --       kind = "background"
-  --     }
-  --   },
-  -- },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      server = {
+        override = false
+      },
+      document_color = {
+        kind = "background"
+      }
+    },
+  },
   -- {
   --   "roobert/tailwindcss-colorizer-cmp.nvim",
   --   -- optionally, override the default options:

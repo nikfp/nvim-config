@@ -11,58 +11,64 @@ return {
   -- build = 'nix run .#build-plugin',
 
   opts = {
+    completion = {
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 500,
+      },
+    },
     keymap = {
       preset = 'default',
 
-      -- ["<C-b>"] = { 'scroll_documentation_up', 'fallback' },
-      -- ["<C-f>"] = { 'scroll_documentation_down', 'fallback' },
-      -- ["<C-Space>"] = { 'show', 'fallback' },
-      -- ["<esc>"] = { 'hide', 'fallback' },
-      -- ["<Tab>"] = { 'select_and_accept', 'fallback' },
-      -- ["<C-n>"] = {
-      --   function(_)
-      --     if require("luasnip").locally_jumpable(1) then
-      --       require("luasnip").jump(1)
-      --       return true
-      --     else
-      --       return false
-      --     end
-      --   end,
-      --   'fallback'
-      -- },
-      -- ["<C-p>"] = {
-      --   function(_)
-      --     if require("luasnip").locally_jumpable(-1) then
-      --       require("luasnip").jump(-1)
-      --       return true
-      --     else
-      --       return false
-      --     end
-      --   end,
-      --   'fallback'
-      -- },
-      -- ["<C-j>"] = {
-      --   function(_)
-      --     if require("luasnip").choice_active() then
-      --       require("luasnip").change_choice(1)
-      --       return true
-      --     else
-      --       return false
-      --     end
-      --   end,
-      --   'select_next',
-      --   'fallback' },
-      -- ["<C-k>"] = {
-      --   function(_)
-      --     if require("luasnip").choice_active() then
-      --       require("luasnip").change_choice(-1)
-      --       return true
-      --     else
-      --       return false
-      --     end
-      --   end,
-      --   'select_prev',
-      --   'fallback' },
+      ["<C-b>"] = { 'scroll_documentation_up', 'fallback' },
+      ["<C-f>"] = { 'scroll_documentation_down', 'fallback' },
+      ["<C-Space>"] = { 'show', 'fallback' },
+      ["<esc>"] = { 'hide', 'fallback' },
+      ["<Tab>"] = { 'select_and_accept', 'fallback' },
+      ["<C-n>"] = {
+        function(_)
+          if require("luasnip").locally_jumpable(1) then
+            require("luasnip").jump(1)
+            return true
+          else
+            return false
+          end
+        end,
+        'fallback'
+      },
+      ["<C-p>"] = {
+        function(_)
+          if require("luasnip").locally_jumpable(-1) then
+            require("luasnip").jump(-1)
+            return true
+          else
+            return false
+          end
+        end,
+        'fallback'
+      },
+      ["<C-j>"] = {
+        function(_)
+          if require("luasnip").choice_active() then
+            require("luasnip").change_choice(1)
+            return true
+          else
+            return false
+          end
+        end,
+        'select_next',
+        'fallback' },
+      ["<C-k>"] = {
+        function(_)
+          if require("luasnip").choice_active() then
+            require("luasnip").change_choice(-1)
+            return true
+          else
+            return false
+          end
+        end,
+        'select_prev',
+        'fallback' },
     },
 
     appearance = {

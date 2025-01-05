@@ -25,7 +25,7 @@ return {
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
-      -- require("notifier").setup()
+      require("notifier").setup()
       -- require("lint")
 
       -- Common UI settings related to LSP
