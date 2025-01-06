@@ -2,7 +2,7 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    -- "natecraddock/telescope-zf-native.nvim",
+    "natecraddock/telescope-zf-native.nvim",
   },
   event = "VeryLazy",
   config = function()
@@ -28,6 +28,6 @@ return {
       },
       extensions = {},
     })
-    -- ts.load_extension("zf-native")
+    ts.load_extension("zf-native")
   end,
 }

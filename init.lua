@@ -15,6 +15,9 @@ else
 
   require("nikp.utils.set")
   require("lazy").setup("plugins", {
+    rocks = {
+      enabled = false
+    },
     change_detection = {
       enabled = false
     },
