@@ -12,9 +12,18 @@ return {
 
   opts = {
     completion = {
+      keyword = {
+        range = 'full'
+      },
+      menu = {
+        border = 'single'
+      },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
+        window = {
+          border = 'single'
+        }
       },
     },
     keymap = {
@@ -22,7 +31,7 @@ return {
 
       ["<C-b>"] = { 'scroll_documentation_up', 'fallback' },
       ["<C-f>"] = { 'scroll_documentation_down', 'fallback' },
-      ["<C-Space>"] = { 'show', 'fallback' },
+      ["<C-Space>"] = { 'show'},
       ["<esc>"] = { 'hide', 'fallback' },
       ["<Tab>"] = { 'select_and_accept', 'fallback' },
       ["<C-n>"] = {
@@ -84,10 +93,30 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'luasnip', 'buffer' },
+      default = { 'luasnip', 'lsp', 'path', 'buffer' },
+      providers = {
+        luasnip = {
+          score_offset = 100
+        },
+        -- snippet = {
+        --   score_offset = 80
+        -- },
+        lsp = {
+          score_offset = 60
+        },
+        path = {
+          score_offset = 40
+        }
+      }
     },
-    signature = { enabled = true }
-  }
+    signature = {
+      enabled = true,
+      window = {
+        border = 'single'
+      }
+    }
+  },
+  opt_extend = { "sources.default" }
 
 
 }
