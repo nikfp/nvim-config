@@ -3,6 +3,8 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = 'L3MON4D3/LuaSnip',
 
+  event = "VeryLazy",
+
   -- use a release tag to download pre-built binaries
   version = '0.9.1',
   -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
@@ -12,6 +14,9 @@ return {
 
   opts = {
     completion = {
+      list = {
+        selection = "auto_insert"
+      },
       keyword = {
         range = 'full'
       },
@@ -31,7 +36,7 @@ return {
 
       ["<C-b>"] = { 'scroll_documentation_up', 'fallback' },
       ["<C-f>"] = { 'scroll_documentation_down', 'fallback' },
-      ["<C-Space>"] = { 'show'},
+      ["<C-Space>"] = { 'show' },
       ["<esc>"] = { 'hide', 'fallback' },
       ["<Tab>"] = { 'select_and_accept', 'fallback' },
       ["<C-n>"] = {
@@ -102,7 +107,8 @@ return {
         --   score_offset = 80
         -- },
         lsp = {
-          score_offset = 60
+          score_offset = 60,
+          timeout_ms = 5000
         },
         path = {
           score_offset = 40
