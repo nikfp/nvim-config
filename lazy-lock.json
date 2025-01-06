@@ -32,7 +32,7 @@
   "oil.nvim": { "branch": "master", "commit": "c6a39a69b2df7c10466f150dde0bd23e49c1fba3" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
-  "spelunk.nvim": { "branch": "main", "commit": "3d12982dcd151e7cc310db669e48281d3de0fe65" },
+  "spelunk.nvim": { "branch": "main", "commit": "7da61f87872ae22ea14c909122defc4c3dddc961" },
   "tailwind-tools.nvim": { "branch": "master", "commit": "3703e162d819a04b128902c508276553dae0dfb8" },
   "telescope.nvim": { "branch": "master", "commit": "2eca9ba22002184ac05eddbe47a7fe2d5a384dfc" },
   "tmux.nvim": { "branch": "main", "commit": "307bad95a1274f7288aaee09694c25c8cbcd6f1a" },

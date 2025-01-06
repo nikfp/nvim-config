@@ -49,7 +49,7 @@ M.initialize = function()
 
   -- <<<Spelunk>>>
   for pos = 0, 9 do
-    map("n", "<leader>b" .. pos, function()
+    map("n", "<leader>h" .. pos, function()
       require("spelunk").goto_bookmark_at_index(pos)
     end, { desc = "Move to Spelunk index #" .. pos })
   end
