@@ -4,3 +4,5 @@
 
 THIS WILL POPULATE QUICKFIX WITH DIAGNOSTIC DATA
 vim.diagnostics.setqflist()
+
+Remember to check `:checkhealth vim.deprecated` once in a while!

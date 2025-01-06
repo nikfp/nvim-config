@@ -1,8 +1,8 @@
 return {
   "L3MON4D3/LuaSnip",
-  dependencies = {
-    "hrsh7th/nvim-cmp",
-  },
+  -- dependencies = {
+  --   "hrsh7th/nvim-cmp",
+  -- },
   event = "InsertEnter",
   config = function()
     local ls = require("luasnip")

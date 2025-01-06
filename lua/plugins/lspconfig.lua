@@ -63,9 +63,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       }
 
       -- set up completion capabilities using nvim_cmp with LSP source
+      -- local capabilities =
+      --     require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- capabilities.textDocument.completion.completionItem.snippetSupport = true
       local capabilities =
-          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
+          require("blink.cmp").get_lsp_capabilities()
 
       -- PER LANGUAGE SETUPS
 
@@ -140,9 +142,10 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       })
 
       -- EMMET
-      nvim_lsp.emmet_language_server.setup({
+      nvim_lsp.emmet_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        autostart = false,
         filetypes = {
           "css",
           "eelixir",
