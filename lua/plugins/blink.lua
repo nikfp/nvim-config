@@ -32,7 +32,7 @@ return {
       },
     },
     keymap = {
-      preset = 'default',
+      preset = 'none',
 
       ["<C-b>"] = { 'scroll_documentation_up', 'fallback' },
       ["<C-f>"] = { 'scroll_documentation_down', 'fallback' },
@@ -48,6 +48,7 @@ return {
             return false
           end
         end,
+        'snippet_forward',
         'fallback'
       },
       ["<C-p>"] = {
@@ -59,6 +60,7 @@ return {
             return false
           end
         end,
+        'snippet_backward',
         'fallback'
       },
       ["<C-j>"] = {
@@ -84,7 +86,16 @@ return {
         'select_prev',
         'fallback' },
     },
-
+    snippets = {
+      expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+      active = function(filter)
+        if filter and filter.direction then
+          return require('luasnip').jumpable(filter.direction)
+        end
+        return require('luasnip').in_snippet()
+      end,
+      jump = function(direction) require('luasnip').jump(direction) end,
+    },
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp
