@@ -19,7 +19,7 @@ return {
     end,
   },
   { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
-  { "vigoux/notifier.nvim" },
+  { "nikfp/notifier.nvim",   lazy = false },
   { "windwp/nvim-ts-autotag", event = "VeryLazy" },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -115,6 +115,7 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
+    event = "VeryLazy",
     opts = {
       server = {
         override = false
