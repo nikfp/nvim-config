@@ -12,6 +12,9 @@ if not vim.loop.fs_stat(lazypath) then
   print("Finished installing lazy. Please close and reopen Neovim.")
 else
   vim.opt.rtp:prepend(lazypath)
+  vim.api.nvim_create_autocmd("BufAdd", {
+    command = "echo 'Triggered Bufadd'"
+  })
 
   require("nikp.utils.set")
   require("lazy").setup("plugins", {
@@ -23,6 +26,4 @@ else
     },
   })
   require("nikp.utils")
-
 end
-

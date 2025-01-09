@@ -21,7 +21,6 @@ return {
     config = function()
       local popup = require("nikp.utils.popup")
       local nvim_lsp = require("lspconfig")
-      local nvim_lsp_configs = require("lspconfig.configs")
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
