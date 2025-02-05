@@ -6,6 +6,11 @@ return {
     priority = 51,
     config = function()
       require("oil").setup({
+        keymaps = {
+          ["<C-h>"] = false,
+          ["<C-l>"] = false,
+          ["<C-r>"] = "actions.refresh",
+        },
         view_options = {
           show_hidden = true,
         },
@@ -19,7 +24,7 @@ return {
     end,
   },
   { "MunifTanjim/nui.nvim",   event = "VeryLazy" },
-  { "nikfp/notifier.nvim",   lazy = false },
+  { "nikfp/notifier.nvim",    lazy = false },
   { "windwp/nvim-ts-autotag", event = "VeryLazy" },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -106,6 +111,24 @@ return {
       end
     end,
     event = "VeryLazy"
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
+    keys = {
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    }
   },
   {
     "Exafunction/codeium.vim",

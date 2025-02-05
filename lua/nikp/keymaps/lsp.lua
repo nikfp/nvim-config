@@ -77,7 +77,7 @@ M.on_attach = function(client, bufnr)
 
   -- Toggle Emmet LSP
   map("n", "<leader>ue", function()
-    local toggler = require('nikp.untils.lsp_toggler')
+    local toggler = require('nikp.utils.lsp_toggler')
     local emmet_id = toggler.get_lsp_num("emmet_ls")
     if (emmet_id == 0) then
       toggler.start_server("emmet_ls")
