@@ -6,17 +6,19 @@ return {
   event = "VeryLazy",
 
   -- use a release tag to download pre-built binaries
-  version = '0.9.1',
+  version = '0.11.0',
   -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
   -- build = 'cargo build --release',
   -- If you use nix, you can build from source using latest nightly rust with:
   -- build = 'nix run .#build-plugin',
 
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
   opts = {
     completion = {
-      list = {
-        selection = "auto_insert"
-      },
+      -- list = {
+      --   selection = "auto_insert"
+      -- },
       keyword = {
         range = 'full'
       },
@@ -87,14 +89,15 @@ return {
         'fallback' },
     },
     snippets = {
-      expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-      active = function(filter)
-        if filter and filter.direction then
-          return require('luasnip').jumpable(filter.direction)
-        end
-        return require('luasnip').in_snippet()
-      end,
-      jump = function(direction) require('luasnip').jump(direction) end,
+      preset = 'luasnip'
+      -- expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+      -- active = function(filter)
+      --   if filter and filter.direction then
+      --     return require('luasnip').jumpable(filter.direction)
+      --   end
+      --   return require('luasnip').in_snippet()
+      -- end,
+      -- jump = function(direction) require('luasnip').jump(direction) end,
     },
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -109,14 +112,14 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'luasnip', 'lsp', 'path', 'buffer' },
+      default = { 'snippets', 'lsp', 'path', 'buffer' },
       providers = {
-        luasnip = {
-          score_offset = 100
-        },
-        -- snippet = {
-        --   score_offset = 80
+        -- luasnip = {
+        --   score_offset = 100
         -- },
+        snippets = {
+          score_offset = 80
+        },
         lsp = {
           score_offset = 60,
           timeout_ms = 5000
