@@ -40,7 +40,7 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>gr", ":Telescope lsp_references<cr>", { buffer = bufnr, desc = "Open LSP references in Telescope" })
 
   -- Signature help
-  map("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
+  -- map("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
 
   -- Workspace activities
   map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { buffer = bufnr })
