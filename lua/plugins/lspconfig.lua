@@ -144,7 +144,6 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.emmet_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        autostart = false,
         filetypes = {
           "css",
           "eelixir",
