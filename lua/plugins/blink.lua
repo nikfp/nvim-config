@@ -16,9 +16,6 @@ return {
   ---@type blink.cmp.Config
   opts = {
     completion = {
-      -- list = {
-      --   selection = "auto_insert"
-      -- },
       keyword = {
         range = 'full'
       },
@@ -42,9 +39,9 @@ return {
       ["<esc>"] = { 'hide', 'fallback' },
       ["<Tab>"] = { 'select_and_accept', 'fallback' },
       ["<C-n>"] = {
-        function(_)
-          if require("luasnip").locally_jumpable(1) then
-            require("luasnip").jump(1)
+        function(cmp) 
+          if vim.snippet.active({direction = 1}) then
+            vim.snippet.jump(1)
             return true
           else
             return false
@@ -54,9 +51,9 @@ return {
         'fallback'
       },
       ["<C-p>"] = {
-        function(_)
-          if require("luasnip").locally_jumpable(-1) then
-            require("luasnip").jump(-1)
+        function(cmp) 
+          if vim.snippet.active({direction = -1}) then
+            vim.snippet.jump(-1)
             return true
           else
             return false
@@ -90,14 +87,6 @@ return {
     },
     snippets = {
       preset = 'luasnip'
-      -- expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-      -- active = function(filter)
-      --   if filter and filter.direction then
-      --     return require('luasnip').jumpable(filter.direction)
-      --   end
-      --   return require('luasnip').in_snippet()
-      -- end,
-      -- jump = function(direction) require('luasnip').jump(direction) end,
     },
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups

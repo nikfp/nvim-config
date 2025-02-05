@@ -30,6 +30,7 @@ return {
       ),
       s("desc", fmt([[{{ desc = "{}"}}]], { i(1) })),
       s("map", fmt([[map("{}", "{}", {}{})]], { c(1, { t("n"), t("v"), t("i"), t("c") }), i(2), i(3), i(4) })),
+      s("testing", fmt([[write a thing {}, and then another {}: {}]], {i(1), i(2), i(0)}))
     })
     -- JAVASCRIPT SNIPPETS
     ls.add_snippets("javascript", {
