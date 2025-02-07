@@ -8,12 +8,12 @@ M.initialize = function()
   local icons = require("nikp.utils.system_icons")
   wk.add({
     { "<space>",   name = "Lua helpers" },
-    { "<leader>b", name = "Spelunk",            icon = icons.Bookmark },
+    { "<leader>a", name = "Code Companion",     icon = icons.AI },
     { "<leader>c", name = "Changing things",    icon = icons.Edit },
     { "<leader>d", name = "Diagnostics",        icon = icons.Stethoscope },
     { "<leader>f", name = "Finding things" },
     { "<leader>g", name = "Going places",       icon = icons.Travel },
-    { "<leader>h", name = "Harpoon",            icon = icons.Harpoon },
+    { "<leader>h", name = "Spelunk",            icon = icons.Bookmark },
     { "<leader>m", name = "Meta-functions",     icon = icons.Meta },
     { "<leader>q", name = "Quickfix" },
     { "<leader>r", name = "Run things",         icon = icons.Run },
@@ -180,6 +180,18 @@ M.initialize = function()
     { expr = true, silent = true, desc = "Open Codeium Chat" })
 
   map("n", "<leader>uct", ":CodeiumToggle<cr>", { desc = "Toggle Codeium" })
+
+  -- <<<CodeCompanion>>>
+  map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>",
+    { noremap = true, silent = true, desc = "CodeCompanion Actions Pallete" })
+  map({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<cr>",
+    { noremap = true, silent = true, desc = "CodeCompanion Inline Assistant" })
+  map({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>",
+    { noremap = true, silent = true, desc = "CodeCompanion Chat Window" })
+  map("v", "<leader>ap", "<cmd>CodeCompanionChat Add<cr>",
+    { noremap = true, silent = true, desc = "Add Vis Selection to Chat Window" })
+  -- Expand 'cc' into 'CodeCompanion' in the command line
+  vim.cmd([[cab cc CodeCompanion]])
 
   -- <<< INCLINE >>>
   map("n", "<leader>ui", function()
