@@ -30,7 +30,7 @@ return {
           ollama = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                url = "http://192.168.1.116:1234", -- optional: default value is ollama url http://127.0.0.1:11434
+                url = "http://localhost:1234", -- optional: default value is ollama url http://127.0.0.1:11434
                 api_key = "OpenAI_API_KEY",        -- optional: if your endpoint is authenticated
                 chat_url = "/v1/chat/completions", -- optional: default value, override if different
               },
