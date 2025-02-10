@@ -21,7 +21,7 @@ return {
         },
         strategies = {
           chat = {
-            adapter = "ollama",
+            adapter = "openai",
             keymaps = {
               stop = {
                 modes = { n = "<C-c>", i = "<C-c>" }
@@ -42,11 +42,11 @@ return {
             },
           },
           inline = {
-            adapter = "ollama",
+            adapter = "openai",
           },
         },
         adapters = {
-          ollama = function()
+          openai = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
                 url = "http://localhost:1234",     -- optional: default value is ollama url http://127.0.0.1:11434
