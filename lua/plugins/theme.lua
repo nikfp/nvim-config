@@ -58,6 +58,10 @@ return {
         return "󰌘 " .. base
       end
 
+      local codecompanion_lualine = require("nikp.utils.codecompanion_lualine")
+
+      codecompanion_lualine:init()
+
       require("lualine").setup({
         options = {
           theme = 'auto',
@@ -79,10 +83,14 @@ return {
           },
           lualine_y = {
             function()
+              return codecompanion_lualine:update_status()
+            end,
+            function()
               -- get codeium status as local
               local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
               return " " .. status
             end
+
           },
           lualine_z = {
             lualine_lsp,

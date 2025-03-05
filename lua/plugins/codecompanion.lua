@@ -8,9 +8,28 @@ return {
     event = "UIEnter",
     config = function()
       require("codecompanion").setup({
+        display = {
+          chat = {
+            window = {
+              number = true,
+              numberwidth = 3,
+              relativenumber = true,
+              linebreak = true,
+              breakindent = true
+            }
+          }
+        },
         strategies = {
           chat = {
-            adapter = "ollama",
+            adapter = "openai",
+            keymaps = {
+              stop = {
+                modes = { n = "<C-c>", i = "<C-c>" }
+              },
+              close = {
+                modes = { n = "q" }
+              }
+            },
             slash_commands = {
               ["file"] = {
                 callback = "strategies.chat.slash_commands.file",
@@ -23,14 +42,14 @@ return {
             },
           },
           inline = {
-            adapter = "ollama",
+            adapter = "openai",
           },
         },
         adapters = {
-          ollama = function()
+          openai = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                url = "http://192.168.1.116:1234", -- optional: default value is ollama url http://127.0.0.1:11434
+                url = "http://localhost:1234",     -- optional: default value is ollama url http://127.0.0.1:11434
                 api_key = "OpenAI_API_KEY",        -- optional: if your endpoint is authenticated
                 chat_url = "/v1/chat/completions", -- optional: default value, override if different
               },
