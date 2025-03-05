@@ -87,6 +87,11 @@ M.on_attach = function(client, bufnr)
   end, { desc = "Toggle Emmet LSP Active / Inactive" })
 end
 
+-- Activate codelens runner if available
+map("n", "<leader>ct", function()
+  vim.lsp.codelens.run()
+end, { desc = "Run codelens action if available" })
+
 M.diagnostic_config = {
   virtual_text = {
     prefix = "●",

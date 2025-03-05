@@ -331,7 +331,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           enable = true,
           settings = elixirls.settings {
             dialyzerEnabled = false,
-            enableTestLenses = false,
+            enableTestLenses = true,
           },
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
