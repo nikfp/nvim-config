@@ -1,5 +1,6 @@
 local popup = require("nikp.utils.popup")
 local map = require("nikp.keymaps.utils").map
+local utils = require'nikp.keymaps.utils'
 local M = {}
 local builtin = require("telescope.builtin")
 
@@ -23,6 +24,9 @@ M.initialize = function()
     { "<leader>w", name = "Workspace" },
   })
   wk.setup()
+
+  -- <<< TODO >>>
+  map("n", "<leader>ld", utils.setTodo, { desc = "Set Todo from current line"})
 
   -- <<< FINDING THINGS >>>
 

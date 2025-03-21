@@ -12,6 +12,8 @@ vim.deprecate = function() end
 vim.g.codeium_disable_bindings = 1
 vim.g.codeium_enabled = false
 
+-- include pnpm in vim bin locations
+vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.fnamemodify(vim.fn.system('pnpm config get prefix'), ':h') .. '/bin'
 
 -- local function no_paste(_)
 --   return function(_)
