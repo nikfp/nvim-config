@@ -118,6 +118,14 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
+
+          map("n", "<leader>ru", function()
+            -- Get the current file to inject into the command
+            -- popup.output_command would try to expand the file
+            -- for it's own buffer otherwise
+            local current_file = vim.fn.expand("%:p:")
+            popup.output_command(":!node " .. current_file)
+          end, { desc = "Run current file using node.js" })
         end,
         handlers = {
           ["textDocument/publishDiagnostics"] = diagnostics_handler
