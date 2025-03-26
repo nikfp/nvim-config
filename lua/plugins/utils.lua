@@ -83,14 +83,6 @@ return {
     end,
   },
   {
-    "shortcuts/no-neck-pain.nvim",
-    event = "UIEnter",
-    config = function()
-      require("no-neck-pain").setup()
-    end,
-  },
-
-  {
     "aserowy/tmux.nvim",
     config = function()
       local os_tmux = vim.env.TMUX

@@ -93,11 +93,6 @@ M.initialize = function()
   map("n", "<leader>srd", require("nikp.utils.resize").dec_height, { desc = "Decrease window height" })
   map("n", "<leader>srw", require("nikp.utils.resize").inc_width, { desc = "Increase window width" })
   map("n", "<leader>srn", require("nikp.utils.resize").dec_width, { desc = "Decrease window width" })
-  map("n", "<leader>sc", function()
-    vim.cmd("only")
-    require("no-neck-pain").disable()
-  end, { desc = "Close all but current windows" })
-  map("n", "<leader>sz", ":NoNeckPain<cr>", { desc = "Toggle NoNeckPain" })
 
   -- <<< Quickfix list >>>
   map("n", "<leader>qo", ":copen<cr>", { desc = "Open quickfix list" })
