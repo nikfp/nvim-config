@@ -1,6 +1,6 @@
 local popup = require("nikp.utils.popup")
 local map = require("nikp.keymaps.utils").map
-local utils = require'nikp.keymaps.utils'
+local utils = require 'nikp.keymaps.utils'
 local M = {}
 local builtin = require("telescope.builtin")
 
@@ -26,7 +26,7 @@ M.initialize = function()
   wk.setup()
 
   -- <<< TODO >>>
-  map("n", "<leader>ld", utils.setTodo, { desc = "Set Todo from current line"})
+  map("n", "<leader>ld", utils.setTodo, { desc = "Set Todo from current line" })
 
   -- <<< FINDING THINGS >>>
 
@@ -89,6 +89,7 @@ M.initialize = function()
     local rhs = pos .. "<C-W>w"
     map("n", lhs, rhs, { desc = "Move to window " .. pos })
   end
+  map("n", "<leader>sc", ":only<CR>", { desc = "Close all but current window" })
   map("n", "<leader>sru", require("nikp.utils.resize").inc_height, { desc = "Increase window height" })
   map("n", "<leader>srd", require("nikp.utils.resize").dec_height, { desc = "Decrease window height" })
   map("n", "<leader>srw", require("nikp.utils.resize").inc_width, { desc = "Increase window width" })
@@ -158,6 +159,8 @@ M.initialize = function()
     end
     return "dd"
   end, { expr = true })
+  -- Enter key should save in normal mode
+  map("n", "<Enter>", ":w<CR>", { desc = "Enter key saves in normal mode" })
 
   -- <<<TMUX INTEGRATION >>>
   -- map('n', "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>")
