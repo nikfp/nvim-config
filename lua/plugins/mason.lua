@@ -20,6 +20,7 @@ return {
           -- "emmet-language-server",
           "emmet-ls",
           "eslint-lsp",
+          "expert",
           "gopls",
           "html-lsp",
           "json-lsp",

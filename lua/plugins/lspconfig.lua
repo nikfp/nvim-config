@@ -16,7 +16,7 @@ return {
       "glepnir/lspsaga.nvim",
       "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
-      "elixir-tools/elixir-tools.nvim"
+      -- "elixir-tools/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")
@@ -329,28 +329,39 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       })
 
       -- ELIXIR
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
 
-      elixir.setup {
-        nextls = { enable = false },
-        credo = {},
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = false,
-            enableTestLenses = true,
-          },
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
+      nvim_lsp.lexical.setup({
+        cmd = { 'expert' },
+        root_dir = function(fname)
+          return nvim_lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.cwd()
+        end,
+        filetypes = { "elixir", "eelixir", "heex", "html-heex" }
+      })
 
-            vim.keymap.set("n", "<leader>gd", function()
-              local word = vim.fn.expand("<cword>")
-              require("telescope.builtin").lsp_workspace_symbols({ query = word })
-            end, { buffer = bufnr })
-          end,
-        }
-      }
+
+
+      -- local elixir = require("elixir")
+      -- local elixirls = require("elixir.elixirls")
+
+      -- elixir.setup {
+      --   nextls = { enable = false },
+      --   credo = {},
+      --   elixirls = {
+      --     enable = true,
+      --     settings = elixirls.settings {
+      --       dialyzerEnabled = false,
+      --       enableTestLenses = true,
+      --     },
+      --     on_attach = function(client, bufnr)
+      --       on_attach(client, bufnr)
+      --
+      --       vim.keymap.set("n", "<leader>gd", function()
+      --         local word = vim.fn.expand("<cword>")
+      --         require("telescope.builtin").lsp_workspace_symbols({ query = word })
+      --       end, { buffer = bufnr })
+      --     end,
+      --   }
+      -- }
       --
       --Set completeopt to have a better completion experience
       -- :help completeopt
@@ -364,12 +375,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.api.nvim_set_option("updatetime", 300)
     end,
   },
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    }
-  }
+  -- {
+  --   "elixir-tools/elixir-tools.nvim",
+  --   version = "*",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim"
+  --   }
+  -- }
 }
