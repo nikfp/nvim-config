@@ -112,7 +112,9 @@ return {
     -- end, {silent = true, noremap = true})
 
     ls.setup({
-      delete_check_events = { "InsertLeave", "TextChanged" }
+      delete_check_events = { "InsertLeave" },
+      update_events = { "TextChanged", "TextChangedI" },
+      override_builtin = false
     })
   end,
 }

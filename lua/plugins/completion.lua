@@ -46,14 +46,14 @@ return {
           end
         end, { "i", "s" }),
         ["<C-n>"] = cmp.mapping(function(fallback)
-          if ls.locally_jumpable(1) then
+          if ls.locally_jumpable(1) or ls.jumpable(1) then
             ls.jump(1)
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<C-p>"] = cmp.mapping(function(fallback)
-          if ls.locally_jumpable(-1) then
+          if ls.locally_jumpable(-1) or ls.jumpable(-1) then
             ls.jump(-1)
           else
             fallback()
