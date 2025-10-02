@@ -17,9 +17,9 @@ return {
     local ls = require("luasnip")
     local kind_icons = require("nikp.utils.kind_icons")
 
-    cmp.config.formatting = {
-      format = require("tailwindcss-colorizer-cmp").formatter
-    }
+    -- cmp.config.formatting = {
+    --   format = require("tailwindcss-colorizer-cmp").formatter
+    -- }
 
     cmp.setup({
       snippet = {
