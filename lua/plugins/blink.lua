@@ -97,7 +97,10 @@ return {
       ["<Tab>"] = { 'select_and_accept', 'fallback' },
       ["<C-n>"] = {
         function(_)
-          if vim.snippet.active({ direction = 1 }) then
+          if require("luasnip").jumpable(1) then
+            require("luasnip").jump(1)
+            return true
+          elseif vim.snippet.active({ direction = 1 }) then
             vim.snippet.jump(1)
             return true
           else
@@ -109,7 +112,10 @@ return {
       },
       ["<C-p>"] = {
         function(_)
-          if vim.snippet.active({ direction = -1 }) then
+          if require("luasnip").jumpable(-1) then
+            require("luasnip").jump(-1)
+            return true
+          elseif vim.snippet.active({ direction = -1 }) then
             vim.snippet.jump(-1)
             return true
           else
@@ -143,7 +149,7 @@ return {
         'fallback' },
     },
     snippets = {
-      preset = 'luasnip'
+      preset = 'luasnip',
     },
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
