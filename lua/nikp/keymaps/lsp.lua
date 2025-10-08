@@ -76,7 +76,7 @@ M.on_attach = function(client, bufnr)
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
   -- Toggle Emmet LSP
-  map("n", "<leader>ue", function()
+  map("n", "<leader>te", function()
     local toggler = require('nikp.utils.lsp_toggler')
     local emmet_id = toggler.get_lsp_num("emmet_ls")
     if (emmet_id == 0) then

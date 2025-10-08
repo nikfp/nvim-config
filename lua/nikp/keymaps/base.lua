@@ -7,21 +7,25 @@ local builtin = require("telescope.builtin")
 M.initialize = function()
   local wk = require("which-key")
   local icons = require("nikp.utils.system_icons")
+  local ls = require("luasnip")
   wk.add({
-    { "<space>",   name = "Lua helpers" },
-    { "<leader>a", name = "Code Companion",     icon = icons.AI },
-    { "<leader>c", name = "Changing things",    icon = icons.Edit },
-    { "<leader>d", name = "Diagnostics",        icon = icons.Stethoscope },
-    { "<leader>f", name = "Finding things" },
-    { "<leader>g", name = "Going places",       icon = icons.Travel },
-    { "<leader>h", name = "Spelunk",            icon = icons.Bookmark },
-    { "<leader>m", name = "Meta-functions",     icon = icons.Meta },
-    { "<leader>q", name = "Quickfix" },
-    { "<leader>r", name = "Run things",         icon = icons.Run },
-    { "<leader>s", name = "Controls splits",    icon = icons.Split },
-    { "<leader>t", name = "Tailwind utilities", icon = icons.Tailwind },
-    { "<leader>u", name = "Utilities",          icon = icons.Utilities },
-    { "<leader>w", name = "Workspace" },
+    { "<space>",    name = "Lua helpers" },
+    { "<leader>a",  name = "Code Companion",      icon = icons.AI },
+    { "<leader>c",  name = "Changing things",     icon = icons.Edit },
+    { "<leader>d",  name = "Diagnostics",         icon = icons.Stethoscope },
+    { "<leader>f",  name = "Finding things" },
+    { "<leader>g",  name = "Going places",        icon = icons.Travel },
+    { "<leader>h",  name = "Spelunk",             icon = icons.Bookmark },
+    { "<leader>m",  name = "Meta-functions",      icon = icons.Meta },
+    { "<leader>q",  name = "Quickfix" },
+    { "<leader>r",  name = "Run things",          icon = icons.Run },
+    { "<leader>s",  name = "Controls splits",     icon = icons.Split },
+    { "<leader>sr", name = "Control split sizes", icon = icons.Split },
+    { "<leader>t",  name = "Toggle Things" },
+    { "<leader>u",  name = "Utilities",           icon = icons.Utilities },
+    { "<leader>uc", name = "Codeium",             icon = icons.AI },
+    { "<leader>ut", name = "Tailwind Utilities",  icon = icons.Tailwind },
+    { "<leader>w",  name = "Workspace" },
   })
   wk.setup()
 
@@ -68,13 +72,13 @@ M.initialize = function()
   end, { desc = "Run cht.sh" })
 
   -- <<< Terminal Management >>>
-  map("n", "<leader>utr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
-  map("n", "<leader>utl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
+  -- map("n", "<leader>utr", "<C-w>v<C-w>l:term<cr>", { desc = "Open terminal in split to right" })
+  -- map("n", "<leader>utl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
   map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
 
   -- <<< Tailwind Things >>>
-  map("n", "<leader>tc", ":TailwindConcealToggle", { desc = "Toggle Tailwind Concealing" })
-  map("n", "<leader>ts", ":TailwindSort", { desc = "Sort Tailwind Classes" })
+  map("n", "<leader>utc", ":TailwindConcealToggle", { desc = "Toggle Tailwind Concealing" })
+  map("n", "<leader>uts", ":TailwindSort", { desc = "Sort Tailwind Classes" })
 
   -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
@@ -196,7 +200,7 @@ M.initialize = function()
   vim.cmd([[cab cc CodeCompanion]])
 
   -- <<< INCLINE >>>
-  map("n", "<leader>ui", function()
+  map("n", "<leader>ti", function()
     require("incline").toggle()
   end, { desc = "Toggle Incline" })
   -- <<< BASE LSP KEYMAPS >>>

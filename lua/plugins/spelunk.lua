@@ -13,6 +13,8 @@ return
 			base_mappings = {
 				toggle = '<leader>ht',
 				add = '<leader>ha',
+				next_bookmark = '<leader>hn',
+				prev_bookmark = '<leader>hp',
 				search_bookmarks = '<leader>hf'
 			},
 			window_mappings = {
