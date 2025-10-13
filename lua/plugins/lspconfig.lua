@@ -16,7 +16,7 @@ return {
       "glepnir/lspsaga.nvim",
       "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
-      "elixir-tools/elixir-tools.nvim"
+      "nikfp/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")
@@ -24,7 +24,7 @@ return {
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
-      -- require("notifier").setup()
+      require("notifier").setup()
       -- require("lint")
 
       -- Common UI settings related to LSP
@@ -66,7 +66,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       -- local capabilities =
-        --   require("blink.cmp").get_lsp_capabilities()
+      --   require("blink.cmp").get_lsp_capabilities()
 
       -- PER LANGUAGE SETUPS
 
@@ -152,6 +152,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       nvim_lsp.emmet_ls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        autostart = false,
         filetypes = {
           "css",
           "eelixir",
@@ -337,13 +338,25 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
             dialyzerEnabled = false,
             enableTestLenses = true,
           },
+          commands = {
+            ["elixir.lens.test.run"] = function(args)
+              local test_command = require("nikp.utils.mix_test_locator").test(args)
+              require("nikp.utils.floaterm").open_floating_terminal(test_command, { title = "Mix Test Output" })
+            end,
+          },
+
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
-      
+
             vim.keymap.set("n", "<leader>gd", function()
               local word = vim.fn.expand("<cword>")
               require("telescope.builtin").lsp_workspace_symbols({ query = word })
             end, { buffer = bufnr })
+
+            -- vim.keymap.set("n", "<leader>rt", function()
+            --   local test_command = require("nikp.utils.mix_test_locator").test(command)
+            --   popup.output_command(test_command)
+            -- end)
           end,
         }
       }
@@ -361,7 +374,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
     end,
   },
   {
-    "elixir-tools/elixir-tools.nvim",
+    "nikfp/elixir-tools.nvim",
     version = "*",
     event = "VeryLazy",
     dependencies = {
