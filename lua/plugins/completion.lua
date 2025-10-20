@@ -141,6 +141,9 @@ return {
       completion = {
         autocomplete = false,
       },
+      window = {
+        documentation = cmp.config.window.bordered()
+      }
     })
     vim.cmd([[
       augroup CmpDebounceAuGroup
