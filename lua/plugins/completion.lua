@@ -20,6 +20,17 @@ return {
     -- cmp.config.formatting = {
     --   format = require("tailwindcss-colorizer-cmp").formatter
     -- }
+    --
+    local sources = {
+      { name = "luasnip" },
+      { name = "nvim_lsp" },
+      { name = "nvim_lsp_signature_help" },
+      { name = "nvim_lua" },
+      { name = "path" },
+      { name = "buffer" },
+    }
+
+    local source_index = 0
 
     cmp.setup({
       snippet = {
@@ -30,7 +41,23 @@ return {
       mapping = {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-Space>"] = cmp.mapping(function(_fallback)
+          if cmp.visible() then
+            source_index = (source_index % #sources) + 1
+            cmp.complete({
+              config = {
+                sources = { sources[source_index] }
+              }
+            })
+          else
+            source_index = 0
+            cmp.complete({
+              config = {
+                sources = sources
+              }
+            })
+          end
+        end),
         ["<esc>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.abort()
@@ -93,14 +120,7 @@ return {
           end
         end,
       },
-      sources = cmp.config.sources({
-        { name = "luasnip" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lsp_signature_help" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        { name = "buffer" },
-      }),
+      sources = sources,
       formatting = {
         fields = { "kind", "abbr", "menu", },
         -- format = require("tailwindcss-colorizer-cmp").formatter,

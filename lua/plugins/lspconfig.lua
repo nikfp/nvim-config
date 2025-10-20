@@ -16,7 +16,7 @@ return {
       "glepnir/lspsaga.nvim",
       "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
-      "nikfp/elixir-tools.nvim"
+      "elixir-tools/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")
@@ -374,7 +374,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
     end,
   },
   {
-    "nikfp/elixir-tools.nvim",
+    "elixir-tools/elixir-tools.nvim",
     version = "*",
     event = "VeryLazy",
     dependencies = {

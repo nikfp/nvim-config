@@ -88,7 +88,7 @@ M.on_attach = function(client, bufnr)
 end
 
 -- Activate codelens runner if available
-map("n", "<leader>ct", function()
+map("n", "<leader>rt", function()
   vim.lsp.codelens.run()
 end, { desc = "Run codelens action if available" })
 
