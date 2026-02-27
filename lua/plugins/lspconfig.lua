@@ -21,6 +21,7 @@ return {
     config = function()
       local popup = require("nikp.utils.popup")
       local nvim_lsp = require("lspconfig")
+      local configs = require("lspconfig.configs")
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
@@ -175,19 +176,26 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         filetypes = { "javascriptreact", "typescriptreact" }
       })
-
-      -- TAILWINDCSS
       nvim_lsp.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
-        settings = {
-          tailwindCSS = {
-            includeLanguages = {
-              elixir = "html-eex",
-              eelixir = "html-eex",
-              heex = "html-eex",
-            },
+        root_dir = function(fname)
+          local util = require("lspconfig.util")
+          -- Fall back to mix.exs for Phoenix projects without a TW config file
+          return util.root_pattern(
+            "tailwind.config.js",
+            "tailwind.config.ts",
+            "assets/tailwind.config.js",
+            "postcss.config.js",
+            "mix.exs"
+          )(fname)
+        end,
+        init_options = {
+          userLanguages = {
+            elixir = "phoenix-heex",
+            eelixir = "html-eex",
+            heex = "phoenix-heex",
           },
         },
       })
@@ -348,10 +356,10 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
 
-            vim.keymap.set("n", "<leader>gd", function()
-              local word = vim.fn.expand("<cword>")
-              require("telescope.builtin").lsp_workspace_symbols({ query = word })
-            end, { buffer = bufnr })
+            -- vim.keymap.set("n", "<leader>gd", function()
+            --   local word = vim.fn.expand("<cword>")
+            --   require("telescope.builtin").lsp_workspace_symbols({ query = word })
+            -- end, { buffer = bufnr })
 
             -- vim.keymap.set("n", "<leader>rt", function()
             --   local test_command = require("nikp.utils.mix_test_locator").test(command)
@@ -360,6 +368,21 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           end,
         }
       }
+
+      -- if not configs.phoenix_pulse then
+      --   configs.phoenix_pulse = {
+      --     default_config = {
+      --       cmd = { 'node', '/Users/nikp/github/vscode-phoenix-pulse/lsp/dist/server.js', '--stdio' },
+      --       filetypes = { 'elixir', 'eelixir', 'heex' },
+      --       root_dir = nvim_lsp.util.root_pattern('mix.exs')
+      --     }
+      --   }
+      -- end
+      --
+      -- nvim_lsp.phoenix_pulse.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities
+      -- })
       --
       --Set completeopt to have a better completion experience
       -- :help completeopt

@@ -71,7 +71,7 @@ M.on_attach = function(client, bufnr)
     if (tailwind_id == 0) then
       toggler.start_server("tailwindcss")
     else
-      toggler.stop_server(tailwind_id)
+      toggler.stop_server("tailwindcss")
     end
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
