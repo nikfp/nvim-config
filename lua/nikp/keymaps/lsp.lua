@@ -80,7 +80,8 @@ M.on_attach = function(client, bufnr)
     local toggler = require('nikp.utils.lsp_toggler')
     local emmet_id = toggler.get_lsp_num("emmet_ls")
     if (emmet_id == 0) then
-      toggler.start_server("emmet_ls")
+      local config = require("nikp.utils.emmet_config").build_config()
+      vim.lsp.start(config)
     else
       toggler.stop_server("emmet_ls")
     end

@@ -154,6 +154,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
+        cmd = { "emmet-ls", "--stdio" },
         filetypes = {
           "css",
           "eelixir",
@@ -168,7 +169,14 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
           "sass",
           "scss",
           "svelte",
-          "typescriptreact" }
+          "typescriptreact" },
+        init_options = {
+          userLanguages = {
+            elixir = "html-eex",
+            eelixir = "html-eex",
+            heex = "html-eex",
+          }
+        }
       })
 
       -- CSS MODULES
