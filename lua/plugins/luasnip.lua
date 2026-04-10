@@ -96,7 +96,10 @@ return {
           ]]
         , { i(1), i(2), i(0), utils.repeat_node(1) })),
       s("hst", fmt([[<{} {} />]], { i(1), i(0) })),
-      s("ha", fmt([[{}={{@{}{}}} {}]], { i(1), utils.repeat_node(1), i(2), i(0) }))
+      s("ha", fmt([[{}={{@{}{}}} {}]], { i(1), utils.repeat_node(1), i(2), i(0) })),
+      s("ok", fmt([[{{:ok, {} }}{}]], {i(1), i(0)})),
+      s("noreply", fmt([[{{:noreply, {} }}{}]], {i(1), i(0)})),
+      s("reply", fmt([[{{:reply, {} }}{}]], {i(1), i(0)}))
     })
 
     ls.filetype_extend("heex", { "elixir" })
