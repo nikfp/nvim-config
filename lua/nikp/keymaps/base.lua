@@ -40,7 +40,14 @@ M.initialize = function()
   map("n", "<leader>fb", builtin.buffers, { desc = "Search for active buffers" })
   map("n", "<leader>fh", builtin.help_tags, { desc = "Search for help tags" })
   map("n", "<leader>fd", function()
-      builtin.find_files({ find_command = { "find", "-type", "d", "!", "-name", "'node_modules'" } })
+      builtin.find_files({
+        find_command = {
+        "fd",
+        "--type", "d",
+        },
+        theme = "dropdown",
+        prompt_title = "Find Directories"
+      })
     end,
     { desc = "Search for directories" })
   map("n", "<leader>f/", function()
@@ -64,6 +71,7 @@ M.initialize = function()
 
   -- <<< GIT Stuff >>>
   map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
+  map("n", "<leader>ub", ":GitSigns blame", { desc = "Toggle line blame for Git" })
 
   -- <<< SHOWING THINGS >>>
   vim.keymap.set("n", "<leader>fm", ":Telescope keymaps<cr>", { desc = "Show list of current user keymaps" })
@@ -164,7 +172,7 @@ M.initialize = function()
     return "dd"
   end, { expr = true })
   -- Enter key should save in normal mode
-  map("n", "<Enter>", ":w<CR>", { desc = "Enter key saves in normal mode" })
+  -- map("n", "<Enter>", ":w<CR>", { desc = "Enter key saves in normal mode" })
 
   -- <<<TMUX INTEGRATION >>>
   -- map('n', "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>")
