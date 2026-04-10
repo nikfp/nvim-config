@@ -184,6 +184,8 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         capabilities = capabilities,
         filetypes = { "javascriptreact", "typescriptreact" }
       })
+
+      -- TAILWIND
       nvim_lsp.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -201,9 +203,9 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
         init_options = {
           userLanguages = {
-            elixir = "phoenix-heex",
+            elixir = "html-eex",
             eelixir = "html-eex",
-            heex = "phoenix-heex",
+            heex = "html-eex",
           },
         },
       })
