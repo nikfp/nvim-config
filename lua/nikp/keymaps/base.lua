@@ -143,6 +143,8 @@ M.initialize = function()
     local oil = require("oil")
     oil.open(oil.get_current_dir())
   end, { desc = "Open Oil file manager in directory of current buffer" })
+  -- Toggle Nvim-Tree
+  map("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree Sidebar" })
   -- Make pasting easier - don't yank replaced word to register
   map("n", "<leader>mp", '"_diwp', { desc = "Paste over word and discard deleted word" })
   -- Yank to and Paste from system clipboard
