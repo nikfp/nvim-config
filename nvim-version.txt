@@ -1,4 +1,5 @@
+Version before 6/3/26 
 NVIM v0.12.0-dev-3267+gb95aedeae4-Homebrew
 Build type: Release
 LuaJIT 2.1.1753364724
-Run "nvim -V1 -v" for more info
+

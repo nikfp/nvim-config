@@ -27,7 +27,12 @@ M.initialize = function()
     { "<leader>ut", name = "Tailwind Utilities",  icon = icons.Tailwind },
     { "<leader>w",  name = "Workspace" },
   })
-  wk.setup()
+  wk.setup({
+    keys = {
+      scroll_down = "<c-n>",
+      scroll_up = "<c-p"
+    }
+  })
 
   -- <<< TODO >>>
   map("n", "<leader>ld", utils.setTodo, { desc = "Set Todo from current line" })

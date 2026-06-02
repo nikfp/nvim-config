@@ -135,11 +135,8 @@ return {
     end
   },
   {
-    "SirZenith/oil-vcs-status",
-    dependencies = {
-      {
-        "stevearc/oil.nvim"
-      }
-    }
+    "benomahony/oil-git.nvim",
+    dependencies = { "stevearc/oil.nvim" },
+    -- No opts or config needed! Works automatically
   }
 }
