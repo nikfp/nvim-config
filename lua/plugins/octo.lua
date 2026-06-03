@@ -1,6 +1,5 @@
 return {
-  "danieltangnes/octo.nvim",
-  branch = "fix/mutations-duplicate-timeline-fragments",
+  "pwntester/octo.nvim",
   cmd = "Octo",
   opts = {
     -- or "fzf-lua" or "snacks" or "default"
