@@ -10,6 +10,7 @@ local system_icons = {
   Folder = "󰉋",
   Harpoon = "󱡅",
   Meta = "",
+  Octo = "",
   Run = "󰑮",
   Split = "",
   Stethoscope = "",

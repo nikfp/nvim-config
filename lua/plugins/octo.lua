@@ -35,6 +35,11 @@ return {
       end,
       desc = "Search GitHub",
     },
+    {
+      "<leader>om",
+      "<CMD>Octo<CR>",
+      desc = "Open Octo Command Menu"
+    }
   },
   dependencies = {
     "nvim-lua/plenary.nvim",

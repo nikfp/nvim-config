@@ -17,6 +17,7 @@ M.initialize = function()
     { "<leader>g",  name = "Going places",        icon = icons.Travel },
     { "<leader>h",  name = "Spelunk",             icon = icons.Bookmark },
     { "<leader>m",  name = "Meta-functions",      icon = icons.Meta },
+    { "<leader>o",  name = "Octo (GH) things",    icon = icons.Octo },
     { "<leader>q",  name = "Quickfix" },
     { "<leader>r",  name = "Run things",          icon = icons.Run },
     { "<leader>s",  name = "Controls splits",     icon = icons.Split },
@@ -47,8 +48,8 @@ M.initialize = function()
   map("n", "<leader>fd", function()
       builtin.find_files({
         find_command = {
-        "fd",
-        "--type", "d",
+          "fd",
+          "--type", "d",
         },
         theme = "dropdown",
         prompt_title = "Find Directories"
