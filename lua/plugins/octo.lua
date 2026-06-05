@@ -36,9 +36,14 @@ return {
       desc = "Search GitHub",
     },
     {
-      "<leader>om",
+      "<leader>oc",
       "<CMD>Octo<CR>",
       desc = "Open Octo Command Menu"
+    },
+    {
+      "<leader>om",
+      "<CMD>Octo milestone list<cr>",
+      desc = "List milestones (will open GH)"
     }
   },
   dependencies = {
