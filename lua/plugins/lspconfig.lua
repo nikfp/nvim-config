@@ -8,20 +8,15 @@ return {
     "neovim/nvim-lspconfig",
     event = "UIEnter",
     dependencies = {
-      -- "jose-elias-alvarez/null-ls.nvim",
       "glepnir/lspsaga.nvim",
       "stevearc/conform.nvim",
       "windwp/nvim-ts-autotag",
-      -- "leafoftree/vim-svelte-plugin",
-      "glepnir/lspsaga.nvim",
-      "simrat39/rust-tools.nvim",
+      -- "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
       "elixir-tools/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")
-      local nvim_lsp = require("lspconfig")
-      local configs = require("lspconfig.configs")
       local on_attach = require("nikp.keymaps.lsp").on_attach
       local diagnostic_config = require("nikp.keymaps.lsp").diagnostic_config
       local map = require("nikp.keymaps.utils").map
@@ -72,11 +67,13 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       -- PER LANGUAGE SETUPS
 
       -- C and Variants
-      nvim_lsp.clangd.setup({
+      vim.lsp.config('clangd', {
         capabilities = capabilities,
         on_attach = on_attach,
         lsp_flags = lsp_flags,
       })
+
+      vim.lsp.enable('clangd')
 
       -- THIS FIXES THE ORDER OF TYPESCRIPT DIAGNOSTIC LINES
       -- PUT THE MOST RELEVANT INFO FIRST
@@ -115,7 +112,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       end
 
       -- TYPESCRIPT
-      nvim_lsp.ts_ls.setup({
+      vim.lsp.config('ts_ls', {
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           client.server_capabilities.documentFormattingProvider = false
@@ -137,20 +134,26 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         single_file_support = true,
       })
 
+      vim.lsp.enable('ts_ls')
+
       -- HTML
-      nvim_lsp.html.setup({
+      vim.lsp.config('html', {
         capabilities = capabilities,
         on_attach = on_attach
       })
+
+      vim.lsp.enable('html')
 
       -- CSS
-      nvim_lsp.cssls.setup({
+      vim.lsp.config('cssls', {
         capabilities = capabilities,
         on_attach = on_attach
       })
 
+      
+
       -- EMMET
-      nvim_lsp.emmet_ls.setup({
+      vim.lsp.config('emmet_ls', {
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
@@ -179,14 +182,18 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         }
       })
 
+      vim.lsp.enable('emmet_ls')
+
       -- CSS MODULES
-      nvim_lsp.cssmodules_ls.setup({
+      vim.lsp.config('cssmodules_ls', {
         capabilities = capabilities,
         filetypes = { "javascriptreact", "typescriptreact" }
       })
 
+      vim.lsp.enable('cssmodules_ls')
+
       -- TAILWIND
-      nvim_lsp.tailwindcss.setup({
+      vim.lsp.config('tailwindcss', {
         capabilities = capabilities,
         on_attach = on_attach,
         autostart = false,
@@ -210,74 +217,84 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         },
       })
 
+      vim.lsp.enable('tailwindcss')
+
       -- ESLINT
-      nvim_lsp.eslint.setup({
+      vim.lsp.config('eslint', {
         capabilities = capabilities,
         on_attach = on_attach
       })
 
+      vim.lsp.enable('eslint')
+
       --SVELTE
-      nvim_lsp.svelte.setup({
+      vim.lsp.config('svelte', {
         on_attach = on_attach,
         flags = lsp_flags,
       })
       vim.g.vim_svelte_plugin_use_typescript = 1
 
+      vim.lsp.enable('svelte')
+
       -- PRISMA
-      nvim_lsp.prismals.setup({
+      vim.lsp.config('prismals', {
         capabilities = capabilities,
         on_attach = on_attach,
       })
 
+      vim.lsp.enable('prismals')
+
       -- JSON
-      nvim_lsp.jsonls.setup({
+      vim.lsp.config('jsonls', {
         capabilities = capabilities,
         on_attach = on_attach
       })
 
+      vim.lsp.enable('jsonls')
+
       -- RUST
-      local rt = require("rust-tools")
-
-      rt.setup({
-        server = {
-          standalone = true,
-          capabilities = capabilities,
-          on_attach = function(client, bufnr)
-            -- add keymaps for the rest of things
-            on_attach(client, bufnr)
-            -- Hover actions
-            map("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            map("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-            -- easy run code
-            map("n", "<leader>ru", function()
-              popup.output_command(":!cargo run")
-            end)
-            -- easy format
-            map("n", "<leader>cf", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
-            -- add semicolon easily
-            map("n", "<leader>;", "$a;<esc>o")
-          end,
-
-          settings = {
-            ["rust-analyzer"] = {
-              checkOnSave = { command = "clippy" },
-            },
-          },
-        },
-        tools = {
-          reload_workspace_from_cargo_toml = true,
-          inlay_hints = {
-            only_current_line = false,
-            show_parameter_hints = false,
-            other_hints_prefix = "",
-          },
-        },
-        flags = lsp_flags,
-      })
+      -- local rt = require("rust-tools")
+      --
+      -- rt.setup({
+      --   server = {
+      --     standalone = true,
+      --     capabilities = capabilities,
+      --     on_attach = function(client, bufnr)
+      --       -- add keymaps for the rest of things
+      --       on_attach(client, bufnr)
+      --       -- Hover actions
+      --       map("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      --       -- Code action groups
+      --       map("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      --       -- easy run code
+      --       map("n", "<leader>ru", function()
+      --         popup.output_command(":!cargo run")
+      --       end)
+      --       -- easy format
+      --       map("n", "<leader>cf", ":!cargo fmt<cr><cr><cr>:echo 'Running rust formatter'<cr>")
+      --       -- add semicolon easily
+      --       map("n", "<leader>;", "$a;<esc>o")
+      --     end,
+      --
+      --     settings = {
+      --       ["rust-analyzer"] = {
+      --         checkOnSave = { command = "clippy" },
+      --       },
+      --     },
+      --   },
+      --   tools = {
+      --     reload_workspace_from_cargo_toml = true,
+      --     inlay_hints = {
+      --       only_current_line = false,
+      --       show_parameter_hints = false,
+      --       other_hints_prefix = "",
+      --     },
+      --   },
+      --   flags = lsp_flags,
+      -- })
 
       -- LUA
-      nvim_lsp.lua_ls.setup({
+      vim.lsp.config('lua_ls', {
         commands = {
           Format = {
             function()
@@ -308,8 +325,10 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         end,
       })
 
+      vim.lsp.enable('lua_ls')
+
       -- BASH
-      nvim_lsp.bashls.setup({
+      vim.lsp.config('bashls', {
         capabilities = capabilities,
         on_attach = on_attach,
         filetypes = { "sh", "*.bashrc", "shell", "tmux" },
@@ -320,17 +339,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         }
       })
 
-      -- OCAML
-      nvim_lsp.ocamllsp.setup({
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-
-          map("n", "<leader>ru", function()
-            popup.output_command(":!")
-          end)
-        end,
-      })
+      vim.lsp.enable('bashls')
 
       -- ELIXIR
 
@@ -341,43 +350,51 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       --   end,
       --   filetypes = { "elixir", "eelixir", "heex", "html-heex" }
       -- })
+      --
+
+      vim.lsp.config('expert', {
+        on_attach = on_attach, 
+        capabilities = capabilities
+      })
+
+      vim.lsp.enable('expert')
 
 
 
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
-
-      elixir.setup {
-        nextls = { enable = false },
-        credo = {},
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = false,
-            enableTestLenses = true,
-          },
-          commands = {
-            ["elixir.lens.test.run"] = function(args)
-              local test_command = require("nikp.utils.mix_test_locator").test(args)
-              require("nikp.utils.floaterm").open_floating_terminal(test_command, { title = "Mix Test Output" })
-            end,
-          },
-
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-
-            -- vim.keymap.set("n", "<leader>gd", function()
-            --   local word = vim.fn.expand("<cword>")
-            --   require("telescope.builtin").lsp_workspace_symbols({ query = word })
-            -- end, { buffer = bufnr })
-
-            -- vim.keymap.set("n", "<leader>rt", function()
-            --   local test_command = require("nikp.utils.mix_test_locator").test(command)
-            --   popup.output_command(test_command)
-            -- end)
-          end,
-        }
-      }
+      -- local elixir = require("elixir")
+      -- local elixirls = require("elixir.elixirls")
+      --
+      -- elixir.setup {
+      --   nextls = { enable = false },
+      --   credo = {},
+      --   elixirls = {
+      --     enable = true,
+      --     settings = elixirls.settings {
+      --       dialyzerEnabled = false,
+      --       enableTestLenses = true,
+      --     },
+      --     commands = {
+      --       ["elixir.lens.test.run"] = function(args)
+      --         local test_command = require("nikp.utils.mix_test_locator").test(args)
+      --         require("nikp.utils.floaterm").open_floating_terminal(test_command, { title = "Mix Test Output" })
+      --       end,
+      --     },
+      --
+      --     on_attach = function(client, bufnr)
+      --       on_attach(client, bufnr)
+      --
+      --       -- vim.keymap.set("n", "<leader>gd", function()
+      --       --   local word = vim.fn.expand("<cword>")
+      --       --   require("telescope.builtin").lsp_workspace_symbols({ query = word })
+      --       -- end, { buffer = bufnr })
+      --
+      --       -- vim.keymap.set("n", "<leader>rt", function()
+      --       --   local test_command = require("nikp.utils.mix_test_locator").test(command)
+      --       --   popup.output_command(test_command)
+      --       -- end)
+      --     end,
+      --   }
+      -- }
 
       -- if not configs.phoenix_pulse then
       --   configs.phoenix_pulse = {
