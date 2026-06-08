@@ -9,9 +9,21 @@ return {
   },
   keys = {
     {
-      "<leader>oi",
+      "<leader>oil",
       "<CMD>Octo issue list<CR>",
       desc = "List GitHub Issues",
+    },
+    {
+      "<leader>oic",
+      "<CMD>Octo issue create<CR>",
+      desc = "Create Octo Issue"
+    },
+    {
+      "<leader>oim",
+      function()
+        require("nikp.utils.milestones").pick_milestone_issues()
+      end,
+      desc = "List GH issues for a milestone"
     },
     {
       "<leader>op",
@@ -41,10 +53,10 @@ return {
       desc = "Open Octo Command Menu"
     },
     {
-      "<leader>om",
+      "<leader>oml",
       "<CMD>Octo milestone list<cr>",
       desc = "List milestones (will open GH)"
-    }
+    },
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
