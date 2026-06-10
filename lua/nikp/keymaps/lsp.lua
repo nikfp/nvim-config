@@ -67,20 +67,13 @@ M.on_attach = function(client, bufnr)
   -- Toggle Tailwind LSP
   map("n", "<leader>tt", function()
     local tailwind = "tailwindcss"
-    if vim.lsp.is_enabled(tailwind) then
-      vim.cmd(":lsp disable tailwindcss")
-    else
-      vim.lsp.enable(tailwind)
-    end
+    vim.lsp.enable(tailwind, not vim.lsp.is_enabled(tailwind))
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
   -- Toggle Emmet LSP
   map("n", "<leader>te", function()
-    if vim.lsp.is_enabled("emmet_ls") then
-      vim.cmd(":lsp disable emmet_ls")
-    else
-      vim.lsp.enable("emmet_ls")
-    end
+    local emmet = "emmet_ls"
+    vim.lsp.enable(emmet, not vim.lsp.is_enabled(emmet))
   end, { desc = "Toggle Emmet LSP Active / Inactive" })
 end
 
