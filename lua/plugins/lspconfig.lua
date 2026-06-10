@@ -150,13 +150,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         on_attach = on_attach
       })
 
-      
+
 
       -- EMMET
       vim.lsp.config('emmet_ls', {
         capabilities = capabilities,
         on_attach = on_attach,
-        autostart = false,
         cmd = { "emmet-ls", "--stdio" },
         filetypes = {
           "css",
@@ -182,7 +181,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
         }
       })
 
-      vim.lsp.enable('emmet_ls')
+      -- vim.lsp.enable('emmet_ls')
 
       -- CSS MODULES
       vim.lsp.config('cssmodules_ls', {
@@ -193,31 +192,11 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.lsp.enable('cssmodules_ls')
 
       -- TAILWIND
+      -- not enabled by default to allow toggle
       vim.lsp.config('tailwindcss', {
         capabilities = capabilities,
         on_attach = on_attach,
-        autostart = false,
-        root_dir = function(fname)
-          local util = require("lspconfig.util")
-          -- Fall back to mix.exs for Phoenix projects without a TW config file
-          return util.root_pattern(
-            "tailwind.config.js",
-            "tailwind.config.ts",
-            "assets/tailwind.config.js",
-            "postcss.config.js",
-            "mix.exs"
-          )(fname)
-        end,
-        init_options = {
-          userLanguages = {
-            elixir = "html-eex",
-            eelixir = "html-eex",
-            heex = "html-eex",
-          },
-        },
       })
-
-      vim.lsp.enable('tailwindcss')
 
       -- ESLINT
       vim.lsp.config('eslint', {
@@ -353,7 +332,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       --
 
       vim.lsp.config('expert', {
-        on_attach = on_attach, 
+        on_attach = on_attach,
         capabilities = capabilities
       })
 

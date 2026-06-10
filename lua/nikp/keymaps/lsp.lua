@@ -66,24 +66,20 @@ M.on_attach = function(client, bufnr)
 
   -- Toggle Tailwind LSP
   map("n", "<leader>tt", function()
-    local toggler = require('nikp.utils.lsp_toggler')
-    local tailwind_id = toggler.get_lsp_num("tailwindcss")
-    if (tailwind_id == 0) then
-      toggler.start_server("tailwindcss")
+    local tailwind = "tailwindcss"
+    if vim.lsp.is_enabled(tailwind) then
+      vim.cmd(":lsp disable tailwindcss")
     else
-      toggler.stop_server("tailwindcss")
+      vim.lsp.enable(tailwind)
     end
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
   -- Toggle Emmet LSP
   map("n", "<leader>te", function()
-    local toggler = require('nikp.utils.lsp_toggler')
-    local emmet_id = toggler.get_lsp_num("emmet_ls")
-    if (emmet_id == 0) then
-      local config = require("nikp.utils.emmet_config").build_config()
-      vim.lsp.start(config)
+    if vim.lsp.is_enabled("emmet_ls") then
+      vim.cmd(":lsp disable emmet_ls")
     else
-      toggler.stop_server("emmet_ls")
+      vim.lsp.enable("emmet_ls")
     end
   end, { desc = "Toggle Emmet LSP Active / Inactive" })
 end
