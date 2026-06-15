@@ -75,17 +75,6 @@ else
   vim.loader.enable()
 end
 
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("bash_lsp", { clear = true }),
-  pattern = { "*.sh", "*.bash", "*.bashrc" },
-  callback = function(opts)
-    require("lspconfig")
-    vim.cmd(":LspStart bashls")
-    local keymaps = require("nikp.keymaps.lsp")
-    keymaps.on_attach({}, opts.buf)
-  end,
-})
-
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("term", {}),
   callback = function(opts)

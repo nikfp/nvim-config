@@ -402,12 +402,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.api.nvim_set_option("updatetime", 300)
     end,
   },
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim"
-    }
-  }
+  -- {
+  --   "elixir-tools/elixir-tools.nvim",
+  --   version = "*",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim"
+  --   }
+  -- }
 }
