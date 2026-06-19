@@ -58,6 +58,7 @@ return {
         },
       })
 
+      require("nvim-treesitter").install(filetypes)
       require("ts_context_commentstring").setup({})
 
       vim.treesitter.language.register("bash", "tmux")
