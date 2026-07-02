@@ -119,22 +119,6 @@ return {
     end,
   },
   {
-    "utilyre/barbecue.nvim",
-    event = "BufAdd",
-    dependencies = {
-      "SmiteshP/nvim-navic",
-    },
-    config = function()
-      require("barbecue").setup({
-        show_dirname = false,
-        symbols = {
-          separator = "",
-        },
-        theme = "tokyonight",
-      })
-    end,
-  },
-  {
     "b0o/incline.nvim",
     event = "UIEnter",
     config = function()
