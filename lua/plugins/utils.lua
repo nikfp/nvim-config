@@ -62,7 +62,6 @@ return {
       })
     end,
   },
-  { "folke/neodev.nvim" },
   { "kdheepak/lazygit.nvim", event = "VeryLazy" },
   {
     "lewis6991/gitsigns.nvim",
@@ -71,7 +70,7 @@ return {
       require("gitsigns").setup()
     end,
   },
-  { "folke/neodev.nvim", event = "Bufadd *.lua" },
+  { "folke/neodev.nvim",     event = "Bufadd *.lua" },
   {
     "folke/which-key.nvim",
     event = "UIEnter",
@@ -89,6 +88,14 @@ return {
 
       if os_tmux == nil then
         vim.notify("Tmux not detected, skipping integration setup", 2)
+
+        -- Enable title support explicitly
+        vim.opt.title = true
+
+        local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- just folder name
+
+        vim.o.titlestring = string.format("Nvim in %s", cwd)
+
         return
       else
         vim.notify("Tmux detected, setting up integration", 2)
