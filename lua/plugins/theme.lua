@@ -21,12 +21,14 @@ return {
           transparent = true,
         })
         theme = "tokyonight-day"
+        -- vim.api.nvim_set_hl(0, "OilGitModifiedStaged", { fg = "#A97E28" })
       else
         require("tokyonight").setup({
           transparent = true,
         })
         theme = "tokyonight-moon"
       end
+
       vim.opt.termguicolors = true
       vim.cmd("colorscheme " .. theme)
 
@@ -37,8 +39,13 @@ return {
           return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
         end
       end
+
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { fg = "NONE", bg = "NONE", underline = true })
+      vim.api.nvim_set_hl(0, "OilGitModified", { link = "Diagnosticwarn" })
+      vim.api.nvim_set_hl(0, "OilGitAdded", { link = "Character" })
+      vim.api.nvim_set_hl(0, "OilGitUntracked", { link = "PreProc" })
+      vim.api.nvim_set_hl(0, "OilGitRenamed", { link = "Conditional" })
 
       local lualine_lsp = function()
         local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
