@@ -76,7 +76,7 @@ M.initialize = function()
   end
 
   -- <<< GIT Stuff >>>
-  map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
+  -- map("n", "<leader>ug", ":LazyGit<cr>", { desc = "Start LazyGit" })
   map("n", "<leader>ub", ":GitSigns blame", { desc = "Toggle line blame for Git" })
 
   -- <<< SHOWING THINGS >>>
