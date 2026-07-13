@@ -13,6 +13,8 @@ if not vim.loop.fs_stat(lazypath) then
 else
   vim.opt.rtp:prepend(lazypath)
 
+  require('vim._core.ui2').enable({})
+
   require("nikp.utils.set")
   require("lazy").setup("plugins", {
     rocks = {

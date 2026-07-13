@@ -4,7 +4,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 vim.opt.autoindent = true
 vim.opt.backup = false
-vim.opt.cindent = true
+vim.opt.cindent = false
 
 vim.opt.shortmess:append("Ic")
 vim.deprecate = function() end
