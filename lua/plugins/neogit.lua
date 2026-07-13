@@ -23,7 +23,8 @@ return {
     require('neogit').setup({
       mappings = {
         status = {
-          ["<space>"] = "Toggle"
+          ["<space>"] = "Toggle",
+          ["<esc>"] = "Close"
         }
       }
     })
