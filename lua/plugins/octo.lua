@@ -26,7 +26,17 @@ return {
       desc = "List GH issues for a milestone"
     },
     {
-      "<leader>op",
+      "<leader>opc",
+      "<CMD>Octo pr create<CR>",
+      desc = "Create GitHub PullRequest",
+    },
+    {
+      "<leader>opm",
+      "<CMD>Octo pr merge<CR>",
+      desc = "Merge GitHub PullRequest",
+    },
+    {
+      "<leader>opl",
       "<CMD>Octo pr list<CR>",
       desc = "List GitHub PullRequests",
     },
@@ -55,7 +65,7 @@ return {
     {
       "<leader>oml",
       "<CMD>Octo milestone list<cr>",
-      desc = "List milestones (will open GH)"
+      desc = "List milestones (picking will open GH)"
     },
   },
   dependencies = {
