@@ -21,6 +21,7 @@ return {
   },
   config = function () 
     require('neogit').setup({
+      remember_settings = false,
       mappings = {
         status = {
           ["<space>"] = "Toggle",
