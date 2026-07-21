@@ -13,7 +13,7 @@ return {
       "windwp/nvim-ts-autotag",
       -- "simrat39/rust-tools.nvim",
       "windwp/nvim-autopairs",
-      "elixir-tools/elixir-tools.nvim"
+      -- "elixir-tools/elixir-tools.nvim"
     },
     config = function()
       local popup = require("nikp.utils.popup")

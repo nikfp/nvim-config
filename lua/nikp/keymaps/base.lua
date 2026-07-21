@@ -19,16 +19,17 @@ M.initialize = function()
     { "<leader>m",  name = "Meta-functions",      icon = icons.Meta },
     { "<leader>o",  name = "Octo (GH) things",    icon = icons.Octo },
     { "<leader>oi", name = "Issues",              icon = icons.Octo },
-    { "<leader>op", name = "Pull Requests",              icon = icons.Octo },
-    { "<leader>om", name = "Milestones",              icon = icons.Octo },
+    { "<leader>op", name = "Pull Requests",       icon = icons.Octo },
+    { "<leader>om", name = "Milestones",          icon = icons.Octo },
     { "<leader>q",  name = "Quickfix" },
     { "<leader>r",  name = "Run things",          icon = icons.Run },
     { "<leader>s",  name = "Controls splits",     icon = icons.Split },
     { "<leader>sr", name = "Control split sizes", icon = icons.Split },
-    { "<leader>t",  name = "Toggle Things" },
+    { "<leader>t",  name = "Test Things",         icon = icons.Test },
     { "<leader>u",  name = "Utilities",           icon = icons.Utilities },
+    { "<leader>ut", name = "Toggle Things" },
     { "<leader>uc", name = "Codeium",             icon = icons.AI },
-    { "<leader>ut", name = "Tailwind Utilities",  icon = icons.Tailwind },
+    -- { "<leader>ut", name = "Tailwind Utilities",  icon = icons.Tailwind },
     { "<leader>w",  name = "Workspace" },
   })
   wk.setup({
@@ -93,10 +94,6 @@ M.initialize = function()
   -- map("n", "<leader>utl", "<C-w>v<C-w>r:term<cr>", { desc = "Open terminal in split to left" })
   map("t", "<esc>", "<C-\\><C-N>", { desc = "Exit to normal mode in terminal" })
 
-  -- <<< Tailwind Things >>>
-  map("n", "<leader>utc", ":TailwindConcealToggle", { desc = "Toggle Tailwind Concealing" })
-  map("n", "<leader>uts", ":TailwindSort", { desc = "Sort Tailwind Classes" })
-
   -- <<< Window / Split Management >>>
   map("n", "<leader>ss", "<C-w>s", { desc = "Split horizontal" })
   map("n", "<leader>sv", "<C-w>v", { desc = "Split Vertical" })
@@ -153,7 +150,7 @@ M.initialize = function()
     oil.open(oil.get_current_dir())
   end, { desc = "Open Oil file manager in directory of current buffer" })
   -- Toggle Nvim-Tree
-  map("n", "<leader>tn", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree Sidebar" })
+  map("n", "<leader>utn", ":NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree Sidebar" })
   -- Make pasting easier - don't yank replaced word to register
   map("n", "<leader>mp", '"_diwp', { desc = "Paste over word and discard deleted word" })
   -- Yank to and Paste from system clipboard
@@ -219,7 +216,7 @@ M.initialize = function()
   vim.cmd([[cab cc CodeCompanion]])
 
   -- <<< INCLINE >>>
-  map("n", "<leader>ti", function()
+  map("n", "<leader>uti", function()
     require("incline").toggle()
   end, { desc = "Toggle Incline" })
   -- <<< BASE LSP KEYMAPS >>>
@@ -231,5 +228,21 @@ M.initialize = function()
   map("n", "<leader>ru", function()
     popup.output_command(":echo 'run command not set up for this file type'")
   end, { desc = "Default run command" })
+
+  -- <<< NEOTEST MAPPINGS >>>
+  map("n", "<leader>tt", function() require('neotest').run.run() end,
+    { desc = "Run nearest test if available" })
+  map("n", "<leader>tf", function() require('neotest').run.run(vim.fn.expand("%")) end,
+    { desc = "Run all tests in current file" })
+  map("n", "<leader>ta", function() require('neotest').run.run({ suite = true }) end,
+    { desc = "Run Full Test Suite" })
+  map("n", "<leader>ts", function() require("neotest").summary.toggle() end,
+    { desc = "Toggle Test Summary Panel" })
+  map("n", "<leader>tp", function() require("neotest").output_panel.toggle() end,
+    { desc = "Toggle Test Summary Panel" })
+  map("n", "<leader>tw", function() require("neotest").watch.toggle({ suite = true }) end,
+    { desc = "Toggle Watch Mode for Full Suite" })
+  map("n", "<leader>to", function() require("neotest").output.open({ enter = true }) end,
+    { desc = "Open test output window" })
 end
 return M

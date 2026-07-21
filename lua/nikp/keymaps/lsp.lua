@@ -65,13 +65,13 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>cr", "<cmd>Lspsaga rename<CR>", { desc = "Rename current symbol" })
 
   -- Toggle Tailwind LSP
-  map("n", "<leader>tt", function()
+  map("n", "<leader>utt", function()
     local tailwind = "tailwindcss"
     vim.lsp.enable(tailwind, not vim.lsp.is_enabled(tailwind))
   end, { desc = "Toggle Tailwind LSP Active / Inactive" })
 
   -- Toggle Emmet LSP
-  map("n", "<leader>te", function()
+  map("n", "<leader>ute", function()
     local emmet = "emmet_ls"
     vim.lsp.enable(emmet, not vim.lsp.is_enabled(emmet))
   end, { desc = "Toggle Emmet LSP Active / Inactive" })

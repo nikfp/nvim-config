@@ -26,6 +26,11 @@ return {
       desc = "List GH issues for a milestone"
     },
     {
+      "<leader>oiu",
+      "<CMD>Octo issue list milestone=null<CR>",
+      desc = "List GH issues not assigned to milestone"
+    },
+    {
       "<leader>opc",
       "<CMD>Octo pr create<CR>",
       desc = "Create GitHub PullRequest",

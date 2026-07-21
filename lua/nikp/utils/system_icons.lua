@@ -15,6 +15,7 @@ local system_icons = {
   Split = "",
   Stethoscope = "",
   Tailwind = "󱏿",
+  Test = "",
   Travel = "󰦻",
   Utilities = "󱌣",
 }
