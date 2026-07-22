@@ -145,5 +145,10 @@ return {
     "benomahony/oil-git.nvim",
     dependencies = { "stevearc/oil.nvim" },
     -- No opts or config needed! Works automatically
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = "VeryLazy",
+    config = true
   }
 }

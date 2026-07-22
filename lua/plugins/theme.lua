@@ -4,11 +4,13 @@ end
 
 return {
   {
-    "folke/tokyonight.nvim",
+    -- "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     dependencies = {
       "nvim-lualine/lualine.nvim",
       "kyazdani42/nvim-web-devicons",
-      "xiyaowong/transparent.nvim",
+      -- "xiyaowong/transparent.nvim",
     },
     lazy = false,
     priority = 1000,
@@ -17,20 +19,39 @@ return {
 
       local theme = ""
       if os_theme == "Light" then
-        require("tokyonight").setup({
-          transparent = true,
-        })
-        theme = "tokyonight-day"
+        theme = "latte"
         -- vim.api.nvim_set_hl(0, "OilGitModifiedStaged", { fg = "#A97E28" })
       else
-        require("tokyonight").setup({
-          transparent = true,
-        })
-        theme = "tokyonight-moon"
+        -- })
+        theme = "macchiato"
       end
 
       vim.opt.termguicolors = true
-      vim.cmd("colorscheme " .. theme)
+      -- vim.cmd("colorscheme " .. theme)
+      require("catppuccin").setup({
+        auto_integrations = true
+      })
+      -- require("catppuccin").setup({
+      --   flavour = theme,
+      --   transparent_background = true,
+      --   integrations = {
+      --     cmp = true,
+      --     gitsigns = true,
+      --     notify = true,
+      --     diffview = true,
+      --
+      --     mason = true,
+      --     neogit = true,
+      --     neotest = true,
+      --     notifier = true,
+      --     nvim_surround = true,
+      --     octo = true,
+      --     which_key = true
+      --   }
+      -- })
+
+      vim.cmd.colorscheme "catppuccin-nvim"
+
 
       local function fg(name)
         return function()
