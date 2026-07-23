@@ -23,35 +23,40 @@ return {
         -- vim.api.nvim_set_hl(0, "OilGitModifiedStaged", { fg = "#A97E28" })
       else
         -- })
-        theme = "macchiato"
+        theme = "mocha"
       end
 
       vim.opt.termguicolors = true
       -- vim.cmd("colorscheme " .. theme)
       require("catppuccin").setup({
-        auto_integrations = true
+        flavour = theme,
+        transparent_background = true,
+        integrations = {
+          cmp = true,
+          diffview = true,
+          gitsigns = true,
+          lualine = {
+            all = function(colors)
+              return {
+                normal = {
+                  a = { bg = colors.lavender, gui = "italic" },
+                  b = { fg = colors.lavender },
+                }
+              }
+            end
+          },
+          mason = true,
+          neogit = true,
+          neotest = true,
+          notifier = true,
+          notify = true,
+          nvim_surround = true,
+          octo = true,
+          which_key = true
+        }
       })
-      -- require("catppuccin").setup({
-      --   flavour = theme,
-      --   transparent_background = true,
-      --   integrations = {
-      --     cmp = true,
-      --     gitsigns = true,
-      --     notify = true,
-      --     diffview = true,
-      --
-      --     mason = true,
-      --     neogit = true,
-      --     neotest = true,
-      --     notifier = true,
-      --     nvim_surround = true,
-      --     octo = true,
-      --     which_key = true
-      --   }
-      -- })
 
-      vim.cmd.colorscheme "catppuccin-nvim"
-
+      vim.cmd.colorscheme("catppuccin")
 
       local function fg(name)
         return function()
@@ -92,7 +97,15 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = 'auto',
+          theme = 'catppuccin',
+          component_separators = {
+            left = '',
+            right = ''
+          },
+          section_separators = {
+            left = '',
+            right = ''
+          },
         },
         extensions = {
           "oil"
@@ -118,7 +131,6 @@ return {
               local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
               return " " .. status
             end
-
           },
           lualine_z = {
             lualine_lsp,
