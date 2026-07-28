@@ -23,7 +23,7 @@ return {
         -- vim.api.nvim_set_hl(0, "OilGitModifiedStaged", { fg = "#A97E28" })
       else
         -- })
-        theme = "mocha"
+        theme = "macchiato"
       end
 
       vim.opt.termguicolors = true
@@ -97,7 +97,6 @@ return {
 
       require("lualine").setup({
         options = {
-          theme = 'catppuccin',
           component_separators = {
             left = '',
             right = ''
@@ -129,7 +128,10 @@ return {
             function()
               -- get codeium status as local
               local status = vim.api.nvim_call_function("codeium#GetStatusString", {})
-              return " " .. status
+              if status ~= "OFF" then
+                return " " .. status
+              end
+              return ''
             end
           },
           lualine_z = {

@@ -44,7 +44,8 @@ function M:update_status()
     self.spinner_index = (self.spinner_index % spinner_symbols_len) + 1
     return icons.AI .. " " .. spinner_symbols[self.spinner_index]
   else
-    return icons.AI .. " "
+    -- return icons.AI .. " "
+    return ''
   end
 end
 

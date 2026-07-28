@@ -37,7 +37,17 @@ M.on_attach = function(client, bufnr)
   map("n", "<leader>gh", "<cmd>Lspsaga finder<CR>", { desc = "Open LSP symbol help information" })
 
   -- View references through telescope search
-  map("n", "<leader>gr", ":Telescope lsp_references<cr>", { buffer = bufnr, desc = "Open LSP references in Telescope" })
+  map("n", "<leader>gr", function()
+    require('telescope.builtin').lsp_references({
+      layout_strategy = "flex",
+      layout_config = {
+        vertical = {
+          preview_height = 0.5,
+          prompt_position = "top"
+        }
+      }
+    })
+  end, { buffer = bufnr, desc = "Open LSP references in Telescope" })
 
   -- Signature help
   -- map("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
