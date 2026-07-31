@@ -10,7 +10,8 @@ M.initialize = function()
   local ls = require("luasnip")
   wk.add({
     { "<space>",    name = "Lua helpers" },
-    { "<leader>a",  name = "Code Companion",      icon = icons.AI },
+    { "<leader>i",  name = "Code Companion",      icon = icons.AI },
+    { "<leader>a",  name = "OpenCode",            icon = icons.AI },
     { "<leader>c",  name = "Changing things",     icon = icons.Edit },
     { "<leader>d",  name = "Diagnostics",         icon = icons.Stethoscope },
     { "<leader>f",  name = "Finding things" },
@@ -204,16 +205,30 @@ M.initialize = function()
   map("n", "<leader>uct", ":CodeiumToggle<cr>", { desc = "Toggle Codeium" })
 
   -- <<<CodeCompanion>>>
-  map({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>",
+  map({ "n", "v" }, "<leader>ia", "<cmd>CodeCompanionActions<cr>",
     { noremap = true, silent = true, desc = "CodeCompanion Actions Pallete" })
-  map({ "n", "v" }, "<leader>ai", "<cmd>CodeCompanion<cr>",
+  map({ "n", "v" }, "<leader>ii", "<cmd>CodeCompanion<cr>",
     { noremap = true, silent = true, desc = "CodeCompanion Inline Assistant" })
-  map({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>",
+  map({ "n", "v" }, "<leader>ic", "<cmd>CodeCompanionChat Toggle<cr>",
     { noremap = true, silent = true, desc = "CodeCompanion Chat Window" })
-  map("v", "<leader>ap", "<cmd>CodeCompanionChat Add<cr>",
+  map("v", "<leader>ip", "<cmd>CodeCompanionChat Add<cr>",
     { noremap = true, silent = true, desc = "Add Vis Selection to Chat Window" })
   -- Expand 'cc' into 'CodeCompanion' in the command line
   vim.cmd([[cab cc CodeCompanion]])
+
+  -- <<<OpenCode>>>
+  map({ "n", "x" }, "<leader>aa", function() require("opencode").ask("@this: ") end,
+    { desc = "Ask OpenCode..." })
+  map({ "n", "x" }, "<leader>ac", function() require("opencode").select() end,
+    { desc = "Open OpenCode Chat" })
+  map({ "n", "x" }, "<leader>ao", function() return require("opencode").operator("@this ") end,
+    { desc = "Append range to OpenCode", expr = true })
+  map("n", "<leader>al", function() return require("opencode").operator("@this ") .. "_" end,
+    { desc = "Append line to OpenCode", expr = true })
+  map("n", "<leader>au", function() require("opencode").command("session.half.page.up") end,
+    { desc = "Scroll OpenCode up" })
+  map("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end,
+    { desc = "Scroll OpenCode down" })
 
   -- <<< INCLINE >>>
   map("n", "<leader>uti", function()
