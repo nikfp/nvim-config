@@ -131,14 +131,14 @@ M.initialize = function()
   map("i", "<C-j>", "<Down>", { desc = "Move down arrow key closer to home row" })
   map("i", "<C-k>", "<Up>", { desc = "Move up arrow key closer to home row" })
   -- move lines up and down
-  map("n", "<A-k>", ":m .-2<cr>", { desc = "Move current line up" })           -- up
-  map("n", "<A-j>", ":m .+1<cr>", { desc = "Move current line down" })         -- down
-  map("n", "<M-k>", ":m .-2<cr>", { desc = "Move current line up" })           -- up
-  map("n", "<M-j>", ":m .+1<cr>", { desc = "Move current line down" })         -- down
-  map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })   -- up
-  map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
-  map("v", "<M-j>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines up" })   -- up
-  map("v", "<M-k>", ":m '<-2<cr>gv=gv", { desc = "move selected lines down" }) -- down
+  map("n", "<A-p>", ":m .-2<cr>", { desc = "Move current line up" })
+  map("n", "<A-n>", ":m .+1<cr>", { desc = "Move current line down" })
+  map("n", "<M-p>", ":m .-2<cr>", { desc = "Move current line up" })
+  map("n", "<M-n>", ":m .+1<cr>", { desc = "Move current line down" })
+  map("v", "<A-n>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines down" })
+  map("v", "<A-p>", ":m '<-2<cr>gv=gv", { desc = "move selected lines up" })
+  map("v", "<M-n>", ":m '>+1<cr>gv=gv", { desc = "Move selected lines down" })
+  map("v", "<M-p>", ":m '<-2<cr>gv=gv", { desc = "move selected lines up" })
   -- make sure cursor stays centered in screen
   map("n", "J", "mzJ`z", { desc = "Join lines but keep cursor position" })
   map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })

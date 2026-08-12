@@ -81,54 +81,56 @@ return {
       require("nikp.keymaps.base").initialize()
     end,
   },
-  {
-    "aserowy/tmux.nvim",
-    config = function()
-      local os_tmux = vim.env.TMUX
-
-      if os_tmux == nil then
-        vim.notify("Tmux not detected, skipping integration setup", 2)
-
-        -- Enable title support explicitly
-        vim.opt.title = true
-
-        local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- just folder name
-
-        vim.o.titlestring = string.format("Nvim in %s", cwd)
-
-        return
-      else
-        vim.notify("Tmux detected, setting up integration", 2)
-        require("tmux").setup({
-          navigation = {
-            enable_default_keybindings = false,
-          },
-          resize = {
-            enable_default_keybindings = false,
-          }
-        })
-      end
-    end,
-    event = "VeryLazy"
-  },
-  {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-      "TmuxNavigatorProcessList",
-    },
-    keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-    }
-  },
+  -- {
+  --   "aserowy/tmux.nvim",
+  --   config = function()
+  --     local os_tmux = vim.env.TMUX
+  --
+  --     if os_tmux == nil then
+  --       vim.notify("Tmux not detected, skipping integration setup", 2)
+  --
+  --       -- Enable title support explicitly
+  --       vim.opt.title = true
+  --
+  --       local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- just folder name
+  --
+  --       vim.o.titlestring = string.format("Nvim in %s", cwd)
+  --
+  --       return
+  --     else
+  --       vim.notify("Tmux detected, setting up integration", 2)
+  --       require("tmux").setup({
+  --         navigation = {
+  --           enable_default_keybindings = false,
+  --         },
+  --         resize = {
+  --           enable_default_keybindings = false,
+  --         }
+  --       })
+  --     end
+  --   end,
+  --   event = "VeryLazy"
+  -- },
+  -- {
+  --   "christoomey/vim-tmux-navigator",
+  --   cmd = {
+  --     "TmuxNavigateLeft",
+  --     "TmuxNavigateDown",
+  --     "TmuxNavigateUp",
+  --     "TmuxNavigateRight",
+  --     "TmuxNavigatePrevious",
+  --     "TmuxNavigatorProcessList",
+  --   cond = vim.env.TMUX ~= nil,
+  --   event = "VeryLazy",
+  -- },
+  --   keys = {
+  --     { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+  --     { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+  --     { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+  --     { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+  --     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  --   }
+  -- },
   {
     "Exafunction/codeium.vim",
   },

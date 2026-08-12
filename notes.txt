@@ -1,7 +1,7 @@
 - If Treesitter starts acting up
-  - run TSUpdate and see if it fixes things
-  - Further info at https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
 
+- run TSUpdate and see if it fixes things
+- Further info at https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
 THIS WILL POPULATE QUICKFIX WITH DIAGNOSTIC DATA
 vim.diagnostics.setqflist()
 
