@@ -8,7 +8,7 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
-    "L3MON4D3/LuaSnip",
+    -- L3MON4D3/LuaSnip is declared in lua/plugins/luasnip.lua (avoid duplicate InsertEnter spec)
   },
   event = "InsertEnter",
   config = function()
@@ -34,7 +34,15 @@ return {
     cmp.setup({
       snippet = {
         expand = function(args)
-          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+          -- Prefer native vim.snippet for Expert (elixir/heex) to avoid LuaSnip's
+          -- large-range Select bug with `${1:name}($2) ... $0` snippets.
+          -- For other filetypes keep LuaSnip (preserves choice nodes etc).
+          local ft = vim.bo.filetype
+          if (ft == "elixir" or ft == "heex" or ft == "eelixir") and vim.snippet then
+            local ok = pcall(vim.snippet.expand, args.body)
+            if ok then return end
+          end
+          require("luasnip").lsp_expand(args.body)
         end,
       },
       mapping = {
@@ -72,21 +80,25 @@ return {
           end
         end, { "i", "s" }),
         ["<C-n>"] = cmp.mapping(function(fallback)
-          if ls.locally_jumpable(1) or ls.jumpable(1) then
+          if vim.snippet and vim.snippet.active({ direction = 1 }) then
+            vim.snippet.jump(1)
+          elseif ls.locally_jumpable(1) or ls.jumpable(1) then
             ls.jump(1)
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<C-p>"] = cmp.mapping(function(fallback)
-          if ls.locally_jumpable(-1) or ls.jumpable(-1) then
+          if vim.snippet and vim.snippet.active({ direction = -1 }) then
+            vim.snippet.jump(-1)
+          elseif ls.locally_jumpable(-1) or ls.jumpable(-1) then
             ls.jump(-1)
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-j>"] = function(fallback)
+        ["<C-j>"] = cmp.mapping(function(fallback)
           if ls.choice_active() then
             ls.change_choice(1)
           elseif cmp.visible() then
@@ -94,15 +106,15 @@ return {
           else
             fallback()
           end
-        end,
-        ["<down>"] = function(fallback)
+        end, { "i", "s" }),
+        ["<down>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           else
             fallback()
           end
-        end,
-        ["<C-k>"] = function(fallback)
+        end, { "i", "s" }),
+        ["<C-k>"] = cmp.mapping(function(fallback)
           if ls.choice_active() then
             ls.change_choice(-1)
           elseif cmp.visible() then
@@ -110,14 +122,14 @@ return {
           else
             fallback()
           end
-        end,
-        ["<up>"] = function(fallback)
+        end, { "i", "s" }),
+        ["<up>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           else
             fallback()
           end
-        end,
+        end, { "i", "s" }),
       },
       sources = sources,
       formatting = {
