@@ -5,6 +5,7 @@ vim.g.netrw_liststyle = 3
 vim.opt.autoindent = true
 vim.opt.backup = false
 vim.opt.cindent = false
+vim.opt.autoread = true
 
 vim.opt.shortmess:append("Ic")
 vim.deprecate = function() end
