@@ -20,7 +20,7 @@ return {
           -- "emmet-language-server",
           "emmet-ls",
           "eslint-lsp",
-          "expert",
+          { "expert", version = "nightly" },
           "html-lsp",
           "json-lsp",
           "lua-language-server",

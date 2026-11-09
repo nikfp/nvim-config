@@ -22,5 +22,12 @@ return {
     -- Feed opencode.nvim session activity to Herdr (SwiftBar + sounds).
     require('nikp.utils.opencode_herdr').setup()
   end,
-  opts = {},
+  opts = {
+    ui = {
+      input = {
+        min_height = 0.25,
+        max_height = 0.5,
+      },
+    },
+  },
 }
