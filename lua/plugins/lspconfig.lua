@@ -339,6 +339,12 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
       vim.lsp.enable('expert')
 
 
+      vim.lsp.config('gleam', {
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      vim.lsp.enable('gleam')
 
       -- local elixir = require("elixir")
       -- local elixirls = require("elixir.elixirls")

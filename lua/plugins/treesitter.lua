@@ -13,6 +13,7 @@ return {
         "bash",
         "css",
         "elixir",
+        "gleam",
         "heex",
         "html",
         "javascript",
